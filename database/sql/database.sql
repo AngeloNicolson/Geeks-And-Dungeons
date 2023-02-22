@@ -1,6 +1,6 @@
 CREATE DATABASE gndforum;
 
-CREATE TABLE forum(
-  forum_id SERIAL PRIMARY KEY,
-  post VARCHAR(1024)
+CREATE TABLE topic(
+  topic_id SERIAL PRIMARY KEY,
+  title VARCHAR(255)
 );
