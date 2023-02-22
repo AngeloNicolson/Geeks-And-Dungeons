@@ -1,0 +1,6 @@
+CREATE DATABASE gndforum;
+
+CREATE TABLE forum(
+  forum_id SERIAL PRIMARY KEY,
+  post VARCHAR(1024)
+);
