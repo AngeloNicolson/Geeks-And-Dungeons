@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const repository = require("./createForum.repository");
+const repository = require("./postForum.repository");
 
 router.post("/", async (request, response) => {
   try {
@@ -12,6 +12,15 @@ router.post("/", async (request, response) => {
       author
     );
     return response.json(newPost);
+  } catch (err) {
+    console.error(err.message);
+  }
+});
+
+router.get("/", async (request, response) => {
+  try {
+    const forumPosts = await repository.getAllForumPosts();
+    return response.json(forumPosts);
   } catch (err) {
     console.error(err.message);
   }

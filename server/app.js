@@ -1,24 +1,14 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const pool = require("./db");
-const createForumRouter = require("./forum/createForum.router");
+const postForumRouter = require("./forum/postForum.router");
 
 // Middleware
 app.use(cors());
 app.use(express.json()); //req.body
 
 // ROUTES
-app.use("/api/new-forum", createForumRouter);
-
-app.get("/api/get-post", async (request, response) => {
-  try {
-    const getTopic = await pool.query("SELECT * FROM post");
-
-    response.json(getTopic.rows);
-  } catch (err) {
-    console.error(err.message);
-  }
-});
+app.use("/api/new-forum", postForumRouter);
+app.use("/api/get-post", postForumRouter);
 
 module.exports = app;
