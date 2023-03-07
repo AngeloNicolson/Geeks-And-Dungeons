@@ -10,3 +10,12 @@ services:
       - /app/node_modules
     environment:
       - SERVER_PORT=5000
+  database:
+    build:
+      context: ./database
+    volumes:
+      - form-volume:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+volumes:
+  form-volume:

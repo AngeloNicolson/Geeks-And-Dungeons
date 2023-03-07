@@ -7,4 +7,4 @@ CREATE TABLE post(
   updated_at DATE,
   topic VARCHAR(255) NOT NULL,
   author VARCHAR(255) NOT NULL
-  );
+);
