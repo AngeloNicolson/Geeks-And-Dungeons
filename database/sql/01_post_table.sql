@@ -1,5 +1,3 @@
-CREATE DATABASE gndforum;
-
 CREATE TABLE post(
   post_id SERIAL PRIMARY KEY,
   post_text VARCHAR(255) NOT NULL,

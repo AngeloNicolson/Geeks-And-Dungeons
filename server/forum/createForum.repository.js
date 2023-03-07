@@ -8,7 +8,7 @@ const createPost = async (post_text, updated_at, topic, author) => {
     const Pool = await pool();
 
     const newPost = await Pool.query(
-      `INSERT INTO post (post_text, created_at, updated_at, topic, author) VALUES($1 $2 $3 $4) 
+      `INSERT INTO post (post_text, created_at, updated_at, topic, author) VALUES($1, $2, $3, $4, $5) 
       RETURNING post_id post_text, created_at, updated_at, topic, author`,
       [post_text, created_at, updated_at, topic, author]
     );

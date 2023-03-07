@@ -14,7 +14,7 @@ COPY package.json .
 RUN ["npm", "install"]
 
 # After the above results are cached, when we change or hot reload we then only copy over source code. 
-COPY . ./app
+COPY . /app
 
 # Container exposes port
 EXPOSE 5000

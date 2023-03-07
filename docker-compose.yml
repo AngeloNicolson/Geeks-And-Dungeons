@@ -5,11 +5,16 @@ services:
       context: ./server
     ports:
       - "5000:5000"
+    environment:
+      - PGDATABASE=postgres
+      - PGHOST=database
+      - PGPASSWORD=password
+      - PGUSER=postgres
+    depends_on:
+      - database
     volumes:
       - ./server:/app
       - /app/node_modules
-    environment:
-      - SERVER_PORT=5000
   database:
     build:
       context: ./database

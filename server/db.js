@@ -6,13 +6,7 @@ async function get_pool() {
   if (pool !== null) {
     return pool;
   }
-  pool = new Pool({
-    user: "postgres",
-    password: "password",
-    host: "localhost",
-    port: 5432,
-    database: "gndforum",
-  });
+  pool = new Pool({});
 
   await pool.connect();
 
