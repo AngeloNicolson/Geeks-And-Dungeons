@@ -2,8 +2,10 @@ const get_pool = require("../db");
 
 const createPost = async (post_text, updated_at, topic, author) => {
   try {
-    const pool = await get_pool();
+    // Date for inserting into created at variable.
     const created_at = new Date().toISOString();
+
+    const pool = await get_pool();
 
     const newPost = await pool.query(
       `INSERT INTO post (post_text, created_at, updated_at, topic, author) VALUES($1 $2 $3 $4) 
