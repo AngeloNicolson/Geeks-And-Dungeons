@@ -11,7 +11,7 @@ app.use(express.json()); //req.body
 // ROUTES
 app.use("/api/new-forum", createForumRouter);
 
-app.get("/", async (request, response) => {
+app.get("/api/get-post", async (request, response) => {
   try {
     const getTopic = await pool.query("SELECT * FROM post");
 

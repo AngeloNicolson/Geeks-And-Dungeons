@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const repository = require("./createForum.repository");
 
 router.post("/", async (request, response) => {
   try {
