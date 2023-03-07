@@ -28,15 +28,15 @@ const CreatePost = () => {
       <div>
         <form onSubmit={handleSubmit}>
           <h1>Start a forum</h1>
-          <label>Text</label>
-          <input
-            type="text"
-            value={text}
-            onChange={(event) => {
-              setText(event.target.value);
-            }}
-            required
-          />
+          <label>
+            Text
+            <textarea
+              name="postContent"
+              value={text}
+              onChange={(event) => setText(event.target.value)}
+              required
+            />
+          </label>
           <label>Topic</label>
           <input
             type="text"
