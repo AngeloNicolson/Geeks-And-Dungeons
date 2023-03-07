@@ -1,4 +1,4 @@
-# use the node 12 version image
+# use the node 19 version image
 FROM node:19
 
 # Create a folder called App
@@ -9,10 +9,6 @@ WORKDIR /app
 # We do this because realistically packege.json doesnt get changed very often.
 # " . " means current directory
 COPY package.json .
-
-# add patch to fix a reloading bug - so that for hot-reloading via bind mount,
-# the user/developer does not need to use refresh button in the browser to reload code changes
-ENV CHOKIDAR_USEPOLLING=true
 
 # run an install
 RUN ["npm","install"]

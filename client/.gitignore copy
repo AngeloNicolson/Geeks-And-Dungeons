@@ -1,0 +1,7 @@
+node_modules
+
+# If I ever have an env file
+.env
+
+# dependencies
+/node_modules
