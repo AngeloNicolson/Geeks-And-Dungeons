@@ -5,10 +5,12 @@ const pool = require("../db");
            SQL QUERRIES
 -----------------------------------
 */
+
 const createFormSQL = `INSERT INTO post (post_text, updated_at, topic, author, created_at) VALUES($1, $2, $3, $4, $5) 
 RETURNING post_id, post_text, created_at, updated_at, topic, author`;
 
 const getPostSQL = `SELECT * FROM post`;
+
 /* 
 -----------------------------------
        REPOSITORY FUNCTIONS

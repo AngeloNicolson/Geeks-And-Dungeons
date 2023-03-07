@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const repository = require("./postForum.repository");
 
+// Get second opinion on where to put try catch in repository or router.
 router.post("/", async (request, response) => {
   try {
     const { post_text, updated_at, topic, author } = request.body;
