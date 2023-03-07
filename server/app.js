@@ -9,22 +9,9 @@ app.use(express.json()); //req.body
 
 // ROUTES
 
-app.post("/topic", async (request, response) => {
-  try {
-    const { title } = request.body;
-    const newTopic = await pool.query("INSERT INTO topic (title) VALUES($1)", [
-      title,
-    ]);
-
-    response.json(newTopic);
-  } catch (err) {
-    console.error(err.message);
-  }
-});
-
 app.get("/", async (request, response) => {
   try {
-    const getTopic = await pool.query("SELECT * FROM topic");
+    const getTopic = await pool.query("SELECT * FROM post");
 
     response.json(getTopic.rows);
   } catch (err) {
