@@ -16,4 +16,4 @@ router.post("/", async (request, response) => {
   }
 });
 
-modules.export = router;
+module.exports = router;
