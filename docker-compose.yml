@@ -1,5 +1,19 @@
 version: "3"
 services:
+  client:
+    build:
+      context: ./client
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_API_URL=http://localhost:5001
+      # For running a ci pipeline in github when the project is ready or if others begin to work on project
+      # - CI=true
+    depends_on:
+      - server
+    volumes:
+      - ./client:/app/
+      - /app/node_modules
   server:
     build:
       context: ./server
