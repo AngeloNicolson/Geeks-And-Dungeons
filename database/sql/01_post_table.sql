@@ -1,5 +1,3 @@
-CREATE DATABASE gndforum;
-
 CREATE TABLE post(
   post_id SERIAL PRIMARY KEY,
   post_text VARCHAR(255) NOT NULL,
@@ -7,4 +5,4 @@ CREATE TABLE post(
   updated_at DATE,
   topic VARCHAR(255) NOT NULL,
   author VARCHAR(255) NOT NULL
-  );
+);

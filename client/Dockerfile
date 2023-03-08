@@ -1,4 +1,4 @@
-# Gets the node image
+# use the node 19 version image
 FROM node:19
 
 # Create a folder called App
@@ -10,17 +10,14 @@ WORKDIR /app
 # " . " means current directory
 COPY package.json .
 
-# Commands to run
-RUN ["npm", "install"]
+# run an install
+RUN ["npm","install"]
 
 # After the above results are cached, when we change or hot reload we then only copy over source code. 
 COPY . /app
 
-# Container exposes port
-EXPOSE 5000
+# expose a docker container port where the client should run
+EXPOSE 3000
 
-# run this command at entrypoint/on start 
-ENTRYPOINT ["npm", "run", "start:dev"]
-
-
-# Reference: [FreeCodeCamp] https://www.youtube.com/watch?v=9zUHg7xjIqQ
+# set/run a command as the entry point to run the app
+ENTRYPOINT ["npm", "start"]

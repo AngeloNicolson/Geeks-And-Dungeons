@@ -1,35 +1,14 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const pool = require("./db");
+const postForumRouter = require("./forum/postForum.router");
 
 // Middleware
 app.use(cors());
 app.use(express.json()); //req.body
 
 // ROUTES
-
-app.post("/topic", async (request, response) => {
-  try {
-    const { title } = request.body;
-    const newTopic = await pool.query("INSERT INTO topic (title) VALUES($1)", [
-      title,
-    ]);
-
-    response.json(newTopic);
-  } catch (err) {
-    console.error(err.message);
-  }
-});
-
-app.get("/", async (request, response) => {
-  try {
-    const getTopic = await pool.query("SELECT * FROM topic");
-
-    response.json(getTopic.rows);
-  } catch (err) {
-    console.error(err.message);
-  }
-});
+app.use("/api/new-forum", postForumRouter);
+app.use("/api/get-post", postForumRouter);
 
 module.exports = app;
