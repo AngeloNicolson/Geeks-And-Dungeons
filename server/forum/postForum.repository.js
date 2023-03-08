@@ -6,8 +6,8 @@ const pool = require("../db");
 -----------------------------------
 */
 
-const createFormSQL = `INSERT INTO post (post_text, updated_at, topic, author, created_at) VALUES($1, $2, $3, $4, $5) 
-RETURNING post_id, post_text, created_at, updated_at, topic, author`;
+const createFormSQL = `INSERT INTO post (post_text, updated_at, topic_id, author, created_at) VALUES($1, $2, $3, $4, $5) 
+RETURNING post_id, post_text, created_at, updated_at, topic_id, author`;
 
 const getPostSQL = `SELECT * FROM post`;
 
@@ -16,7 +16,7 @@ const getPostSQL = `SELECT * FROM post`;
        REPOSITORY FUNCTIONS
 -----------------------------------
 */
-const createPost = async (post_text, updated_at, topic, author) => {
+const createPost = async (post_text, updated_at, topic_id, author) => {
   try {
     // Date for inserting into created_at variable, This never to be input by the user.
     const created_at = new Date().toISOString();
@@ -26,7 +26,7 @@ const createPost = async (post_text, updated_at, topic, author) => {
     const newPost = await Pool.query(createFormSQL, [
       post_text,
       updated_at,
-      topic,
+      topic_id,
       author,
       created_at,
     ]);

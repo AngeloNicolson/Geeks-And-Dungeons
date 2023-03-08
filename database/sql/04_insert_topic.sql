@@ -4,8 +4,9 @@ INSERT INTO
         created_at,
         updated_at,
         author,
+        category,
         tags,
-        posts
+        post_id
     )
 VALUES
     (
@@ -14,5 +15,6 @@ VALUES
         '2021-12-01',
         'Random_user',
         'Sci-fi',
+        'tag',
         '2'
     );

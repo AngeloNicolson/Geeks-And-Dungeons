@@ -5,11 +5,11 @@ const repository = require("./postForum.repository");
 // Get second opinion on where to put try catch in repository or router.
 router.post("/", async (request, response) => {
   try {
-    const { post_text, updated_at, topic, author } = request.body;
+    const { post_text, updated_at, topic_id, author } = request.body;
     const newPost = await repository.createPost(
       post_text,
       updated_at,
-      topic,
+      topic_id,
       author
     );
     return response.json(newPost);
