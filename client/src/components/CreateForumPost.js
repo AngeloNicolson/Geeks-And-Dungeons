@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import api from "../Api";
 
 const CreatePost = () => {
   const [text, setText] = useState("");
@@ -7,17 +8,7 @@ const CreatePost = () => {
 
   const handleSubmit = async () => {
     try {
-      const body = {
-        post_text: text,
-        topic: topic,
-        author: userID,
-      };
-
-      await fetch(`${process.env.REACT_APP_API_URL}/api/new-forum`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      });
+      await api.createForumPost(text, topic, userID);
     } catch (err) {
       console.error(err.message);
     }
