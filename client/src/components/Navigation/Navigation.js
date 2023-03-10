@@ -8,7 +8,7 @@ import styles from "./Navigation.module.css";
 
 const Navigation = () => {
   // Nav Items are place holder and will need to change as website develops.
-  const navItems = ["Forums", "Meet people", "Profile", "Log out"];
+  const navItems = ["Forums", "Meet people"];
   return (
     <div className={styles.navigation}>
       <div className={styles.mainNavigation}>
@@ -22,8 +22,8 @@ const Navigation = () => {
             );
           })}
         </ul>
+        <SecondaryNavigation />
       </div>
-      <SecondaryNavigation />
     </div>
   );
 };
