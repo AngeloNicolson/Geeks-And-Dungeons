@@ -1,17 +1,14 @@
-import React, { useState } from "react";
-import TopicCardList from "./Topics/TopicCardList";
-import "./CreateThreadPage.css";
-import Navigation from "./Navigation/Navigation.js";
+import React from "react";
 
-//Importing mock data until I understand how im going to make this work
-import topic_data from "../MockData/topicMockData";
+import Navigation from "./Navigation/Navigation.js";
+import "./CreateThreadPage.css";
+import TopicTitle from "./Topics/TopicTitle.js";
 
 function CreateThreadPage() {
-  const [topiccards, setTopicCard] = useState(topic_data);
   return (
     <>
       <Navigation />
-      <TopicCardList topiccards={topiccards} />
+      <TopicTitle />
     </>
   );
 }

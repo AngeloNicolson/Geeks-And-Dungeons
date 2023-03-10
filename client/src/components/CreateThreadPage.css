@@ -6,8 +6,8 @@ body {
 .card-grid {
   display: grid;
   align-items: center;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1rem;
+  grid-template-columns: repeat(9, 0.5fr);
+  gap: 0.3rem;
 }
 
 .card {
