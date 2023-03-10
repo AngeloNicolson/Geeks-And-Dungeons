@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import api from "../Api";
 
-const CreatePost = () => {
+const CreateThread = () => {
   const [text, setText] = useState("");
   const [topic, SetTopic] = useState("");
   const [userID, SetUserID] = useState("");
@@ -18,7 +18,6 @@ const CreatePost = () => {
     <>
       <div>
         <form onSubmit={handleSubmit}>
-          <h1>Start a forum</h1>
           <label>
             Text
             <textarea
@@ -55,4 +54,4 @@ const CreatePost = () => {
     </>
   );
 };
-export default CreatePost;
+export default CreateThread;

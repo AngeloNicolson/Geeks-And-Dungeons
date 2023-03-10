@@ -6,6 +6,10 @@ const Titles = () => {
   return (
     <div className={styles.titles}>
       <Segment title="Games" />
+      <Segment title="Movies" />
+      <Segment title="Props" />
+      <Segment title="Books" />
+      <Segment title="Community" />
     </div>
   );
 };
