@@ -7,14 +7,17 @@ import CreateThread from "./CreateThread.js";
 
 // STYLES
 import "./CreateThreadPage.css";
+import styles from "./PageLayout.module.css";
 
 function CreateThreadPage() {
   return (
     <>
       <Navigation />
-      <h1>Create thread</h1>
-      <TopicTitle />
-      <CreateThread />
+      <div className={styles.body_inner}>
+        <h1>Create thread</h1>
+        <TopicTitle />
+        <CreateThread />
+      </div>
     </>
   );
 }
