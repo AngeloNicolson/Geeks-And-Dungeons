@@ -8,7 +8,10 @@ export default function TopicCard({ topicCard }) {
       className={`card ${flip ? "flip" : ""}`}
       onClick={() => setFlip(!flip)}
     >
-      {flip ? topicCard.category : topicCard.title}
+      <div className="front">{topicCard.title}</div>
+      <div className="back">
+        {topicCard.title} " "{topicCard.category}
+      </div>
     </div>
   );
 }

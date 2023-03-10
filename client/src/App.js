@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import CreateForum from "./components/CreateForumPost";
+import CreateForum from "./components/ThreadPost";
 import CreateThreadPage from "./components/CreateThreadPage";
 
 const App = () => {

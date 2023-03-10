@@ -8,7 +8,7 @@
 
 const api = {
   createForumPost: async (text, topic, userID) => {
-    const body = { post_text: text, topic: topic, author: userID };
+    const body = { post_text: text, topic_id: topic, author: userID };
 
     await fetch(`${process.env.REACT_APP_API_URL}/api/new-forum`, {
       method: "POST",

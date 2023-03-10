@@ -12,7 +12,7 @@ const topic_data = [
 
   {
     topic_id: 3,
-    title: "Star Wars props",
+    title: "Studio Scale AT-ST",
     created_at: "2021-12-01",
     updated_at: "2021-12-01",
     author: "Test User",
