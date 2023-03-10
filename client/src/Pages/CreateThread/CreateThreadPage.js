@@ -1,13 +1,13 @@
 import React from "react";
 
 // PAGE ELEMENTS
-import Navigation from "./Navigation/Navigation.js";
-import TopicTitle from "./Topics/TopicTitle.js";
+import Navigation from "../../components/Navigation/Navigation.js";
+import TopicTitle from "../../components/Topics/TopicTitle";
 import CreateThread from "./CreateThread.js";
 
 // STYLES
 import "./CreateThreadPage.css";
-import styles from "./PageLayout.module.css";
+import styles from "../PageLayout.module.css";
 
 function CreateThreadPage() {
   return (

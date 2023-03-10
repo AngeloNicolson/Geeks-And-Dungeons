@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 
-import CreateThreadPage from "./components/CreateThreadPage";
+import CreateThreadPage from "./Pages/CreateThread/CreateThreadPage";
 // import "./normalize.css";
 
 const App = () => {

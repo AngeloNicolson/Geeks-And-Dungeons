@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import api from "../Api";
+import api from "../../Api";
 
 const CreateThread = () => {
   const [text, setText] = useState("");

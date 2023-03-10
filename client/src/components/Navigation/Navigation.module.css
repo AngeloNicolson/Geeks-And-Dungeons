@@ -9,12 +9,14 @@
   grid-template-columns: repeat(2, 1fr);
   align-items: center;
   justify-items: end;
+  margin-left: 17rem;
 }
 .secondaryNavigation {
   list-style: none;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   justify-self: end;
+  margin-right: 17rem;
 }
 
 .navigationList {
