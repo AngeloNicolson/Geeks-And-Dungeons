@@ -10,14 +10,6 @@ body {
   grid-auto-flow: column;
   /* overflow-x: scroll; */
   grid-gap: 0.3rem;
-  overflow-x: scroll;
-  scroll-behavior: smooth;
-  background: transparent; /* make scrollbar transparent */
-}
-::-webkit-scrollbar {
-  -webkit-appearance: none;
-  width: 0;
-  height: 0;
 }
 
 .card {

@@ -3,3 +3,13 @@
   font-weight: bold;
   font-size: 0.8rem;
 }
+.segment {
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  background: transparent; /* make scrollbar transparent */
+}
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 0;
+  height: 0;
+}
