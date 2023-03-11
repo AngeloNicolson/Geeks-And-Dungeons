@@ -1,7 +1,11 @@
 import React, { useState, useRef } from "react";
 
+// Style modules
 import styles from "./Segment.module.css";
+
+// Components
 import TopicCardList from "../Topics/TopicCardList";
+import ScrollRightIcon from "../../Assets/Icons/ScrollRightIcon";
 
 //Importing mock data until I understand how im going to make this work
 import topic_data from "../../MockData/topicMockData";
@@ -40,23 +44,23 @@ const Segment = ({ title }) => {
     }
   };
   return (
-    <div>
+    <div className={styles.segment}>
       //Left
       {scrollX !== 0 && (
-        <button className="prev" onClick={() => slide(-500)}>
+        <button className={styles.button} onClick={() => slide(-500)}>
           <i className="fa fa-angle-left"></i>
         </button>
       )}
-      <p className={styles.title}>{title}</p>
-      <div className={styles.segment} ref={scrl} onScroll={scrollCheck}>
-        <TopicCardList topiccards={topiccards} />
-      </div>
       //right
       {!scrolEnd && (
-        <button className="next" onClick={() => slide(+500)}>
-          <i className="fa fa-angle-right"></i>
+        <button className={styles.button} onClick={() => slide(+500)}>
+          <ScrollRightIcon />
         </button>
       )}
+      <p className={styles.title}>{title}</p>
+      <div className={styles.segmentCards} ref={scrl} onScroll={scrollCheck}>
+        <TopicCardList topiccards={topiccards} />
+      </div>
     </div>
   );
 };

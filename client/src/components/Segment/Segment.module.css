@@ -3,10 +3,19 @@
   font-weight: bold;
   font-size: 0.8rem;
 }
+.button {
+  height: 10rem;
+  bottom: 0;
+  position: absolute;
+}
 .segment {
+  background: transparent; /* make scrollbar transparent */
+  overflow: hidden;
+  /* position: relative; */
+}
+.segmentCards {
   overflow-x: scroll;
   scroll-behavior: smooth;
-  background: transparent; /* make scrollbar transparent */
 }
 ::-webkit-scrollbar {
   -webkit-appearance: none;

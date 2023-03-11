@@ -1,4 +1,3 @@
-import React, { useState, useRef } from "react";
 import TopicCard from "./TopicCard";
 
 export default function TopicCardList({ topiccards }) {
