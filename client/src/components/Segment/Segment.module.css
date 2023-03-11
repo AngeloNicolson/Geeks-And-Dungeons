@@ -3,22 +3,31 @@
   font-weight: bold;
   font-size: 0.8rem;
 }
-.button {
-  height: 10rem;
-  bottom: 0;
-  position: absolute;
-}
 .segment {
-  background: transparent; /* make scrollbar transparent */
+  /* background: transparent; make scrollbar transparent */
   overflow: hidden;
-  /* position: relative; */
+  position: relative;
 }
 .segmentCards {
   overflow-x: scroll;
   scroll-behavior: smooth;
 }
+.buttonLeft {
+  background-color: rgba(0, 0, 0, 0.5);
+  bottom: 0;
+  /* position: absolute; */
+}
+.buttonRight {
+  background-color: rgba(0, 0, 0, 0.5);
+  bottom: 0;
+  /* position: absolute; */
+}
+.buttonContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
 ::-webkit-scrollbar {
-  -webkit-appearance: none;
+  /* -webkit-appearance: none; */
   width: 0;
   height: 0;
 }
