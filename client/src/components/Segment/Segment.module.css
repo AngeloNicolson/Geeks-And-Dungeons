@@ -1,33 +1,45 @@
 .title {
   color: #e5e5e5;
   font-weight: bold;
-  font-size: 0.8rem;
+  font-size: 1.2 rem;
 }
 .segment {
-  /* background: transparent; make scrollbar transparent */
+  background: transparent;
   overflow: hidden;
-  position: relative;
+  display: inline-grid;
+  /* grid-template-columns: 0.2fr, 4fr, 0.2fr; */
 }
 .segmentCards {
+  /* display: grid; */
+  padding-top: 1rem;
+  padding-bottom: 1rem;
   overflow-x: scroll;
   scroll-behavior: smooth;
 }
 .buttonLeft {
+  margin-top: 1rem;
+  height: 90%;
+  width: 7%;
   background-color: rgba(0, 0, 0, 0.5);
-  bottom: 0;
-  /* position: absolute; */
+  justify-self: end;
+  position: absolute;
 }
 .buttonRight {
+  margin-top: 1rem;
+  height: 90%;
+  width: 7%;
   background-color: rgba(0, 0, 0, 0.5);
-  bottom: 0;
-  /* position: absolute; */
+  justify-self: start;
+  position: absolute;
 }
 .buttonContainer {
+  position: relative;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  overflow: hidden;
+  grid-template-columns: 0.2fr, 1fr, 0.2fr;
 }
 ::-webkit-scrollbar {
-  /* -webkit-appearance: none; */
+  -webkit-appearance: none;
   width: 0;
   height: 0;
 }

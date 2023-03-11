@@ -47,19 +47,18 @@ const Segment = ({ title }) => {
   return (
     <div className={styles.segment}>
       <p className={styles.title}>{title}</p>
-      <div className={styles.segmentCards} ref={scrl} onScroll={scrollCheck}>
-        <TopicCardList topiccards={topiccards} />
-      </div>
       <div className={styles.buttonContainer}>
+        <div className={styles.segmentCards} ref={scrl} onScroll={scrollCheck}>
+          <TopicCardList topiccards={topiccards} />
+        </div>
         {scrollX !== 0 && (
           <button className={styles.buttonRight} onClick={() => slide(-500)}>
-            <ScrollRightIcon />
+            <ScrollLeftIcon />
           </button>
         )}
-
         {!scrolEnd && (
           <button className={styles.buttonLeft} onClick={() => slide(+500)}>
-            <ScrollLeftIcon />
+            <ScrollRightIcon />
           </button>
         )}
       </div>
