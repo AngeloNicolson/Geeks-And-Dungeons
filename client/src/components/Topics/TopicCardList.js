@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import TopicCard from "./TopicCard";
 
 export default function TopicCardList({ topiccards }) {
-  // This will store the state ov which card has been selected.
+  // This will store the state of the card which has been selected.
   // This way we can the de-select it and flip it back over when onther is chosen.
   const [cardChoiceOne, setCardChoiceOne] = useState(null);
   const [cardChoiceTwo, setCardChoiceTwo] = useState(null);
@@ -24,11 +24,12 @@ export default function TopicCardList({ topiccards }) {
   }, [cardChoiceOne, cardChoiceTwo]);
 
   const cardReset = () => {
-    setCardChoiceOne(setCardChoiceTwo);
+    setCardChoiceOne(cardChoiceTwo);
     setCardChoiceTwo(null);
-    console.log("setCardChoiceOne set to Null");
-    // console.log(cardChoiceTwo);
-    console.log(cardChoiceOne);
+    console.log(`setCardChoiceOne id set to Card ${cardChoiceTwo.topic_id}`);
+
+    console.log(cardChoiceTwo);
+    // console.log(cardChoiceOne);
   };
 
   return (
@@ -40,6 +41,9 @@ export default function TopicCardList({ topiccards }) {
               topicCard={topicCard}
               key={topicCard.topic_id}
               handleChoice={handleChoice}
+              flipped={
+                topicCard === cardChoiceOne || topicCard === cardChoiceTwo
+              }
             />
           );
         })}

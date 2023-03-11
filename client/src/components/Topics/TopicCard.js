@@ -1,30 +1,24 @@
 import React, { useState } from "react";
 
-export default function TopicCard({ topicCard, handleChoice }) {
-  const [flip, setFlip] = useState(false);
+export default function TopicCard({ topicCard, handleChoice, flipped }) {
+  // const [flip, setFlip] = useState(false);
   // const [flipped, setFlipped] = useState(false);
-  //
-  // Need to finda  way to deselc other cards so they flip back over
-  //
-  // const flipCard = () => {
-  //   if (flip === true) {
-  //     setFlipped(true);
-  //   } else {
-  //     setFlipped(true);
-  //   }
-  // };
 
   const handleClick = () => {
     handleChoice(topicCard);
+    console.log(topicCard);
   };
 
   return (
     <div
-      className={`card ${flip ? "flip" : ""}`}
-      onClick={() => setFlip(!flip)}
+      // Old code, may need this if new prop passing doesnt work
+      // className={`card ${flip ? "flip" : ""}`}
+      // onClick={() => setFlip(!flip)}
+      className={`card ${flipped ? "flip" : ""}`}
+      onClick={handleClick}
     >
-      <div className="back">{topicCard.title}</div>
-      <div className="front" onClick={handleClick}>
+      <div className="front">{topicCard.title}</div>
+      <div className="back">
         {topicCard.title} " "{topicCard.category}
       </div>
     </div>
