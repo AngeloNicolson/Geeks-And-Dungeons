@@ -6,37 +6,44 @@
 .segment {
   background: transparent;
   overflow: hidden;
-  display: inline-grid;
+  /* display: inline-grid; */
   /* grid-template-columns: 0.2fr, 4fr, 0.2fr; */
 }
 .segmentCards {
-  /* display: grid; */
   padding-top: 1rem;
   padding-bottom: 1rem;
   overflow-x: scroll;
   scroll-behavior: smooth;
 }
 .buttonLeft {
-  margin-top: 1rem;
+  display: none;
+  margin-top: 0.8rem;
   height: 90%;
   width: 7%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.2);
   justify-self: end;
   position: absolute;
+  border: none;
 }
 .buttonRight {
-  margin-top: 1rem;
+  display: none;
+  margin-top: 0.8rem;
   height: 90%;
   width: 7%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.2);
   justify-self: start;
   position: absolute;
+  border: none;
 }
 .buttonContainer {
   position: relative;
   display: grid;
   overflow: hidden;
   grid-template-columns: 0.2fr, 1fr, 0.2fr;
+}
+.segmentCards:hover + .buttonLeft,
+.buttonLeft:hover {
+  display: block;
 }
 ::-webkit-scrollbar {
   -webkit-appearance: none;

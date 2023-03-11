@@ -1,14 +1,12 @@
 body {
-  background-color: #343535;
+  background-color: #212121;
   margin: 0;
 }
 
 .card-grid {
   display: grid;
-  /* auto auto is telling the browser to render two rows, if needed */
   grid-template-rows: auto;
   grid-auto-flow: column;
-  /* overflow-x: scroll; */
   grid-gap: 0.3rem;
 }
 
