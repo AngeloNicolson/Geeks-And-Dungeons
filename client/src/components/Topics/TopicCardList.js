@@ -1,14 +1,34 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TopicCard from "./TopicCard";
 
 export default function TopicCardList({ topiccards }) {
   // This will store the state ov which card has been selected.
   // This way we can the de-select it and flip it back over when onther is chosen.
-  const [cardChoiceOne, setCarChoiceOne] = useState;
-  const [cardChoiceTwo, setCarChoiceTwo] = useState;
+  const [cardChoiceOne, setCardChoiceOne] = useState(null);
+  const [cardChoiceTwo, setCardChoiceTwo] = useState(null);
+  const [selectedCard, setSelectedCard] = useState(null);
 
   const handleChoice = (topicCard) => {
-    cardChoiceOne ? setCarChoiceTwo(topicCard) : setCarChoiceOne(topicCard);
+    cardChoiceOne ? setCardChoiceTwo(topicCard) : setCardChoiceOne(topicCard);
+  };
+  useEffect(() => {
+    if (cardChoiceOne && cardChoiceTwo) {
+      if (cardChoiceOne.topic_id !== cardChoiceTwo.topic_id) {
+        cardReset();
+        console.log("Reset activated");
+        // console.log(cardChoiceTwo);
+      } else {
+        console.log("Reset Not activated");
+      }
+    }
+  }, [cardChoiceOne, cardChoiceTwo]);
+
+  const cardReset = () => {
+    setCardChoiceOne(setCardChoiceTwo);
+    setCardChoiceTwo(null);
+    console.log("setCardChoiceOne set to Null");
+    // console.log(cardChoiceTwo);
+    console.log(cardChoiceOne);
   };
 
   return (
