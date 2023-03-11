@@ -16,7 +16,15 @@ const Segment = ({ title }) => {
   let scrl = useRef(null);
   const [topiccards, setTopicCard] = useState(topic_data);
   const [scrollX, setscrollX] = useState(0);
-  const [scrolEnd, setscrolEnd] = useState(false);
+  const [scrollEnd, setscrollEnd] = useState(false);
+  const [hover, setIsHover] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsHover(true);
+  };
+  const handleMouseLeave = () => {
+    setIsHover(false);
+  };
 
   //Slide click
   const slide = (shift) => {
@@ -27,9 +35,9 @@ const Segment = ({ title }) => {
       Math.floor(scrl.current.scrollWidth - scrl.current.scrollLeft) <=
       scrl.current.offsetWidth
     ) {
-      setscrolEnd(true);
+      setscrollEnd(true);
     } else {
-      setscrolEnd(false);
+      setscrollEnd(false);
     }
   };
 
@@ -39,25 +47,29 @@ const Segment = ({ title }) => {
       Math.floor(scrl.current.scrollWidth - scrl.current.scrollLeft) <=
       scrl.current.offsetWidth
     ) {
-      setscrolEnd(true);
+      setscrollEnd(true);
     } else {
-      setscrolEnd(false);
+      setscrollEnd(false);
     }
   };
   return (
     <div className={styles.segment}>
       <p className={styles.title}>{title}</p>
-      <div className={styles.buttonContainer}>
+      <div
+        className={styles.buttonContainer}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
         <div className={styles.segmentCards} ref={scrl} onScroll={scrollCheck}>
           <TopicCardList topiccards={topiccards} />
         </div>
-        {scrollX !== 0 && (
-          <button className={styles.buttonRight} onClick={() => slide(-500)}>
+        {hover && scrollX !== 0 && (
+          <button className={styles.buttonLeft} onClick={() => slide(-550)}>
             <ScrollLeftIcon />
           </button>
         )}
-        {!scrolEnd && (
-          <button className={styles.buttonLeft} onClick={() => slide(+500)}>
+        {hover && !scrollEnd && (
+          <button className={styles.buttonRight} onClick={() => slide(+550)}>
             <ScrollRightIcon />
           </button>
         )}
