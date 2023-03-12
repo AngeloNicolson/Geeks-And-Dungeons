@@ -1,9 +1,5 @@
-import { React, useState } from "react";
-
-// API
-import api from "../../Api";
-
 // PAGE ELEMENTS
+import { React, useState } from "react";
 import Navigation from "../../components/Navigation/Navigation.js";
 import Segment from "../../components/Segment/Segment";
 
@@ -11,11 +7,13 @@ import Segment from "../../components/Segment/Segment";
 import "./CreateThreadPage.css";
 import styles from "../PageLayout.module.css";
 
+// API
+import api from "../../Api";
+
 function CreateThreadPage() {
   const [text, setText] = useState("");
-  const [topic, SetTopic] = useState("");
+  const [topic, SetTopic] = useState(0);
   const [userID, SetUserID] = useState("");
-
   const handleSubmit = async () => {
     try {
       await api.createForumPost(text, topic, userID);
@@ -23,13 +21,19 @@ function CreateThreadPage() {
       console.error(err.message);
     }
   };
+  function getCardIdFromSegment(topic_id) {
+    SetTopic(topic_id);
+  }
   return (
     <>
       <Navigation />
       <div className={styles.body_inner}>
         <h1>Create thread</h1>
-        <Segment title="games" />
-
+        <Segment
+          props="games"
+          getCardIdFromSegment={getCardIdFromSegment}
+          // GetId={(topic) => SetTopic(topic)}
+        />
         <div>
           <form onSubmit={handleSubmit}>
             <label>
@@ -41,15 +45,13 @@ function CreateThreadPage() {
                 required
               />
             </label>
+            <br></br>
+
             <label>Topic</label>
-            <input
-              type="text"
-              value={topic}
-              onChange={(event) => {
-                SetTopic(event.target.value);
-              }}
-              required
-            />
+            <br></br>
+
+            <h1>{topic}</h1>
+            <br></br>
             <label>userID</label>
             <input
               type="text"

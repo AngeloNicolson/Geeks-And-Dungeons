@@ -12,7 +12,7 @@ import TopicCard from "../Topics/TopicCard";
 import topic_data from "../../MockData/topicMockData";
 
 // The segment is in control of the title and taking in the card categories
-const Segment = ({ title }) => {
+const Segment = (props) => {
   let scroll = useRef(null);
   const [topiccards, setTopicCard] = useState(topic_data);
   const [scrollX, setscrollX] = useState(0);
@@ -26,14 +26,16 @@ const Segment = ({ title }) => {
 
   const handleChoice = (topicCard) => {
     cardChoiceOne ? setCardChoiceTwo(topicCard) : setCardChoiceOne(topicCard);
+    // This prop is tagged into this function to expose the topic_id for the form on the parent component
+    props.getCardIdFromSegment(topicCard.topic_id);
   };
 
   useEffect(() => {
+    // This resets the card if another one is selected
     if (cardChoiceOne && cardChoiceTwo) {
       if (cardChoiceOne.topic_id !== cardChoiceTwo.topic_id) {
         cardReset();
         console.log("Reset activated");
-        // console.log(cardChoiceTwo);
       } else {
         console.log("Reset Not activated");
       }
@@ -43,14 +45,9 @@ const Segment = ({ title }) => {
   const cardReset = () => {
     setCardChoiceOne(cardChoiceTwo);
     setCardChoiceTwo(null);
-    // setIdFromList(setCardChoiceOne);
-    // console.log(`setCardChoiceOne id set to Card ${cardChoiceTwo.topic_id}`);
-
-    // console.log("inside reset", cardChoiceOne);
   };
-  // console.log(setIdFromList);
-  // console.log("Outside reset", cardChoiceOne);
 
+  // These check whether mouse is hovered for rendering the card slider buttons
   const handleMouseEnter = () => {
     setIsHover(true);
   };
@@ -58,7 +55,7 @@ const Segment = ({ title }) => {
     setIsHover(false);
   };
 
-  //Slide click
+  // Slide click
   const slide = (shift) => {
     scroll.current.scrollLeft += shift;
     setscrollX(scrollX + shift);
@@ -84,9 +81,10 @@ const Segment = ({ title }) => {
       setscrollEnd(false);
     }
   };
+
   return (
     <div className={styles.segment}>
-      <p className={styles.title}>{title}</p>
+      <p className={styles.title}>{props.title}</p>
       <div
         className={styles.buttonContainer}
         onMouseEnter={handleMouseEnter}
@@ -104,6 +102,9 @@ const Segment = ({ title }) => {
                   topicCard={topicCard}
                   key={topicCard.topic_id}
                   handleChoice={handleChoice}
+                  onClick={() =>
+                    props.getCardIdFromSegment(this.topicCard.topic_id)
+                  }
                   flipped={
                     topicCard === cardChoiceOne || topicCard === cardChoiceTwo
                   }
