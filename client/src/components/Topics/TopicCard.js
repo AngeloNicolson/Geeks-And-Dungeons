@@ -6,7 +6,7 @@ export default function TopicCard({ topicCard, handleChoice, flipped }) {
 
   const handleClick = () => {
     handleChoice(topicCard);
-    console.log(topicCard);
+    // console.log(topicCard);
   };
 
   return (
