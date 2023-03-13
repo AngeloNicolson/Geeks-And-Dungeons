@@ -36,15 +36,13 @@ function CreateThreadPage() {
         <Segment title="games" getCardIdFromSegment={getCardIdFromSegment} />
         <div>
           <form onSubmit={handleSubmit}>
-            <label>
-              Text
-              <input
-                name="postContent"
-                value={text}
-                onChange={(event) => setText(event.target.value)}
-                required
-              />
-            </label>
+            <label>Text</label>
+            <textarea
+              name="postContent"
+              value={text}
+              onChange={(event) => setText(event.target.value)}
+              required
+            />
             <br></br>
             <br></br>
             <label>userID</label>
