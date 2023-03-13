@@ -1,0 +1,32 @@
+.navigation {
+  background-color: rgba(96, 92, 92, 0.872);
+  display: grid;
+  height: 68px;
+}
+
+.mainNavigation {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  justify-items: end;
+  margin-left: 17rem;
+}
+.secondaryNavigation {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-self: end;
+  margin-right: 17rem;
+}
+
+.navigationList {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-self: start;
+}
+
+.navigationItem {
+  margin-left: 1rem;
+}

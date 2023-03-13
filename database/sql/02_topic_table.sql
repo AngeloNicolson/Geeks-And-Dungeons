@@ -4,6 +4,7 @@ CREATE TABLE topic(
   created_at DATE NOT NULL,
   updated_at DATE,
   author VARCHAR(255) NOT NULL,
+  category VARCHAR(255) NOT NULL,
   tags VARCHAR(255),
-  posts VARCHAR(255) NOT NULL
+  post_id integer
 );

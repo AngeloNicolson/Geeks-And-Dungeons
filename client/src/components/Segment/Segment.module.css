@@ -1,0 +1,45 @@
+.title {
+  color: #e5e5e5;
+  font-weight: bold;
+  font-size: 1.2 rem;
+}
+.segment {
+  background: transparent;
+  overflow: hidden;
+  display: inline-grid;
+  grid-template-columns: 0.2fr, 4fr, 0.2fr;
+}
+.segmentCards {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+}
+.buttonLeft {
+  margin-top: 0.8rem;
+  height: 90%;
+  width: 7%;
+  background-color: rgba(26, 26, 26, 0.235);
+  justify-self: start;
+  position: absolute;
+  border: none;
+}
+.buttonRight {
+  margin-top: 0.8rem;
+  height: 90%;
+  width: 7%;
+  background-color: rgba(26, 26, 26, 0.235);
+  justify-self: end;
+  position: absolute;
+  border: none;
+}
+.buttonContainer {
+  margin-bottom: 2rem;
+  position: relative;
+  display: grid;
+}
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 0;
+  height: 0;
+}
