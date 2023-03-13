@@ -19,8 +19,8 @@ const Segment = (props) => {
   const [scrollEnd, setscrollEnd] = useState(false);
   const [hover, setIsHover] = useState(false);
 
-  // This will store the state of the card which has been selected.
-  // This way we can the de-select it and flip it back over when onther is chosen.
+  // This will store the state of the card which has been selected for the use effect.
+  // This way we can the de-select it (Reset it) and flip it back over when onther is chosen.
   const [cardChoiceOne, setCardChoiceOne] = useState(null);
   const [cardChoiceTwo, setCardChoiceTwo] = useState(null);
 
@@ -30,8 +30,8 @@ const Segment = (props) => {
     props.getCardIdFromSegment(topicCard.topic_id);
   };
 
+  // This resets the card if another one is selected
   useEffect(() => {
-    // This resets the card if another one is selected
     if (cardChoiceOne && cardChoiceTwo) {
       if (cardChoiceOne.topic_id !== cardChoiceTwo.topic_id) {
         cardReset();

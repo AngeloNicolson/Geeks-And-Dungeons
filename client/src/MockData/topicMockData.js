@@ -8,6 +8,8 @@ const topic_data = [
     tags: "Tags go here",
     category: "Movies",
     post_id: [1, 2],
+    deck_back: "http://localhost:3000/images/topicDeck_back.jpg",
+    image_front: "http://localhost:3000/images/games_TableTop.jpeg",
   },
 
   {
@@ -19,6 +21,8 @@ const topic_data = [
     tags: "Tags go here",
     category: "Test-Back",
     post_id: 22,
+    deck_back: "http://localhost:3000/images/topicDeck_back.jpg",
+    image_front: "http://localhost:3000/images/games_TableTop.jpeg",
   },
   {
     topic_id: 4,
@@ -29,6 +33,8 @@ const topic_data = [
     tags: "Tags go here",
     category: "Games",
     post_id: 77,
+    deck_back: "http://localhost:3000/images/topicDeck_back.jpg",
+    image_front: "http://localhost:3000/images/games_TableTop.jpeg",
   },
   {
     topic_id: 5,
@@ -39,6 +45,8 @@ const topic_data = [
     tags: "Tags go here",
     category: "Community",
     post_id: 17,
+    deck_back: "http://localhost:3000/images/topicDeck_back.jpg",
+    image_front: "http://localhost:3000/images/games_TableTop.jpeg",
   },
   {
     topic_id: 6,
@@ -49,6 +57,8 @@ const topic_data = [
     tags: "Tags go here",
     category: "Test-Back",
     post_id: 22,
+    deck_back: "http://localhost:3000/images/topicDeck_back.jpg",
+    image_front: "http://localhost:3000/images/games_TableTop.jpeg",
   },
   {
     topic_id: 7,
@@ -59,6 +69,8 @@ const topic_data = [
     tags: "Tags go here",
     category: "Test-Back",
     post_id: 22,
+    deck_back: "http://localhost:3000/images/topicDeck_back.jpg",
+    image_front: "http://localhost:3000/images/games_TableTop.jpeg",
   },
   {
     topic_id: 8,
@@ -69,6 +81,8 @@ const topic_data = [
     tags: "Tags go here",
     category: "Test-Back",
     post_id: 22,
+    deck_back: "http://localhost:3000/images/topicDeck_back.jpg",
+    image_front: "http://localhost:3000/images/games_TableTop.jpeg",
   },
   {
     topic_id: 9,
@@ -79,6 +93,8 @@ const topic_data = [
     tags: "Tags go here",
     category: "Test-Back",
     post_id: 22,
+    deck_back: "http://localhost:3000/images/topicDeck_back.jpg",
+    image_front: "http://localhost:3000/images/games_TableTop.jpeg",
   },
   {
     topic_id: 10,
@@ -89,6 +105,8 @@ const topic_data = [
     tags: "Tags go here",
     category: "Test-Back",
     post_id: 22,
+    deck_back: "http://localhost:3000/images/topicDeck_back.jpg",
+    image_front: "http://localhost:3000/images/games_TableTop.jpeg",
   },
   {
     topic_id: 11,
@@ -99,6 +117,8 @@ const topic_data = [
     tags: "Tags go here",
     category: "Test-Back",
     post_id: 22,
+    deck_back: "http://localhost:3000/images/topicDeck_back.jpg",
+    image_front: "http://localhost:3000/images/games_TableTop.jpeg",
   },
   {
     topic_id: 12,
@@ -109,6 +129,8 @@ const topic_data = [
     tags: "Tags go here",
     category: "Test-Back",
     post_id: 22,
+    deck_back: "http://localhost:3000/images/topicDeck_back.jpg",
+    image_front: "http://localhost:3000/images/games_TableTop.jpeg",
   },
   {
     topic_id: 13,
@@ -119,6 +141,8 @@ const topic_data = [
     tags: "Tags go here",
     category: "Test-Back",
     post_id: 22,
+    deck_back: "http://localhost:3000/images/topicDeck_back.jpg",
+    image_front: "http://localhost:3000/images/games_TableTop.jpeg",
   },
   {
     topic_id: 14,
@@ -129,6 +153,8 @@ const topic_data = [
     tags: "Tags go here",
     category: "Test-Back",
     post_id: 22,
+    deck_back: "http://localhost:3000/images/topicDeck_back.jpg",
+    image_front: "http://localhost:3000/images/games_TableTop.jpeg",
   },
   {
     topic_id: 15,
@@ -139,6 +165,8 @@ const topic_data = [
     tags: "Tags go here",
     category: "Test-Back",
     post_id: 22,
+    deck_back: "http://localhost:3000/images/topicDeck_back.jpg",
+    image_front: "http://localhost:3000/images/games_TableTop.jpeg",
   },
   {
     topic_id: 16,
@@ -149,6 +177,8 @@ const topic_data = [
     tags: "Tags go here",
     category: "Test-Back",
     post_id: 22,
+    deck_back: "http://localhost:3000/images/topicDeck_back.jpg",
+    image_front: "http://localhost:3000/images/games_TableTop.jpeg",
   },
   {
     topic_id: 17,
@@ -159,6 +189,8 @@ const topic_data = [
     tags: "Tags go here",
     category: "Test-Back",
     post_id: 22,
+    deck_back: "http://localhost:3000/images/topicDeck_back.jpg",
+    image_front: "http://localhost:3000/images/games_TableTop.jpeg",
   },
   {
     topic_id: 18,
@@ -169,6 +201,8 @@ const topic_data = [
     tags: "Tags go here",
     category: "Test-Back",
     post_id: 22,
+    deck_back: "http://localhost:3000/images/topicDeck_back.jpg",
+    image_front: "http://localhost:3000/images/games_TableTop.jpeg",
   },
   {
     topic_id: 19,
@@ -179,6 +213,8 @@ const topic_data = [
     tags: "Tags go here",
     category: "Test-Back",
     post_id: 22,
+    deck_back: "http://localhost:3000/images/topicDeck_back.jpg",
+    image_front: "http://localhost:3000/images/games_TableTop.jpeg",
   },
   {
     topic_id: 20,
@@ -189,6 +225,8 @@ const topic_data = [
     tags: "Tags go here",
     category: "Test-Back",
     post_id: 22,
+    deck_back: "http://localhost:3000/images/topicDeck_back.jpg",
+    image_front: "http://localhost:3000/images/games_TableTop.jpeg",
   },
   {
     topic_id: 21,
@@ -199,6 +237,8 @@ const topic_data = [
     tags: "Tags go here",
     category: "Test-Back",
     post_id: 22,
+    deck_back: "http://localhost:3000/images/topicDeck_back.jpg",
+    image_front: "http://localhost:3000/images/games_TableTop.jpeg",
   },
   {
     topic_id: 22,
@@ -209,6 +249,8 @@ const topic_data = [
     tags: "Tags go here",
     category: "Test-Back",
     post_id: 22,
+    deck_back: "http://localhost:3000/images/topicDeck_back.jpg",
+    image_front: "http://localhost:3000/images/games_TableTop.jpeg",
   },
   {
     topic_id: 23,
@@ -219,6 +261,8 @@ const topic_data = [
     tags: "Tags go here",
     category: "Test-Back",
     post_id: 22,
+    deck_back: "http://localhost:3000/images/topicDeck_back.jpg",
+    image_front: "http://localhost:3000/images/games_TableTop.jpeg",
   },
   {
     topic_id: 24,
@@ -229,6 +273,8 @@ const topic_data = [
     tags: "Tags go here",
     category: "Test-Back",
     post_id: 22,
+    deck_back: "http://localhost:3000/images/topicDeck_back.jpg",
+    image_front: "http://localhost:3000/images/games_TableTop.jpeg",
   },
   {
     topic_id: 25,
@@ -239,6 +285,8 @@ const topic_data = [
     tags: "Tags go here",
     category: "Test-Back",
     post_id: 22,
+    deck_back: "http://localhost:3000/images/topicDeck_back.jpg",
+    image_front: "http://localhost:3000/images/games_TableTop.jpeg",
   },
 ];
 

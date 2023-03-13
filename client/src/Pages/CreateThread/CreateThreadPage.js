@@ -14,6 +14,7 @@ function CreateThreadPage() {
   const [text, setText] = useState("");
   const [topic, SetTopic] = useState(0);
   const [userID, SetUserID] = useState("");
+
   const handleSubmit = async () => {
     try {
       await api.createForumPost(text, topic, userID);
@@ -21,24 +22,23 @@ function CreateThreadPage() {
       console.error(err.message);
     }
   };
+  // This function pulls the id from the segment child.
+  // This is a work around for passing prop to parent. (May need to change in future depending on react)
   function getCardIdFromSegment(topic_id) {
     SetTopic(topic_id);
   }
+  console.log(topic);
   return (
     <>
       <Navigation />
       <div className={styles.body_inner}>
         <h1>Create thread</h1>
-        <Segment
-          props="games"
-          getCardIdFromSegment={getCardIdFromSegment}
-          // GetId={(topic) => SetTopic(topic)}
-        />
+        <Segment title="games" getCardIdFromSegment={getCardIdFromSegment} />
         <div>
           <form onSubmit={handleSubmit}>
             <label>
               Text
-              <textarea
+              <input
                 name="postContent"
                 value={text}
                 onChange={(event) => setText(event.target.value)}
@@ -46,11 +46,6 @@ function CreateThreadPage() {
               />
             </label>
             <br></br>
-
-            <label>Topic</label>
-            <br></br>
-
-            <h1>{topic}</h1>
             <br></br>
             <label>userID</label>
             <input
