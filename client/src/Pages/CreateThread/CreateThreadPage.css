@@ -7,7 +7,9 @@ body {
   display: grid;
   grid-template-rows: auto;
   grid-auto-flow: column;
-  grid-gap: 0.6rem;
+  grid-gap: 1rem;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
 }
 
 .card {
@@ -15,11 +17,11 @@ body {
   justify-content: center;
   align-items: center;
   position: relative;
-  border-radius: 0.25rem;
+  border-radius: 0.35rem;
   box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.5);
   background-color: rgb(110, 80, 47);
-  height: 15rem;
-  width: 10rem;
+  height: 20rem;
+  width: 13rem;
   transform-style: preserve-3d;
   transition: 777ms;
   cursor: pointer;
@@ -38,29 +40,36 @@ body {
 }
 
 .front {
-  margin-right: 10rem;
-  padding-right: 2rem;
-  height: 15rem;
-  width: 10rem;
+  height: 20rem;
+  width: 13rem;
 }
-.back {
-  margin-right: 10rem;
-
-  height: 15rem;
-  width: 10rem;
+.back .back_img {
+  width: 13rem;
+  border-radius: 0.35rem;
+  overflow: hidden;
+  margin-top: 0.2rem;
+  height: 20rem;
+}
+.back_title {
+  position: absolute;
+  color: rgb(255, 255, 255);
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-left: 10%;
+  margin-top: 8.5rem;
+  text-shadow: 0.3rem 0.3rem 0.3rem #000000;
 }
 
 .card .front {
   left: 0;
 }
 
-.card .front,
-.card .back {
+.card .back,
+.card .front {
   position: absolute;
-  overflow: hidden;
-  border-radius: 0.25rem;
+  border-radius: 0.35rem;
   backface-visibility: hidden;
 }
-.card .back {
+.card .front {
   transform: rotateY(180deg);
 }

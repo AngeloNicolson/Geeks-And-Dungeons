@@ -9,9 +9,12 @@ export default function TopicCard({ topicCard, handleChoice, flipped }) {
     <div className={`card ${flipped ? "flip" : ""}`} onClick={handleClick}>
       {/* <div className="front">
         {topicCard.title} */}
-      <img className="front" src={topicCard.deck_back} />
+      <div className="back">
+        <p className="back_title">{topicCard.title}</p>
+        <img className="back_img" src={topicCard.deck_back} />
+      </div>
+      <img className="front" src={topicCard.image_front} />
       {/* </div> */}
-      <img className="back" src={topicCard.image_front} />
     </div>
   );
 }

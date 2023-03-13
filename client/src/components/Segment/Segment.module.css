@@ -10,8 +10,8 @@
   grid-template-columns: 0.2fr, 4fr, 0.2fr;
 }
 .segmentCards {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
   overflow-x: scroll;
   scroll-behavior: smooth;
 }
