@@ -6,5 +6,5 @@ CREATE TABLE topic(
   author VARCHAR(255) NOT NULL,
   category VARCHAR(255) NOT NULL,
   tags VARCHAR(255),
-  post_id integer
+  thread_id integer
 );

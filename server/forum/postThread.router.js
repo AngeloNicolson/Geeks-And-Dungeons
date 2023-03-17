@@ -1,13 +1,15 @@
 const express = require("express");
 const router = express.Router();
-const repository = require("./postForum.repository");
+const repository = require("./postThread.repository");
 
 // Get second opinion on where to put try catch in repository or router.
 router.post("/", async (request, response) => {
   try {
-    const { post_text, updated_at, topic_id, author } = request.body;
-    const newPost = await repository.createPost(
-      post_text,
+    const { thread_title, thread_text, updated_at, topic_id, author } =
+      request.body;
+    const newPost = await repository.createThread(
+      thread_title,
+      thread_text,
       updated_at,
       topic_id,
       author
@@ -20,7 +22,7 @@ router.post("/", async (request, response) => {
 
 router.get("/", async (request, response) => {
   try {
-    const forumPosts = await repository.getAllForumPosts();
+    const forumPosts = await repository.getAllForumThreads();
     return response.json(forumPosts);
   } catch (err) {
     console.error(err.message);

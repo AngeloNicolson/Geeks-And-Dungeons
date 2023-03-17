@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const postForumRouter = require("./forum/postForum.router");
+const postThreadRouter = require("./forum/postThread.router");
 
 // Middleware
 app.use(cors());
@@ -12,7 +12,7 @@ app.use(express.static("public"));
 app.use("/images", express.static("images"));
 
 // ROUTES
-app.use("/api/new-forum", postForumRouter);
-app.use("/api/get-post", postForumRouter);
+app.use("/api/new-thread", postThreadRouter);
+app.use("/api/get-thread", postThreadRouter);
 
 module.exports = app;
