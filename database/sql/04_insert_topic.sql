@@ -6,7 +6,7 @@ INSERT INTO
         author,
         category,
         tags,
-        post_id
+        thread_id
     )
 VALUES
     (
