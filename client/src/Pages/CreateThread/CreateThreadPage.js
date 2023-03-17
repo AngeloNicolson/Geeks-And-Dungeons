@@ -19,12 +19,13 @@ import api from "../../Api";
 function CreateThreadPage() {
   const [text, SetText] = useState("");
   const [topic, SetTopic] = useState(0);
+  const [title, SetTitle] = useState("");
   const [userID, SetUserID] = useState("");
   // const [value, setValue] = useState("");
-
+  // console.log(title);
   const handleSubmit = async () => {
     try {
-      await api.createForumPost(text, topic, userID);
+      await api.createThread(title, text, topic, userID);
     } catch (err) {
       console.error(err.message);
     }
@@ -45,9 +46,9 @@ function CreateThreadPage() {
           type="text"
           rows={1}
           placeholder={"Thread Title"}
-          value={userID}
+          value={title}
           onChange={(event) => {
-            SetUserID(event.target.value);
+            SetTitle(event.target.value);
           }}
         />
 
