@@ -4,6 +4,7 @@ import Navigation from "../../components/Navigation/Navigation.js";
 import Segment from "../../components/Segment/Segment";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import SubmitButtonHealVial from "../../components/Buttons/HealthVialStyleButton/SubmitButtonHealthVial";
 
 // STYLES
 import "./CreateThreadPage.css";
@@ -40,17 +41,7 @@ function CreateThreadPage() {
     <>
       <Navigation />
       <div className={styles.body_inner}>
-        <h1>Create thread</h1>
-        <textarea
-          className={styles.threadTitleEntry}
-          type="text"
-          rows={1}
-          placeholder={"Thread Title"}
-          value={title}
-          onChange={(event) => {
-            SetTitle(event.target.value);
-          }}
-        />
+        <h1 className={styles.pageTitle}>Create thread</h1>
 
         <Segment title="games" getCardId={getCardId} />
         <form onSubmit={handleSubmit}>
@@ -66,6 +57,16 @@ function CreateThreadPage() {
           />
           <br />
           <div className={styles.editorContainer}>
+            <textarea
+              className={styles.threadTitleEntry}
+              type="text"
+              rows={1}
+              placeholder={"Thread Title"}
+              value={title}
+              onChange={(event) => {
+                SetTitle(event.target.value);
+              }}
+            />
             <QuillToolbar toolbarId={"t1"} />
 
             <ReactQuill
@@ -76,14 +77,20 @@ function CreateThreadPage() {
               modules={modules("t1")}
               formats={formats}
             />
-            <button
-              type="submit"
-              value="submit"
-              className={styles.threadButton}
-            >
-              Post forum
-            </button>
           </div>
+          {/* <div class={styles.drip1}></div>
+          <div class={styles.drip2}></div>
+        <div class={styles.drip3}></div> */}
+          {/* <button
+            type="submit"
+            value="submit"
+            className={`${styles.button} --content`}
+          >
+            <div className={styles.left}></div>
+            Submit
+            <div className={styles.right}></div>
+          </button> */}
+          <SubmitButtonHealVial />
         </form>
       </div>
     </>

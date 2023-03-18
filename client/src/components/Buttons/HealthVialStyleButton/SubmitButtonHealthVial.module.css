@@ -1,0 +1,210 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Code+Pro:200,900");
+:root {
+  --text-color: hsla(210, 50%, 85%, 1);
+  --shadow-color: hsla(210, 40%, 52%, 0.4);
+  --btn-color: hsl(0, 98%, 32%);
+  --bg-color: #141218;
+  --bubble-color: rgb(69, 2, 2);
+}
+
+/* * {
+  box-sizing: border-box;
+} */
+
+/* 
+html,
+body {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-color);
+} */
+.buttonGlass {
+  display: inline-block;
+  position: relative;
+  background-color: #aaa;
+  background-image: linear-gradient(
+    /* chrome */ hsla(0, 0%, 100%, 0.6),
+    hsla(0, 0%, 100%, 0) 50%,
+    hsla(0, 0%, 0%, 0.3) 50%,
+    hsla(0, 0%, 100%, 0.2)
+  );
+  font-size: 22px;
+  font-family: sans-serif;
+  font-weight: bold;
+  color: white;
+  padding: 20px 40px;
+  text-shadow: 0 0 15px hsla(0, 0%, 100%, 1),
+    /* bloom */ 0 2px 4px hsla(0, 0%, 0%, 0.7); /* drop shadow */
+  border: none;
+  border-radius: 50px;
+  margin: 10px;
+  box-shadow: inset 0 -5px 20px hsla(0, 0%, 0%, 0.4),
+    /* top light */ inset 0 5px 20px hsla(0, 0%, 100%, 0.4),
+    /* bottom shadow */ /* multiple light sources yall */ -8px 8px 5px hsla(0, 0%, 0%, 0.15),
+    /* drop shadow 1 */ 5px 18px 10px hsla(0, 0%, 0%, 0.2); /* drop shadow 2 */
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+.submitHealthButton {
+  height: 9rem;
+  position: relative;
+  padding: 10px 20px;
+  /* border: none; */
+  background: none;
+  cursor: pointer;
+  border-color: goldenrod;
+
+  font-family: "Source Code Pro";
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 1.8rem;
+  color: var(--text-color);
+
+  /* background-color: var(--btn-color); */
+  background: radial-gradient(circle, rgba(255, 0, 0, 0.763), rgb(59, 0, 0));
+  box-shadow: var(--shadow-color) 0.2px 0.2px 2.2px;
+  border-radius: 10rem;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.submitHealthButton:focus {
+  outline-color: transparent;
+  box-shadow: var(--btn-color) 2px 2px 22px;
+}
+
+.right::after,
+.submitHealthButton::after {
+  content: "Submit";
+  height: 4rem;
+  /* margin-top: 4rem; */
+  /* display: block; */
+  position: absolute;
+  white-space: nowrap;
+  /* padding: 2.5rem 40px; */
+  /* padding-top: 2rem; */
+  padding: 2.5rem;
+  padding-top: 5.2rem;
+
+  pointer-events: none;
+}
+
+.submitHealthButton::after {
+  backdrop-filter: blur(0.2rem);
+  font-weight: 200;
+  top: -30px;
+  left: -20px;
+}
+
+.right,
+.left {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+}
+.right {
+  left: 66%;
+}
+.left {
+  right: 66%;
+}
+.right::after {
+  top: -30px;
+  left: calc(-66% - 20px);
+
+  background-color: var(--bg-color);
+  color: transparent;
+  transition: transform 0.9s ease-out;
+  transform: translate(0, -20%) rotate(0deg);
+}
+
+/* .submitHealthButton:hover {
+  letter-spacing: 0.1rem;
+} */
+
+.submitHealthButton:hover .right::after {
+  transform: translate(0, -70%) rotate(0deg);
+}
+
+.submitHealthButton .right:hover::after {
+  transform: translate(0, -70%) rotate(-7deg);
+}
+
+.submitHealthButton .left:hover ~ .right::after {
+  transform: translate(0, -70%) rotate(7deg);
+}
+
+/* bubbles */
+.submitHealthButton::before {
+  content: "";
+  pointer-events: none;
+  opacity: 0.7;
+  background: radial-gradient(
+      circle at 20% 35%,
+      transparent 0,
+      transparent 0px,
+      var(--bubble-color) 3px,
+      var(--bubble-color) 4px,
+      transparent 4px
+    ),
+    radial-gradient(
+      circle at 80% 44%,
+      transparent 0,
+      transparent 0px,
+      var(--bubble-color) 5px,
+      var(--bubble-color) 6px,
+      transparent 4px
+    ),
+    radial-gradient(
+      circle at 46% 49%,
+      transparent 0,
+      transparent 0px,
+      var(--bubble-color) 3px,
+      var(--bubble-color) 4px,
+      transparent 6px
+    ),
+    radial-gradient(
+      circle at 22% 70%,
+      transparent 0,
+      transparent 0px,
+      var(--bubble-color) 3px,
+      var(--bubble-color) 4px,
+      transparent 4px
+    ),
+    radial-gradient(
+      circle at 60% 80%,
+      transparent 0rem,
+      transparent 0px,
+      var(--bubble-color) 5px,
+      var(--bubble-color) 6px,
+      transparent 6px
+    ),
+    radial-gradient(
+      circle at 70% 65%,
+      transparent 0,
+      transparent 0px,
+      var(--bubble-color) 5px,
+      var(--bubble-color) 6px,
+      transparent 2px
+    );
+
+  width: 100%;
+  height: 300%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  animation: bubbles 12s linear infinite both;
+}
+
+@keyframes bubbles {
+  from {
+    transform: translate();
+  }
+  to {
+    transform: translate(0, -77%);
+  }
+}
