@@ -1,61 +1,27 @@
 @import url("https://fonts.googleapis.com/css?family=Source+Code+Pro:200,900");
 :root {
   --text-color: hsla(210, 50%, 85%, 1);
-  --shadow-color: hsla(210, 40%, 52%, 0.4);
+  --shadow-color: hsla(0, 100%, 50%, 0.4);
   --btn-color: hsl(0, 98%, 32%);
   --bg-color: #141218;
   --bubble-color: rgb(69, 2, 2);
+  --latex-dim: calc(12.5rem + 2 * var(--latex-dif, 0px));
+  --latex-rad: calc(0.5 * var(--latex-dim));
+  --inner-dim: calc(var(--latex-dim) + 2 * var(--metal-inn, 0px));
 }
-
-/* * {
-  box-sizing: border-box;
-} */
 
 /* 
-html,
-body {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--bg-color);
-} */
-.buttonGlass {
-  display: inline-block;
-  position: relative;
-  background-color: #aaa;
-  background-image: linear-gradient(
-    /* chrome */ hsla(0, 0%, 100%, 0.6),
-    hsla(0, 0%, 100%, 0) 50%,
-    hsla(0, 0%, 0%, 0.3) 50%,
-    hsla(0, 0%, 100%, 0.2)
-  );
-  font-size: 22px;
-  font-family: sans-serif;
-  font-weight: bold;
-  color: white;
-  padding: 20px 40px;
-  text-shadow: 0 0 15px hsla(0, 0%, 100%, 1),
-    /* bloom */ 0 2px 4px hsla(0, 0%, 0%, 0.7); /* drop shadow */
-  border: none;
-  border-radius: 50px;
-  margin: 10px;
-  box-shadow: inset 0 -5px 20px hsla(0, 0%, 0%, 0.4),
-    /* top light */ inset 0 5px 20px hsla(0, 0%, 100%, 0.4),
-    /* bottom shadow */ /* multiple light sources yall */ -8px 8px 5px hsla(0, 0%, 0%, 0.15),
-    /* drop shadow 1 */ 5px 18px 10px hsla(0, 0%, 0%, 0.2); /* drop shadow 2 */
-  cursor: pointer;
-  transition: transform 0.1s, box-shadow 0.1s;
-}
+ */
+
 .submitHealthButton {
-  height: 9rem;
+  height: var(--inner-dim);
+  width: var(--inner-dim);
   position: relative;
-  padding: 10px 20px;
-  /* border: none; */
-  background: none;
+  /* padding: 10px 20px; */
+  border: none;
+  /* background: none; */
   cursor: pointer;
-  border-color: goldenrod;
+  /* border-color: rgb(82, 79, 79); */
 
   font-family: "Source Code Pro";
   font-weight: 900;
@@ -63,47 +29,55 @@ body {
   font-size: 1.8rem;
   color: var(--text-color);
 
-  /* background-color: var(--btn-color); */
+  background-color: var(--btn-color);
   background: radial-gradient(circle, rgba(255, 0, 0, 0.763), rgb(59, 0, 0));
   box-shadow: var(--shadow-color) 0.2px 0.2px 2.2px;
-  border-radius: 10rem;
+  border-radius: 50%;
   z-index: 0;
+  /* filter: contrast(1.5); */
+
   overflow: hidden;
 }
 
 .submitHealthButton:focus {
   outline-color: transparent;
-  box-shadow: var(--btn-color) 2px 2px 22px;
+  box-shadow: var(--btn-color) 0.2rem 0.2rem 5rem;
+  /* box-shadow: 1rem 1rem 70rem 1.5rem #7a1503; */
 }
 
+.submitHealthButton:hover {
+  transition: 5s ease-out;
+  color: black;
+  font-weight: 900;
+}
 .right::after,
 .submitHealthButton::after {
-  content: "Submit";
-  height: 4rem;
-  /* margin-top: 4rem; */
-  /* display: block; */
+  content: "";
+  height: var(--inner-dim);
+  width: var(--inner-dim);
   position: absolute;
   white-space: nowrap;
-  /* padding: 2.5rem 40px; */
-  /* padding-top: 2rem; */
-  padding: 2.5rem;
+  padding: 3rem;
+  padding-left: 0.1rem;
   padding-top: 5.2rem;
-
   pointer-events: none;
 }
 
+/* This is the bottom "GlassGlow" */
 .submitHealthButton::after {
-  backdrop-filter: blur(0.2rem);
-  font-weight: 200;
   top: -30px;
-  left: -20px;
+  left: -1.6rem;
+  height: 6.3rem;
+  border-radius: 50%;
+  transform: scalex(0.82);
+  box-shadow: inset 0.6rem -4.3rem 20px -3.7rem rgba(255, 255, 255, 0.25);
 }
 
 .right,
 .left {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  width: var(--inner-dim);
+  height: var(--inner-dim);
   top: 0;
 }
 .right {
@@ -113,32 +87,28 @@ body {
   right: 66%;
 }
 .right::after {
-  top: -30px;
+  top: -150px;
   left: calc(-66% - 20px);
 
   background-color: var(--bg-color);
   color: transparent;
-  transition: transform 0.9s ease-out;
-  transform: translate(0, -20%) rotate(0deg);
+  transition: transform 5s ease-out;
+  transform: translate(0, -22%) rotate(0deg);
 }
 
-/* .submitHealthButton:hover {
-  letter-spacing: 0.1rem;
-} */
-
 .submitHealthButton:hover .right::after {
-  transform: translate(0, -70%) rotate(0deg);
+  transform: translate(0, -110%) rotate(0deg);
 }
 
 .submitHealthButton .right:hover::after {
-  transform: translate(0, -70%) rotate(-7deg);
+  transform: translate(0, -110%) rotate(-7deg);
 }
 
 .submitHealthButton .left:hover ~ .right::after {
-  transform: translate(0, -70%) rotate(7deg);
+  transform: translate(0, -110%) rotate(7deg);
 }
 
-/* bubbles */
+/* BUBBLES ARE HERE */
 .submitHealthButton::before {
   content: "";
   pointer-events: none;
@@ -207,4 +177,28 @@ body {
   to {
     transform: translate(0, -77%);
   }
+}
+.buttonGlass {
+  border: solid var(--metal-out, 0px) transparent;
+  border-radius: 50%;
+  /* --state-dy: 0px; */
+  color: transparent;
+  filter: contrast(1.5);
+  transition: 0.25s;
+}
+.buttonGlass:before,
+.buttonGlass:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -6rem;
+  width: 12rem;
+  height: 6.5rem;
+  border-radius: 50%/ 59% 59% 41% 41%;
+  transform: scalex(0.83);
+  background: linear-gradient(
+    rgba(187, 187, 187, 0.9),
+    rgba(255, 255, 255, 0.042)
+  );
 }

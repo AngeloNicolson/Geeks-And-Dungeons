@@ -5,16 +5,16 @@ import "./SubmitButtonHealthVial.module.css";
 const SubmitButtonHealVial = () => {
   return (
     <>
-      <div className={styles.buttonGlass}>
-        <button
-          className={styles.submitHealthButton}
-          style={{ "--content": "Submit" }}
-        >
+      <button
+        className={styles.submitHealthButton}
+        style={{ "--content": "Submit" }}
+      >
+        <div className={styles.buttonGlass}>
           <div className={styles.left}></div>
           Submit
           <div className={styles.right}></div>
-        </button>
-      </div>
+        </div>
+      </button>
     </>
   );
 };
