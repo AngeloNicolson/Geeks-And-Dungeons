@@ -2,7 +2,7 @@ import React from "react";
 
 import styles from "./SubmitButtonHealthVial.module.css";
 import "./SubmitButtonHealthVial.module.css";
-const SubmitButtonHealVial = () => {
+const SubmitButtonHealVial = (props) => {
   return (
     <>
       <button
@@ -11,7 +11,7 @@ const SubmitButtonHealVial = () => {
       >
         <div className={styles.buttonGlass}>
           <div className={styles.left}></div>
-          Submit
+          <div>{props.title}</div>
           <div className={styles.right}></div>
         </div>
       </button>

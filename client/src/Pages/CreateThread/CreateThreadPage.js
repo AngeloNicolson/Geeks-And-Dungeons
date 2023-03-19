@@ -90,7 +90,7 @@ function CreateThreadPage() {
             Submit
             <div className={styles.right}></div>
           </button> */}
-          <SubmitButtonHealVial />
+          <SubmitButtonHealVial title="Submit" />
         </form>
       </div>
     </>

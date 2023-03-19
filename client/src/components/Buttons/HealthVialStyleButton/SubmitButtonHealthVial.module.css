@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Source+Code+Pro:200,900");
 :root {
-  --text-color: hsla(210, 50%, 85%, 1);
+  --text-color: rgb(255, 255, 255);
   --shadow-color: hsla(0, 100%, 50%, 0.4);
   --btn-color: hsl(0, 98%, 32%);
   --bg-color: #141218;
@@ -17,26 +17,19 @@
   height: var(--inner-dim);
   width: var(--inner-dim);
   position: relative;
-  /* padding: 10px 20px; */
   border: none;
   /* background: none; */
   cursor: pointer;
   /* border-color: rgb(82, 79, 79); */
 
-  font-family: "Source Code Pro";
-  font-weight: 900;
-  text-transform: uppercase;
-  font-size: 1.8rem;
-  color: var(--text-color);
-
-  background-color: var(--btn-color);
+  /* background-color: var(--btn-color); */
   background: radial-gradient(circle, rgba(255, 0, 0, 0.763), rgb(59, 0, 0));
   box-shadow: var(--shadow-color) 0.2px 0.2px 2.2px;
   border-radius: 50%;
   z-index: 0;
   /* filter: contrast(1.5); */
 
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 .submitHealthButton:focus {
@@ -46,25 +39,28 @@
 }
 
 .submitHealthButton:hover {
-  transition: 5s ease-out;
-  color: black;
-  font-weight: 900;
+  /* transition: 5s ease-out; */
+  /* color: black; */
+  /* font-weight: 900; */
 }
 .right::after,
 .submitHealthButton::after {
-  content: "";
+  content: "Submit";
+  display: block;
   height: var(--inner-dim);
   width: var(--inner-dim);
   position: absolute;
   white-space: nowrap;
   padding: 3rem;
   padding-left: 0.1rem;
-  padding-top: 5.2rem;
+  margin-top: 2rem;
+  /* padding-top: 5.2rem; */
   pointer-events: none;
 }
 
 /* This is the bottom "GlassGlow" */
 .submitHealthButton::after {
+  font-weight: 200;
   top: -30px;
   left: -1.6rem;
   height: 6.3rem;
@@ -73,12 +69,43 @@
   box-shadow: inset 0.6rem -4.3rem 20px -3.7rem rgba(255, 255, 255, 0.25);
 }
 
+.buttonGlass {
+  border: solid var(--metal-out, 0px) transparent;
+  border-radius: 50%;
+  /* --state-dy: 0px; */
+  color: transparent;
+  filter: contrast(1.5);
+  transition: 0.4s;
+
+  font-family: "Source Code Pro";
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 1.8rem;
+  color: var(--text-color);
+}
+.buttonGlass:before,
+.buttonGlass:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -6rem;
+  width: 12rem;
+  height: 6.5rem;
+  border-radius: 50%/ 59% 59% 41% 41%;
+  transform: scalex(0.83);
+  background: linear-gradient(
+    rgba(187, 187, 187, 0.9),
+    rgba(255, 255, 255, 0.042)
+  );
+}
+
 .right,
 .left {
   position: absolute;
   width: var(--inner-dim);
   height: var(--inner-dim);
-  top: 0;
+  top: 7;
 }
 .right {
   left: 66%;
@@ -87,25 +114,26 @@
   right: 66%;
 }
 .right::after {
-  top: -150px;
-  left: calc(-66% - 20px);
+  top: -9.5rem;
+  left: calc(-66% - 1.5rem);
 
   background-color: var(--bg-color);
   color: transparent;
   transition: transform 5s ease-out;
-  transform: translate(0, -22%) rotate(0deg);
+  transform: translate(0, -31%) rotate(0deg);
 }
 
 .submitHealthButton:hover .right::after {
-  transform: translate(0, -110%) rotate(0deg);
+  transform: translate(0, -77%) rotate(0deg);
 }
 
 .submitHealthButton .right:hover::after {
-  transform: translate(0, -110%) rotate(-7deg);
+  transform: translate(0, -77%) rotate(-7deg);
 }
 
 .submitHealthButton .left:hover ~ .right::after {
-  transform: translate(0, -110%) rotate(7deg);
+  transform: translate(0, -77%) rotate(7deg);
+  border: 1rem;
 }
 
 /* BUBBLES ARE HERE */
@@ -160,6 +188,54 @@
       var(--bubble-color) 5px,
       var(--bubble-color) 6px,
       transparent 2px
+    ),
+    radial-gradient(
+      circle at 60% 30%,
+      transparent 0,
+      transparent 0px,
+      var(--bubble-color) 3px,
+      var(--bubble-color) 4px,
+      transparent 4px
+    ),
+    radial-gradient(
+      circle at 80% 44%,
+      transparent 0,
+      transparent 0px,
+      var(--bubble-color) 5px,
+      var(--bubble-color) 6px,
+      transparent 4px
+    ),
+    radial-gradient(
+      circle at 46% 49%,
+      transparent 0,
+      transparent 0px,
+      var(--bubble-color) 3px,
+      var(--bubble-color) 4px,
+      transparent 6px
+    ),
+    radial-gradient(
+      circle at 50% 60%,
+      transparent 0,
+      transparent 0px,
+      var(--bubble-color) 5px,
+      var(--bubble-color) 6px,
+      transparent 4px
+    ),
+    radial-gradient(
+      circle at 30% 95%,
+      transparent 0rem,
+      transparent 0px,
+      var(--bubble-color) 5px,
+      var(--bubble-color) 6px,
+      transparent 6px
+    ),
+    radial-gradient(
+      circle at 50% 90%,
+      transparent 0,
+      transparent 0px,
+      var(--bubble-color) 3px,
+      var(--bubble-color) 4px,
+      transparent 6px
     );
 
   width: 100%;
@@ -167,7 +243,7 @@
   top: 0;
   left: 0;
   position: absolute;
-  animation: bubbles 12s linear infinite both;
+  animation: bubbles 25s linear infinite both;
 }
 
 @keyframes bubbles {
@@ -175,30 +251,6 @@
     transform: translate();
   }
   to {
-    transform: translate(0, -77%);
+    transform: translate(-15%, -100%);
   }
-}
-.buttonGlass {
-  border: solid var(--metal-out, 0px) transparent;
-  border-radius: 50%;
-  /* --state-dy: 0px; */
-  color: transparent;
-  filter: contrast(1.5);
-  transition: 0.25s;
-}
-.buttonGlass:before,
-.buttonGlass:after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin: -6rem;
-  width: 12rem;
-  height: 6.5rem;
-  border-radius: 50%/ 59% 59% 41% 41%;
-  transform: scalex(0.83);
-  background: linear-gradient(
-    rgba(187, 187, 187, 0.9),
-    rgba(255, 255, 255, 0.042)
-  );
 }
