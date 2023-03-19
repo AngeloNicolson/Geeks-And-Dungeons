@@ -78,7 +78,10 @@ function CreateThreadPage() {
               formats={formats}
             />
           </div>
-          <SubmitButtonHealVial title="Submit" />
+          <SubmitButtonHealVial
+            className={styles.submitButton}
+            title="Submit"
+          />
         </form>
       </div>
     </>
@@ -88,6 +91,6 @@ export default CreateThreadPage;
 
 /*
 -------------------------------------
-            CREDITS
+CREDITS
 -------------------------------------
  */
