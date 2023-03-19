@@ -253,7 +253,7 @@ button .left:hover ~ .right::after {
     );
 
   width: 100%;
-  height: 300%;
+  height: 290%;
   top: 0;
   left: 0;
   position: absolute;

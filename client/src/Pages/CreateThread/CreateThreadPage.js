@@ -78,18 +78,6 @@ function CreateThreadPage() {
               formats={formats}
             />
           </div>
-          {/* <div class={styles.drip1}></div>
-          <div class={styles.drip2}></div>
-        <div class={styles.drip3}></div> */}
-          {/* <button
-            type="submit"
-            value="submit"
-            className={`${styles.button} --content`}
-          >
-            <div className={styles.left}></div>
-            Submit
-            <div className={styles.right}></div>
-          </button> */}
           <SubmitButtonHealVial title="Submit" />
         </form>
       </div>
