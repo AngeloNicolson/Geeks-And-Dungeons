@@ -11,76 +11,84 @@
 }
 
 /* 
- */
+*/
 
 .submitHealthButton {
   height: var(--inner-dim);
   width: var(--inner-dim);
-  position: relative;
+  color: var(--text-color);
+  box-shadow: var(--shadow-color) -0.1rem 1rem 3rem -1rem;
+  background: radial-gradient(circle, rgb(255, 0, 0), rgb(0, 0, 0));
+  position: absolute;
   border: none;
-  /* background: none; */
   cursor: pointer;
-  /* border-color: rgb(82, 79, 79); */
-
-  /* background-color: var(--btn-color); */
-  background: radial-gradient(circle, rgba(255, 0, 0, 0.763), rgb(59, 0, 0));
-  box-shadow: var(--shadow-color) 0.2px 0.2px 2.2px;
   border-radius: 50%;
   z-index: 0;
-  /* filter: contrast(1.5); */
-
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 
-.submitHealthButton:focus {
-  outline-color: transparent;
-  box-shadow: var(--btn-color) 0.2rem 0.2rem 5rem;
-  /* box-shadow: 1rem 1rem 70rem 1.5rem #7a1503; */
-}
-
-.submitHealthButton:hover {
-  /* transition: 5s ease-out; */
-  /* color: black; */
-  /* font-weight: 900; */
-}
 .right::after,
 .submitHealthButton::after {
+  /* 
+  ----------------------------------------
+  Change the submitt button here to match button title
+  Have not found another away aroung this yet
+  ----------------------------------------
+  */
   content: "Submit";
-  display: block;
+  font-family: "Source Code Pro";
+  text-transform: uppercase;
+  font-size: 1.8rem;
   height: var(--inner-dim);
   width: var(--inner-dim);
   position: absolute;
   white-space: nowrap;
-  padding: 3rem;
-  padding-left: 0.1rem;
-  margin-top: 2rem;
-  /* padding-top: 5.2rem; */
+  padding: 2rem;
+  margin-top: 5.65rem;
   pointer-events: none;
+  padding-left: 0.3rem;
 }
 
-/* This is the bottom "GlassGlow" */
-.submitHealthButton::after {
-  font-weight: 200;
-  top: -30px;
-  left: -1.6rem;
-  height: 6.3rem;
-  border-radius: 50%;
-  transform: scalex(0.82);
-  box-shadow: inset 0.6rem -4.3rem 20px -3.7rem rgba(255, 255, 255, 0.25);
-}
-
-.buttonGlass {
-  border: solid var(--metal-out, 0px) transparent;
-  border-radius: 50%;
-  /* --state-dy: 0px; */
-  color: transparent;
+.submitHealthButton:hover {
+  transition: all 1.5s ease-in-out;
   filter: contrast(1.5);
-  transition: 0.4s;
+  color: transparent;
+  box-shadow: var(--btn-color) 0.2rem 0.2rem 2rem;
+}
 
+.submitHealthButton:focus {
+  outline-color: transparent;
+  background: radial-gradient(circle, rgb(53, 189, 0), rgb(2, 2, 2));
+  box-shadow: rgb(72, 255, 0) 0.2rem 0.2rem 2rem;
+}
+.title {
   font-family: "Source Code Pro";
   font-weight: 900;
   text-transform: uppercase;
   font-size: 1.8rem;
+  transform: scalex(0.82);
+  white-space: nowrap;
+  color: var(--text-color);
+}
+
+/* This is the bottom "GlassGlow" */
+.submitHealthButton::after {
+  transform: scalex(0.82);
+  white-space: nowrap;
+  top: -40px;
+  left: -0.4rem;
+  height: 5.5rem;
+  margin-right: 0.5rem;
+  border-radius: 48%;
+  box-shadow: inset -1rem -4.3rem 15px -3.7rem rgba(255, 255, 255, 0.25);
+  font-weight: 200;
+}
+
+.buttonGlass {
+  border-radius: 50%;
+  color: transparent;
+  filter: contrast(1.5);
+  transition: 0.4s;
   color: var(--text-color);
 }
 .buttonGlass:before,
@@ -89,51 +97,57 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  margin: -6rem;
   width: 12rem;
   height: 6.5rem;
-  border-radius: 50%/ 59% 59% 41% 41%;
+  margin: -6rem;
+  filter: blur(0.09rem);
   transform: scalex(0.83);
-  background: linear-gradient(
-    rgba(187, 187, 187, 0.9),
-    rgba(255, 255, 255, 0.042)
-  );
+  border-radius: 50%/ 59% 59% 41% 41%;
+  background: linear-gradient(rgba(187, 187, 187, 0.9), rgba(46, 2, 2, 0.075));
 }
 
 .right,
 .left {
+  /*Use THis filter to make it look like the liquids are mixing on hover
+  filter: blur(2rem);
+  */
+  filter: blur(0.15rem);
+
   position: absolute;
   width: var(--inner-dim);
   height: var(--inner-dim);
-  top: 7;
+  top: -5rem;
+  /*
+  Use this to visualize collision boxes for liquid tilt.
+  */
+  /* background-color: blue; */
 }
 .right {
-  left: 66%;
+  left: 70%;
 }
 .left {
-  right: 66%;
+  right: 65%;
 }
 .right::after {
-  top: -9.5rem;
-  left: calc(-66% - 1.5rem);
+  top: -10rem;
+  left: calc(-66% - 1.3rem);
 
   background-color: var(--bg-color);
   color: transparent;
-  transition: transform 5s ease-out;
-  transform: translate(0, -31%) rotate(0deg);
+  transition: transform 3s ease-out;
+  transform: translate(0, 0%) rotate(0deg);
 }
 
-.submitHealthButton:hover .right::after {
-  transform: translate(0, -77%) rotate(0deg);
+button:hover .right::after {
+  transform: translate(0, -63%) rotate(0deg);
 }
 
-.submitHealthButton .right:hover::after {
-  transform: translate(0, -77%) rotate(-7deg);
+button .right:hover::after {
+  transform: translate(0, -66%) rotate(-7deg);
 }
 
-.submitHealthButton .left:hover ~ .right::after {
-  transform: translate(0, -77%) rotate(7deg);
-  border: 1rem;
+button .left:hover ~ .right::after {
+  transform: translate(0, -66%) rotate(7deg);
 }
 
 /* BUBBLES ARE HERE */
@@ -243,7 +257,7 @@
   top: 0;
   left: 0;
   position: absolute;
-  animation: bubbles 25s linear infinite both;
+  animation: bubbles 12s linear infinite both;
 }
 
 @keyframes bubbles {
@@ -251,6 +265,6 @@
     transform: translate();
   }
   to {
-    transform: translate(-15%, -100%);
+    transform: translate(0%, -100%);
   }
 }
