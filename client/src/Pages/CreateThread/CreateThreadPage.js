@@ -78,10 +78,9 @@ function CreateThreadPage() {
               formats={formats}
             />
           </div>
-          <SubmitButtonHealVial
-            className={styles.submitButton}
-            title="Submit"
-          />
+          <div className={styles.custom_SubmitButton}>
+            <SubmitButtonHealVial title="Submit" />
+          </div>
         </form>
       </div>
     </>

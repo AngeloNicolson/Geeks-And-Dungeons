@@ -30,3 +30,11 @@
   border-radius: 0.25rem;
   background-color: #ffffff;
 }
+.custom_SubmitButton {
+  display: grid;
+  margin-bottom: 15rem;
+  margin-top: 2.5rem;
+  justify-self: center;
+  justify-content: center;
+  justify-items: center;
+}
