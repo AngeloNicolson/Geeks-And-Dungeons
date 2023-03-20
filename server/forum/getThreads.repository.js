@@ -12,7 +12,7 @@ const getPostSQL = `SELECT * FROM thread`;
        REPOSITORY FUNCTIONS
 -----------------------------------
 */
-const getAllForumThreads = async () => {
+const getThreads = async () => {
   try {
     const Pool = await pool();
 
@@ -22,4 +22,4 @@ const getAllForumThreads = async () => {
     throw Error(error);
   }
 };
-module.exports = { getAllForumThreads };
+module.exports = { getThreads };

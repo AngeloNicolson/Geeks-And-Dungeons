@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const postThreadRouter = require("./forum/postThread.router");
-const getThreadRouter = require("./forum/getThread.router");
+const getThreadRouter = require("./forum/getThreads.router");
 
 // Middleware
 app.use(cors());
