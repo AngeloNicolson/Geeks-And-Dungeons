@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Source+Code+Pro:200,900");
 
 .body_inner {
+  display: grid;
   margin-left: 19%;
   margin-right: 19%;
   margin-bottom: 10rem;
@@ -19,8 +20,7 @@
   resize: none;
   font-size: 2rem;
   background-color: #efefef;
-  /* padding: 0.7rem; */
-  /* padding-bottom: 1.1rem; */
+  padding: 0.7rem;
   margin-bottom: 1rem;
 }
 .threadTitleEntry::placeholder {
@@ -34,16 +34,23 @@
 .editorContainer {
   display: grid;
   padding: 2rem;
-  border-radius: 0.25rem;
-  background-color: #ffffff;
+  border-radius: 0.7rem;
+  background-color: #edecec;
+  box-shadow: inset hsl(0, 0%, 0%) 0rem 0rem 1rem 0.1rem;
+  /* box-shadow: inset hsl(0, 0%, 0%) 0rem 0rem 0.4rem; */
 }
 .custom_SubmitButton {
   display: grid;
-  margin-bottom: 15rem;
-  margin-top: 2.5rem;
+  margin-top: 42rem;
+  align-self: center;
+  align-items: center;
   justify-self: center;
-  justify-content: center;
   justify-items: center;
+  background-color: rgb(0, 0, 0);
+  padding: 9rem;
+  border-radius: 50%;
+  position: absolute;
+  box-shadow: hsl(0, 0%, 0%) 0rem 0rem 1rem 0.1rem;
 }
 .threadPage_cards {
   background-color: rgb(0, 0, 0);

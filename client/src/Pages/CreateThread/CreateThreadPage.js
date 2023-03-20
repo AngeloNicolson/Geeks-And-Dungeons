@@ -22,8 +22,7 @@ function CreateThreadPage() {
   const [topic, SetTopic] = useState(0);
   const [title, SetTitle] = useState("");
   const [userID, SetUserID] = useState("");
-  // const [value, setValue] = useState("");
-  // console.log(title);
+
   const handleSubmit = async () => {
     try {
       await api.createThread(title, text, topic, userID);
@@ -31,9 +30,9 @@ function CreateThreadPage() {
       console.error(err.message);
     }
   };
-  // This function pulls the id from the segment child.
-  // This is a work around for passing prop to parent.
-  // (May need to change in future depending on how react handles this functionality in the future. Or if I use a library to handle this)
+  /* This function pulls the id from the segment child. This is a work around for passing prop to parent.
+  (May need to change in future depending on how react handles this functionality in the future. Or if I use a library to handle this)
+  */
   function getCardId(topic_id) {
     SetTopic(topic_id);
   }
@@ -80,9 +79,9 @@ function CreateThreadPage() {
               modules={modules("t1")}
               formats={formats}
             />
-          </div>
-          <div className={styles.custom_SubmitButton}>
-            <SubmitButtonHealVial title="Submit" />
+            <div className={styles.custom_SubmitButton}>
+              <SubmitButtonHealVial title="Submit" />
+            </div>
           </div>
         </form>
       </div>

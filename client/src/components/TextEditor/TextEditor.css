@@ -4,13 +4,13 @@
   border-bottom: none;
   display: block;
   background: #cdcdcd;
-  border-top-left-radius: 0.25em;
-  border-top-right-radius: 0.25em;
+  border-top-left-radius: 0.35em;
+  border-top-right-radius: 0.35em;
 }
 .ql-container {
   /* border: none; */
-  border-bottom-left-radius: 0.25em;
-  border-bottom-right-radius: 0.25em;
+  border-bottom-left-radius: 0.35em;
+  border-bottom-right-radius: 0.35em;
   background-color: #efefef;
 }
 .ql-container:focus-within {
@@ -18,8 +18,6 @@
 }
 
 .ql-editor {
-  /* border: 1px solid #ccc;
-  border-radius: 0.5em; */
   border: none;
 }
 
