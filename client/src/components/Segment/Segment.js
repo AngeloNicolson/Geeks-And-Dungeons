@@ -14,7 +14,7 @@ import topic_data from "../../MockData/topicMockData";
 // The segment is in control of the title and taking in the card categories
 const Segment = (props) => {
   let scroll = useRef(null);
-  const [topiccards, setTopicCard] = useState(topic_data);
+  const [topiccards] = useState(topic_data);
   const [scrollX, setscrollX] = useState(0);
   const [scrollEnd, setscrollEnd] = useState(false);
   const [hover, setIsHover] = useState(false);
@@ -27,25 +27,24 @@ const Segment = (props) => {
   const handleChoice = (topicCard) => {
     cardChoiceOne ? setCardChoiceTwo(topicCard) : setCardChoiceOne(topicCard);
     // This prop is tagged into this function to expose the topic_id for the form on the parent component
-    props.getCardIdFromSegment(topicCard.topic_id);
+    props.getCardId(topicCard.topic_id);
+  };
+  const cardReset = (Card_2_Id) => {
+    setCardChoiceOne(Card_2_Id);
+    setCardChoiceTwo(null);
   };
 
   // This resets the card if another one is selected
   useEffect(() => {
     if (cardChoiceOne && cardChoiceTwo) {
       if (cardChoiceOne.topic_id !== cardChoiceTwo.topic_id) {
-        cardReset();
+        cardReset(cardChoiceTwo);
         console.log("Reset activated");
       } else {
         console.log("Reset Not activated");
       }
     }
   }, [cardChoiceOne, cardChoiceTwo]);
-
-  const cardReset = () => {
-    setCardChoiceOne(cardChoiceTwo);
-    setCardChoiceTwo(null);
-  };
 
   // These check whether mouse is hovered for rendering the card slider buttons
   const handleMouseEnter = () => {
@@ -102,9 +101,7 @@ const Segment = (props) => {
                   topicCard={topicCard}
                   key={topicCard.topic_id}
                   handleChoice={handleChoice}
-                  onClick={() =>
-                    props.getCardIdFromSegment(this.topicCard.topic_id)
-                  }
+                  onClick={() => props.getCardId(this.topicCard.topic_id)}
                   flipped={
                     topicCard === cardChoiceOne || topicCard === cardChoiceTwo
                   }

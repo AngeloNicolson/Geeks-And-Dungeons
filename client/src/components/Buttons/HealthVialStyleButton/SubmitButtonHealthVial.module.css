@@ -1,0 +1,270 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Code+Pro:200,900");
+:root {
+  --text-color: rgb(255, 255, 255);
+  --shadow-color: hsla(0, 100%, 50%, 0.4);
+  --btn-color: hsl(0, 98%, 32%);
+  --bg-color: #141218;
+  --bubble-color: rgb(69, 2, 2);
+  --latex-dim: calc(12.5rem + 2 * var(--latex-dif, 0px));
+  --latex-rad: calc(0.5 * var(--latex-dim));
+  --inner-dim: calc(var(--latex-dim) + 2 * var(--metal-inn, 0px));
+}
+
+/* 
+*/
+
+.submitHealthButton {
+  height: var(--inner-dim);
+  width: var(--inner-dim);
+  color: var(--text-color);
+  box-shadow: var(--shadow-color) -0.1rem 1rem 3rem -1rem;
+  background: radial-gradient(circle, rgb(255, 0, 0), rgb(0, 0, 0));
+  position: absolute;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.right::after,
+.submitHealthButton::after {
+  /* 
+  ----------------------------------------
+  Change the submitt button here to match button title
+  Have not found another away aroung this yet
+  ----------------------------------------
+  */
+  content: "Submit";
+  font-family: "Source Code Pro";
+  text-transform: uppercase;
+  font-size: 1.8rem;
+  height: var(--inner-dim);
+  width: var(--inner-dim);
+  position: absolute;
+  white-space: nowrap;
+  padding: 2rem;
+  margin-top: 5.65rem;
+  pointer-events: none;
+  padding-left: 0.3rem;
+}
+
+.submitHealthButton:hover {
+  transition: all 1.5s ease-in-out;
+  filter: contrast(1.5);
+  color: transparent;
+  box-shadow: var(--btn-color) 0.2rem 0.2rem 2rem;
+}
+
+.submitHealthButton:focus {
+  outline-color: transparent;
+  background: radial-gradient(circle, rgb(53, 189, 0), rgb(2, 2, 2));
+  box-shadow: rgb(72, 255, 0) 0.2rem 0.2rem 2rem;
+}
+.title {
+  font-family: "Source Code Pro";
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 1.8rem;
+  transform: scalex(0.82);
+  white-space: nowrap;
+  color: var(--text-color);
+}
+
+/* This is the bottom "GlassGlow" */
+.submitHealthButton::after {
+  transform: scalex(0.82);
+  white-space: nowrap;
+  top: -40px;
+  left: -0.4rem;
+  height: 5.5rem;
+  margin-right: 0.5rem;
+  border-radius: 48%;
+  box-shadow: inset -1rem -4.3rem 15px -3.7rem rgba(255, 255, 255, 0.25);
+  font-weight: 200;
+}
+
+.buttonGlass {
+  border-radius: 50%;
+  color: transparent;
+  filter: contrast(1.5);
+  transition: 0.4s;
+  color: var(--text-color);
+}
+.buttonGlass:before,
+.buttonGlass:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 12rem;
+  height: 6.5rem;
+  margin: -6rem;
+  filter: blur(0.09rem);
+  transform: scalex(0.83);
+  border-radius: 50%/ 59% 59% 41% 41%;
+  background: linear-gradient(rgba(187, 187, 187, 0.9), rgba(46, 2, 2, 0.075));
+}
+
+.right,
+.left {
+  /*Use THis filter to make it look like the liquids are mixing on hover
+  filter: blur(2rem);
+  */
+  filter: blur(0.15rem);
+
+  position: absolute;
+  width: var(--inner-dim);
+  height: var(--inner-dim);
+  top: -5rem;
+  /*
+  Use this to visualize collision boxes for liquid tilt.
+  */
+  /* background-color: blue; */
+}
+.right {
+  left: 70%;
+}
+.left {
+  right: 65%;
+}
+.right::after {
+  top: -10rem;
+  left: calc(-66% - 1.3rem);
+
+  background-color: var(--bg-color);
+  color: transparent;
+  transition: transform 3s ease-out;
+  transform: translate(0, 0%) rotate(0deg);
+}
+
+button:hover .right::after {
+  transform: translate(0, -63%) rotate(0deg);
+}
+
+button .right:hover::after {
+  transform: translate(0, -66%) rotate(-7deg);
+}
+
+button .left:hover ~ .right::after {
+  transform: translate(0, -66%) rotate(7deg);
+}
+
+/* BUBBLES ARE HERE */
+.submitHealthButton::before {
+  content: "";
+  pointer-events: none;
+  opacity: 0.7;
+  background: radial-gradient(
+      circle at 20% 35%,
+      transparent 0,
+      transparent 0px,
+      var(--bubble-color) 3px,
+      var(--bubble-color) 4px,
+      transparent 4px
+    ),
+    radial-gradient(
+      circle at 80% 44%,
+      transparent 0,
+      transparent 0px,
+      var(--bubble-color) 5px,
+      var(--bubble-color) 6px,
+      transparent 4px
+    ),
+    radial-gradient(
+      circle at 46% 49%,
+      transparent 0,
+      transparent 0px,
+      var(--bubble-color) 3px,
+      var(--bubble-color) 4px,
+      transparent 6px
+    ),
+    radial-gradient(
+      circle at 22% 70%,
+      transparent 0,
+      transparent 0px,
+      var(--bubble-color) 3px,
+      var(--bubble-color) 4px,
+      transparent 4px
+    ),
+    radial-gradient(
+      circle at 60% 80%,
+      transparent 0rem,
+      transparent 0px,
+      var(--bubble-color) 5px,
+      var(--bubble-color) 6px,
+      transparent 6px
+    ),
+    radial-gradient(
+      circle at 70% 65%,
+      transparent 0,
+      transparent 0px,
+      var(--bubble-color) 5px,
+      var(--bubble-color) 6px,
+      transparent 2px
+    ),
+    radial-gradient(
+      circle at 60% 30%,
+      transparent 0,
+      transparent 0px,
+      var(--bubble-color) 3px,
+      var(--bubble-color) 4px,
+      transparent 4px
+    ),
+    radial-gradient(
+      circle at 80% 44%,
+      transparent 0,
+      transparent 0px,
+      var(--bubble-color) 5px,
+      var(--bubble-color) 6px,
+      transparent 4px
+    ),
+    radial-gradient(
+      circle at 46% 49%,
+      transparent 0,
+      transparent 0px,
+      var(--bubble-color) 3px,
+      var(--bubble-color) 4px,
+      transparent 6px
+    ),
+    radial-gradient(
+      circle at 50% 60%,
+      transparent 0,
+      transparent 0px,
+      var(--bubble-color) 5px,
+      var(--bubble-color) 6px,
+      transparent 4px
+    ),
+    radial-gradient(
+      circle at 30% 95%,
+      transparent 0rem,
+      transparent 0px,
+      var(--bubble-color) 5px,
+      var(--bubble-color) 6px,
+      transparent 6px
+    ),
+    radial-gradient(
+      circle at 50% 90%,
+      transparent 0,
+      transparent 0px,
+      var(--bubble-color) 3px,
+      var(--bubble-color) 4px,
+      transparent 6px
+    );
+
+  width: 100%;
+  height: 290%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  animation: bubbles 12s linear infinite both;
+}
+
+@keyframes bubbles {
+  from {
+    transform: translate();
+  }
+  to {
+    transform: translate(0%, -100%);
+  }
+}

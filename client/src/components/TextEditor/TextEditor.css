@@ -1,0 +1,26 @@
+/* Snow Theme */
+.ql-snow.ql-toolbar {
+  border: none;
+  border-bottom: none;
+  display: block;
+  background: #cdcdcd;
+  border-top-left-radius: 0.35em;
+  border-top-right-radius: 0.35em;
+}
+.ql-container {
+  border-bottom-left-radius: 0.35em;
+  border-bottom-right-radius: 0.35em;
+  background-color: #efefef;
+}
+.ql-container:focus-within {
+  background-color: #f6f6f6;
+}
+
+.ql-editor {
+  border: none;
+}
+
+.ql-editor {
+  min-height: 27rem;
+  border-top: none;
+}

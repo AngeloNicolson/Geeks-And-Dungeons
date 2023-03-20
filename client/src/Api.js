@@ -7,10 +7,15 @@
 // One file to contain all interation with the server side.
 
 const api = {
-  createForumPost: async (text, topic, userID) => {
-    const body = { post_text: text, topic_id: topic, author: userID };
+  createThread: async (title, text, topic, userID) => {
+    const body = {
+      thread_title: title,
+      thread_text: text,
+      topic_id: topic,
+      author: userID,
+    };
 
-    await fetch(`${process.env.REACT_APP_API_URL}/api/new-forum`, {
+    await fetch(`${process.env.REACT_APP_API_URL}/api/new-thread`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
