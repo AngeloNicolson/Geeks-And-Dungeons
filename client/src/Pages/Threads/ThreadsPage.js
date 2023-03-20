@@ -3,7 +3,7 @@ import { React } from "react";
 import Navigation from "../../components/Navigation/Navigation.js";
 
 // STYLES
-
+import styles from "../PageLayout.module.css";
 // API
 import api from "../../Api";
 
@@ -16,6 +16,8 @@ function ThreadPage() {
     } catch (error) {
       console.log(error);
     }
+
+    fetchData();
     return (
       <>
         <Navigation />
