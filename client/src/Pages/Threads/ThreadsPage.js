@@ -10,7 +10,7 @@ import api from "../../Api";
 function ThreadPage() {
   const fetchData = async () => {
     try {
-      const threadResults = await api.getAllThreads();
+      const threadResults = await api.getThreads();
       const threadData = await threadResults.json();
       console.log(threadData);
     } catch (error) {

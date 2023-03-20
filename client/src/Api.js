@@ -21,6 +21,10 @@ const api = {
       body: JSON.stringify(body),
     });
   },
+
+  getThreads: async () => {
+    await fetch(`${process.env.REACT_APP_API_URL}/api/get-threads`);
+  },
 };
 
 export default api;
