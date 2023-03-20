@@ -8,12 +8,21 @@ import Navigation from "../../components/Navigation/Navigation.js";
 import api from "../../Api";
 
 function ThreadPage() {
-  return (
-    <>
-      <Navigation />
-      <div className={styles.body_inner}></div>
-    </>
-  );
+  const fetchData = async () => {
+    try {
+      const threadResults = await api.getAllThreads();
+      const threadData = await threadResults.json();
+      console.log(threadData);
+    } catch (error) {
+      console.log(error);
+    }
+    return (
+      <>
+        <Navigation />
+        <div className={styles.body_inner}></div>
+      </>
+    );
+  };
 }
 export default ThreadPage;
 
