@@ -41,9 +41,12 @@ function CreateThreadPage() {
     <>
       <Navigation />
       <div className={styles.body_inner}>
-        <h1 className={styles.pageTitle}>Create thread</h1>
+        <h2 className={styles.pageTitle}>Pick your topic</h2>
 
-        <Segment title="games" getCardId={getCardId} />
+        <div className={styles.threadPage_cards}>
+          <Segment title="games" getCardId={getCardId} />
+        </div>
+        <h2 className={styles.pageTitle}>Conjure your thread</h2>
         <form onSubmit={handleSubmit}>
           <label>Text</label>
           <label>userID</label>
@@ -57,7 +60,7 @@ function CreateThreadPage() {
           />
           <br />
           <div className={styles.editorContainer}>
-            <textarea
+            <input
               className={styles.threadTitleEntry}
               type="text"
               rows={1}
