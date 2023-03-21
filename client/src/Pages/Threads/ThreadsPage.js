@@ -1,7 +1,7 @@
 // PAGE ELEMENTS
 import { React, useState, useEffect } from "react";
 import Navigation from "../../components/Navigation/Navigation.js";
-import ThreadList from "./ThreadList.js";
+import ThreadFeed from "./ThreadList.js";
 
 // STYLES
 import styles from "../PageLayout.module.css";
@@ -25,9 +25,10 @@ function ThreadPage() {
   return (
     <>
       <Navigation />
-      <div className={styles.body_inner}></div>
-      <div className={styles.div_identification}>
-        <ThreadList threads={threads} />
+      <div className={styles.body_inner}>
+        <div className={styles.div_identification}>
+          <ThreadFeed threads={threads} />
+        </div>
       </div>
     </>
   );

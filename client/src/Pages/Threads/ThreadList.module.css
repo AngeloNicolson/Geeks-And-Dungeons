@@ -1,4 +1,11 @@
-.threadTitle {
-  color: rgb(0, 136, 255);
+.threadGrid {
+  list-style: none;
   background-color: aliceblue;
+  border-radius: 0.2rem;
+}
+.threadTitle {
+  padding: 0.7rem;
+  display: grid;
+  color: rgb(119, 0, 223);
+  /* grid-gap: 1rem; */
 }
