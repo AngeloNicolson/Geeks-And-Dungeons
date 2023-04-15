@@ -1,0 +1,135 @@
+.enterThreadButton {
+  overflow: hidden;
+  position: relative;
+  display: grid;
+  width: 10rem;
+  height: 10rem;
+  padding: auto;
+  border-radius: 50%;
+  background: rgb(72, 72, 72);
+  box-shadow: 0 0 30px 0 #ffffff inset;
+}
+
+.enterThreadButton:hover {
+  background: rgb(255, 255, 255);
+  box-shadow: 0 0 30px 0 #ffffff inset;
+}
+.black_heart:focus,
+.heart_container:focus,
+.enterThreadButton:focus {
+  background: rgb(21, 255, 0);
+}
+
+.black_heart {
+  /* backface-visibility: hidden; */
+  z-index: 20;
+  position: absolute;
+  overflow: hidden;
+  border-radius: 50%;
+  width: 10rem;
+  height: 10rem;
+  padding: 0;
+  box-shadow: 0 0 15px 0 #9b9b9b inset;
+}
+.black_heart .heart_container {
+  overflow: hidden;
+  border-radius: 50%;
+  position: absolute;
+  filter: url(#black-heart);
+  width: 10rem;
+  height: 10rem;
+  padding: 0;
+  margin: 0;
+  box-shadow: 0 0 0 10px #000000 inset;
+}
+.black_heart .heart_container .bubble {
+  display: block;
+  position: absolute;
+  top: 27%;
+  left: 32%;
+  text-align: right;
+}
+.black_heart .heart_container .bubble:before {
+  content: "";
+  animation: rotation 7s infinite linear;
+  display: inline-block;
+  background: #000000;
+  width: 3rem;
+  height: 4rem;
+  border-radius: 50%;
+  /* transform: scale(1) translate3d(75px, 0, 0); */
+  box-shadow: 0 0 5px 2.5px #ffffff;
+}
+.bubble:hover {
+  animation: black-heart 2.5s ease 5s infinite;
+}
+
+.bubble:hover {
+  animation: black-heart 3s ease 0s infinite;
+}
+
+/*
+------------------------
+    ANIMATION FRAMES
+------------------------
+*/
+
+@keyframes black-heart {
+  0% {
+    transform: scale(1.5) translate3d(1px, 0, 0);
+    /* background: rgb(0, 0, 0); */
+  }
+  65% {
+    transform: scale(1.5) translate3d(-1px, 0, 0);
+    /* background: rgb(0, 0, 0); */
+  }
+  70% {
+    transform: scale(1.6) translate3d(1px, 0, 0);
+    /* background: rgb(255, 0, 0) 2rem; */
+  }
+  75% {
+    transform: scale(1.5) translate3d(-1px, 0, 0);
+    /* background: rgb(0, 0, 0); */
+  }
+  80% {
+    transform: scale(1.6) translate3d(1px, 0, 0);
+    /* background: rgb(255, 0, 0); */
+  }
+  85% {
+    transform: scale(1.5) translate3d(-1px, 0, 0);
+    /* background: rgb(0, 0, 0); */
+  }
+  100% {
+    transform: scale(1.5) translate3d(1px, 0, 0);
+    /* background: rgb(0, 0, 0); */
+  }
+}
+@keyframes rotation {
+  0% {
+    transform: scale(0.7) translate3d(1px, 0, 0);
+    transform: rotate(0deg);
+  }
+  65% {
+    transform: scale(0.8) translate3d(-1px, 0, 0);
+    background: rgb(97, 97, 97);
+    transform: rotate(90deg);
+  }
+  70% {
+    transform: scale(0.7) translate3d(1px, 0, 0);
+  }
+  75% {
+    transform: scale(0.8) translate3d(-1px, 0, 0);
+    background: rgb(126, 126, 126);
+  }
+  80% {
+    transform: scale(0.7) translate3d(1px, 0, 0);
+  }
+  85% {
+    transform: scale(0.8) translate3d(-1px, 0, 0);
+    background: rgb(0, 0, 0);
+  }
+  100% {
+    transform: scale(0.7) translate3d(1px, 0, 0);
+    transform: rotate(359deg);
+  }
+}

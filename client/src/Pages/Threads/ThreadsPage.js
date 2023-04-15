@@ -7,6 +7,7 @@ import ThreadFeed from "./ThreadList.js";
 import styles from "../PageLayout.module.css";
 // API
 import api from "../../Api";
+
 function ThreadPage() {
   const [threads, setThreads] = useState([]);
   useEffect(() => {
@@ -26,6 +27,7 @@ function ThreadPage() {
     <>
       <Navigation />
       <div className={styles.body_inner}>
+        <h1 className={styles.pageTitle}>Enter a realm</h1>
         <div className={styles.div_identification}>
           <ThreadFeed threads={threads} />
         </div>

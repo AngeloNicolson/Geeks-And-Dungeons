@@ -1,11 +1,24 @@
+.threadCard {
+  display: grid;
+  grid-gap: 1rem;
+}
 .threadGrid {
   list-style: none;
   background-color: aliceblue;
   border-radius: 0.2rem;
 }
-.threadTitle {
-  padding: 0.7rem;
+.card_layout {
   display: grid;
-  color: rgb(119, 0, 223);
+  grid-template-columns: 1fr 0.2fr;
+}
+.threadTitle {
+  /* padding: 3rem; */
+  /* display: grid; */
+  color: rgb(0, 0, 0);
   /* grid-gap: 1rem; */
+}
+.thread_button {
+  position: relative;
+  /* size: 0.2rem; */
+  background: red;
 }
