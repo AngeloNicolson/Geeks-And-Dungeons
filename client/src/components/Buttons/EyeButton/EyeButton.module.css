@@ -10,14 +10,21 @@
   box-shadow: 0 0 30px 0 #ffffff inset;
 }
 
+.bubble:hover {
+  animation: black-heart 3s ease 0s infinite;
+}
+
 .enterThreadButton:hover {
   background: rgb(255, 255, 255);
-  box-shadow: 0 0 30px 0 #ffffff inset;
+  box-shadow: 0 0 30px 0 #000000 inset;
 }
+.bubble:focus,
 .black_heart:focus,
 .heart_container:focus,
 .enterThreadButton:focus {
-  background: rgb(21, 255, 0);
+  background: rgb(0, 0, 0);
+
+  box-shadow: 0 0 30px 0 #000000 inset;
 }
 
 .black_heart {
@@ -39,34 +46,30 @@
   width: 10rem;
   height: 10rem;
   padding: 0;
-  margin: 0;
+  margin-left: -0.35rem;
+  margin-top: -0.3rem;
   box-shadow: 0 0 0 10px #000000 inset;
 }
 .black_heart .heart_container .bubble {
   display: block;
   position: absolute;
-  top: 27%;
+  top: 30%;
   left: 32%;
-  text-align: right;
+  /* text-align: right; */
 }
 .black_heart .heart_container .bubble:before {
   content: "";
   animation: rotation 7s infinite linear;
   display: inline-block;
   background: #000000;
-  width: 3rem;
+  width: 3.7rem;
   height: 4rem;
   border-radius: 50%;
-  /* transform: scale(1) translate3d(75px, 0, 0); */
   box-shadow: 0 0 5px 2.5px #ffffff;
 }
-.bubble:hover {
-  animation: black-heart 2.5s ease 5s infinite;
-}
-
-.bubble:hover {
+/* .bubble:hover {
   animation: black-heart 3s ease 0s infinite;
-}
+} */
 
 /*
 ------------------------
@@ -106,30 +109,32 @@
 }
 @keyframes rotation {
   0% {
-    transform: scale(0.7) translate3d(1px, 0, 0);
-    transform: rotate(0deg);
+    transform: translate3d(0.1rem, 0, 0);
+    transform: rotate(-0deg);
+  }
+  30% {
+    transform: rotate(-180deg);
   }
   65% {
-    transform: scale(0.8) translate3d(-1px, 0, 0);
-    background: rgb(97, 97, 97);
-    transform: rotate(90deg);
+    transform: translate3d(-0.2rem, 0, 0);
+    background: rgb(58, 58, 58);
   }
   70% {
-    transform: scale(0.7) translate3d(1px, 0, 0);
+    transform: translate3d(0.1rem, 0, 0);
   }
   75% {
-    transform: scale(0.8) translate3d(-1px, 0, 0);
-    background: rgb(126, 126, 126);
+    transform: translate3d(-0.2rem, 0, 0);
+    background: rgb(62, 62, 62);
   }
   80% {
-    transform: scale(0.7) translate3d(1px, 0, 0);
+    transform: translate3d(0.1rem, 0, 0);
   }
   85% {
-    transform: scale(0.8) translate3d(-1px, 0, 0);
+    transform: translate3d(-0.2rem, 0, 0);
     background: rgb(0, 0, 0);
   }
   100% {
-    transform: scale(0.7) translate3d(1px, 0, 0);
-    transform: rotate(359deg);
+    transform: translate3d(0.1rem, 0, 0);
+    transform: rotate(-359deg);
   }
 }

@@ -15,7 +15,7 @@ const EyeButton = () => {
             <feColorMatrix
               in="blur"
               mode="matrix"
-              values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 50 -16"
+              values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 77 -77"
               result="goo"
             />
             <feTurbulence baseFrequency="0.052" numOctaves="1" />
