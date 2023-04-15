@@ -7,14 +7,16 @@ const ThreadFeed = ({ threads }) => {
     <>
       <ul className={styles.threadCard}>
         {threads.map((thread) => (
-          <div className={styles.card_layout}>
-            <li key={thread.thread_id} className={styles.threadGrid}>
+          <div key={thread.thread_id} className={styles.card_layout}>
+            <li className={styles.threadGrid}>
               <h3 className={styles.threadTitle}>{thread.thread_title}</h3>
               <p>{thread.thread_text}</p>
               <p>{formatDate(thread.created_at)}</p>
             </li>
-            <div className={styles.thread_button}>
-              <EyeButton onMouseMove={(event) => this.handleMouse(event)} />
+            <div>
+              <div className={styles.thread_button}>
+                <EyeButton onMouseMove={(event) => this.handleMouse(event)} />
+              </div>
             </div>
           </div>
         ))}

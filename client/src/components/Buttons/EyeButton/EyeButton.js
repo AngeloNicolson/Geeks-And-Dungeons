@@ -23,9 +23,9 @@ const EyeButton = () => {
             <feDisplacementMap
               id="displacement"
               in="blur"
-              scale="17"
-              xChannelSelector="r"
-              yChannelSelector="b"
+              scale="27"
+              xChannelSelector="G"
+              yChannelSelector="B"
             />
 
             <feBlend id="blend-mode" in="gooey" mode="overlay" />

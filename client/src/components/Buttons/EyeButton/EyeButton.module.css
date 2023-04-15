@@ -17,6 +17,7 @@
 .enterThreadButton:hover {
   background: rgb(255, 255, 255);
   box-shadow: 0 0 30px 0 #000000 inset;
+  box-shadow: 0 0 30px 0 #ffffff;
 }
 .bubble:focus,
 .black_heart:focus,
@@ -46,8 +47,8 @@
   width: 10rem;
   height: 10rem;
   padding: 0;
-  margin-left: -0.35rem;
-  margin-top: -0.3rem;
+  margin-left: -0.7rem;
+  margin-top: -0.5rem;
   box-shadow: 0 0 0 10px #000000 inset;
 }
 .black_heart .heart_container .bubble {
