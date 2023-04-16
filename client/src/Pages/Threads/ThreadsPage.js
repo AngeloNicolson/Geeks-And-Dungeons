@@ -16,7 +16,6 @@ function ThreadPage() {
         const threadResults = await api.getThreads();
         const threadData = await threadResults.json();
         setThreads(threadData);
-        console.log(threadData);
       } catch (error) {
         console.log(error);
       }
