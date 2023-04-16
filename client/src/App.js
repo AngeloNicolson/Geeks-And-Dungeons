@@ -8,8 +8,8 @@ const App = () => {
   return (
     <div>
       <Routes>
-        <Route exact path="/" element={<CreateThreadPage />} />
-        <Route exact path="/threads" element={<ThreadsPage />} />
+        <Route exact path="/createthread" element={<CreateThreadPage />} />
+        <Route exact path="/" element={<ThreadsPage />} />
       </Routes>
     </div>
   );
