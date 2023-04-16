@@ -7,6 +7,9 @@
 // One file to contain all interation with the server side.
 
 const api = {
+  getThreads: async () =>
+    await fetch(`${process.env.REACT_APP_API_URL}/api/get-threads`),
+
   createThread: async (title, text, topic, userID) => {
     const body = {
       thread_title: title,

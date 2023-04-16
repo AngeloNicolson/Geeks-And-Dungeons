@@ -20,13 +20,4 @@ router.post("/", async (request, response) => {
   }
 });
 
-router.get("/", async (request, response) => {
-  try {
-    const forumPosts = await repository.getAllForumThreads();
-    return response.json(forumPosts);
-  } catch (err) {
-    console.error(err.message);
-  }
-});
-
 module.exports = router;

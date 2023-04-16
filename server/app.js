@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const postThreadRouter = require("./forum/postThread.router");
+const getThreadRouter = require("./forum/getThreads.router");
 
 // Middleware
 app.use(cors());
@@ -13,6 +14,6 @@ app.use("/images", express.static("images"));
 
 // ROUTES
 app.use("/api/new-thread", postThreadRouter);
-app.use("/api/get-thread", postThreadRouter);
+app.use("/api/get-threads", getThreadRouter);
 
 module.exports = app;
