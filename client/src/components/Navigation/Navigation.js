@@ -8,19 +8,23 @@ import styles from "./Navigation.module.css";
 
 const Navigation = () => {
   return (
-    <div className={styles.navigation}>
-      <div className={styles.mainNavigation}>
-        {/* <img src="" alt="" /> */}
-        <ul className={styles.navigationList}>
-          <li className={styles.navigationItem}>
-            <a href="/">Forums</a>
-          </li>
-          <li className={styles.navigationItem}>
-            <a href="meetpeople">Meet people</a>
-          </li>
-        </ul>
-        <SecondaryNavigation />
-      </div>
+    <div className={styles.mainNavigation}>
+      <ul className={styles.siteNavigation}>
+        <li>
+          <a href="/" className={styles.navigationItem}>
+            FORUMS
+          </a>
+        </li>
+        <li>
+          <a href="meetpeople" className={styles.navigationItem}>
+            MEET PEOPLE
+          </a>
+        </li>
+      </ul>
+      <a href="/home" className={styles.logo_home}>
+        LOGO HERE
+      </a>
+      <SecondaryNavigation />
     </div>
   );
 };

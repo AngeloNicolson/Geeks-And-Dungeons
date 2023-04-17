@@ -4,14 +4,17 @@ import styles from "./Navigation.module.css";
 const SecondaryNavigation = () => {
   return (
     <div>
-      <ul className={styles.secondaryNavigation}>
-        <li>Profile</li>
-        <li>Log out</li>
-
-        {/* Below are future features */}
-        {/* <Search /> */}
-        {/* <Notification /> */}
-        {/* <UserMenu /> */}
+      <ul className={styles.personalNavigation}>
+        <li>
+          <a href="/profile" className={styles.navigationItem}>
+            PROFILE
+          </a>
+        </li>
+        <li>
+          <a href="/logout" className={styles.navigationItem}>
+            LOG OUT
+          </a>
+        </li>
       </ul>
     </div>
   );

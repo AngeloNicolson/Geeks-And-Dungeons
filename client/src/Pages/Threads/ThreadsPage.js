@@ -27,7 +27,11 @@ function ThreadPage() {
       <Navigation />
       <div className={styles.body_inner}>
         <h1 className={styles.pageTitle}>Enter a realm</h1>
-        <a href="/createthread"></a>
+
+        <a href="/createthread" className={styles.createThread_button}>
+          Create thread
+        </a>
+
         <div className={styles.div_identification}>
           <ThreadFeed threads={threads} />
         </div>
