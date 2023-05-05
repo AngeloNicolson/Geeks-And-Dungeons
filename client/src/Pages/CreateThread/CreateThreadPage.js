@@ -40,12 +40,12 @@ function CreateThreadPage() {
     <>
       <Navigation />
       <div className={styles.body_inner}>
-        <h2 className={styles.pageTitle}>Pick your topic</h2>
+        {/* <h2 className={styles.pageTitle}>Pick your topic</h2> */}
 
         <div className={styles.threadPage_cards}>
           <Segment title="games" getCardId={getCardId} />
         </div>
-        <h2 className={styles.pageTitle}>Conjure your thread</h2>
+
         <form onSubmit={handleSubmit}>
           <label>Text</label>
           <label>userID</label>

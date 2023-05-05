@@ -7,23 +7,24 @@ import SecondaryNavigation from "./SecondaryNavigation";
 import styles from "./Navigation.module.css";
 
 const Navigation = () => {
-  // Nav Items are place holder and will need to change as website develops.
-  const navItems = ["Forums", "Meet people"];
   return (
-    <div className={styles.navigation}>
-      <div className={styles.mainNavigation}>
-        {/* <img src="" alt="" /> */}
-        <ul className={styles.navigationList}>
-          {navItems.map((item) => {
-            return (
-              <li className={styles.navigationItem} key={item}>
-                {item}
-              </li>
-            );
-          })}
-        </ul>
-        <SecondaryNavigation />
-      </div>
+    <div className={styles.mainNavigation}>
+      <ul className={styles.siteNavigation}>
+        <li>
+          <a href="/" className={styles.navigationItem}>
+            FORUMS
+          </a>
+        </li>
+        <li>
+          <a href="meetpeople" className={styles.navigationItem}>
+            MEET PEOPLE
+          </a>
+        </li>
+      </ul>
+      <a href="/home" className={styles.logo_home}>
+        LOGO HERE
+      </a>
+      <SecondaryNavigation />
     </div>
   );
 };

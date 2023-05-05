@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Source+Code+Pro:200,900");
 :root {
   --text-color: rgb(255, 255, 255);
-  --shadow-color: hsla(0, 100%, 50%, 0.4);
+  --shadow-color: hsla(0, 0%, 100%, 0.4);
   --btn-color: hsl(0, 98%, 32%);
   --bg-color: #141218;
   --bubble-color: rgb(69, 2, 2);
