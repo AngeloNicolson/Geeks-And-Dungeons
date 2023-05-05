@@ -1,5 +1,9 @@
 import { Routes, Route } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+
+// MIDDLEWARE
+import { AuthenticationGuard } from "./Auth/authentication-guard";
+
 // PAGES
 import CreateThreadPage from "./Pages/CreateThread/CreateThreadPage";
 import ThreadsPage from "./Pages/Threads/ThreadsPage";
@@ -20,7 +24,12 @@ const App = () => {
   return (
     <div>
       <Routes>
-        <Route exact path="/createthread" element={<CreateThreadPage />} />
+        <Route
+          exact
+          path="/createthread"
+          element={<AuthenticationGuard component={CreateThreadPage} />}
+        />
+
         <Route exact path="/" element={<ThreadsPage />} />
       </Routes>
     </div>
