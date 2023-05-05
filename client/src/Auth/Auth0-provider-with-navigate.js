@@ -7,13 +7,13 @@ export const Auth0ProviderWithNavigate = ({ children }) => {
 
   const domain = process.env.REACT_APP_AUTH0_DOMAIN;
   const clientId = process.env.REACT_APP_AUTH0_CLIENT_ID;
-  const audience = process.env.REACT_APP_AUTH0_AUDIENCE;
+  // const audience = process.env.REACT_APP_AUTH0_AUDIENCE;
 
   const onRedirectCallback = (appState) => {
     navigate(appState?.returnTo || window.location.pathname);
   };
 
-  if (!(domain && clientId && window.location.origin && audience)) {
+  if (!(domain && clientId && window.location.origin)) {
     return null;
   }
 
@@ -22,7 +22,7 @@ export const Auth0ProviderWithNavigate = ({ children }) => {
       domain={domain}
       clientId={clientId}
       authorizationParams={{
-        audience: audience,
+        // audience: audience,
         redirect_uri: window.location.origin,
         // scope: "openid profile email",
       }}
