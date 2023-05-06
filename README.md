@@ -137,8 +137,10 @@ This website has little real world usage until more functionality is implemented
 ## Roadmap
 
 - [x] Update README
-- [ ] Implement Auth0
+- [x] Implement Auth0
+- [ ] Restrict HTML tags from user inputs before storing into database, using [sanitize-html package]: https://www.npmjs.com/package/sanitize-html
 - [ ] Encode/decode all database read and writes to base64 format
+- [ ] Implement the profile creation and personality Deck features.
 
 See the [open issues](https://github.com/AngeloNicolson/Geeks-And-Dungeons/issues) for a full list of proposed features (and known issues).
 
@@ -204,5 +206,3 @@ Send an email to my [![email][email-shield]][email-url]
 [Express-url]: https://expressjs.com/
 [PostgreSQL]: https://img.shields.io/badge/PostgreSQL-lightblue?style=for-the-badge&logo=PostgreSQL&logoColor=grey
 [PostgreSQL-url]: https://www.postgresql.org/
-
-## Wireframes - https://miro.com/app/board/uXjVPl5AP4g=/
