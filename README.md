@@ -138,7 +138,7 @@ This website has little real world usage until more functionality is implemented
 
 - [x] Update README
 - [x] Implement Auth0
-- [ ] Restrict HTML tags from user inputs before storing into database, using [sanitize-html package]: https://www.npmjs.com/package/sanitize-html
+- [ ] Restrict HTML tags from user inputs before storing into database, using <a href="https://www.npmjs.com/package/sanitize-html">sanitize-html package</a>
 - [ ] Encode/decode all database read and writes to base64 format
 - [ ] Implement the profile creation and personality Deck features.
 
