@@ -10,17 +10,21 @@ const api = {
   getThreads: async () =>
     await fetch(`${process.env.REACT_APP_API_URL}/api/get-threads`),
 
-  createThread: async (title, text, topic, userID) => {
+  createThread: async (title, text, topic, userID, accessToken) => {
     const body = {
       thread_title: title,
       thread_text: text,
       topic_id: topic,
       author: userID,
+      accessToken,
     };
 
     await fetch(`${process.env.REACT_APP_API_URL}/api/new-thread`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
       body: JSON.stringify(body),
     });
   },

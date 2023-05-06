@@ -5,6 +5,7 @@ import Segment from "../../components/Segment/Segment";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import SubmitButtonHealVial from "../../components/Buttons/HealthVialStyleButton/SubmitButtonHealthVial";
+import { useAuth0 } from "@auth0/auth0-react";
 
 // STYLES
 import "./CreateThreadPage.css";
@@ -22,10 +23,12 @@ function CreateThreadPage() {
   const [topic, SetTopic] = useState(0);
   const [title, SetTitle] = useState("");
   const [userID, SetUserID] = useState("");
+  const { getAccessTokenSilently } = useAuth0();
 
   const handleSubmit = async () => {
     try {
-      await api.createThread(title, text, topic, userID);
+      const accessToken = await getAccessTokenSilently();
+      await api.createThread(title, text, topic, userID, accessToken);
     } catch (err) {
       console.error(err.message);
     }
@@ -40,12 +43,10 @@ function CreateThreadPage() {
     <>
       <Navigation />
       <div className={styles.body_inner}>
-        {/* <h2 className={styles.pageTitle}>Pick your topic</h2> */}
-
         <div className={styles.threadPage_cards}>
           <Segment title="games" getCardId={getCardId} />
         </div>
-
+        console.log(getAccessTokenSilently);
         <form onSubmit={handleSubmit}>
           <label>Text</label>
           <label>userID</label>
