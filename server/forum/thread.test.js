@@ -2,11 +2,19 @@ const request = require("supertest");
 const express = require("express");
 const app = require("../app");
 const get_pool = require("../db");
+const repository = require("./getThreads.repository");
+const { topic_data } = require("../MockData/topicMockData");
 
 // MOCK DATA
-const topic_data = require("../MockData/topicMockData");
+// Mock the getThreads function in the repository module and populate it with mocked data
+jest.mock("./getThreads.repository", () => {
+  const { topic_data } = require("../MockData/topicMockData");
+  return {
+    getThreads: jest.fn().mockResolvedValue(topic_data),
+  };
+});
 
-const repository = require("./getThreads.repository");
+// const repository = require("./getThreads.repository");
 
 describe("GIVEN that the /api/get-threads route exists", () => {
   // This will shutdown the pool call after every test to ensure there are no memory leaks with open pool querries
@@ -20,6 +28,7 @@ describe("GIVEN that the /api/get-threads route exists", () => {
     const getThreads = await repository.getThreads();
     const expectedResStatus = 200;
     const mockedResponsData = topic_data;
+
     const response = await request(app)
       .get("/api/get-threads")
       .set("Accept", "application/json");

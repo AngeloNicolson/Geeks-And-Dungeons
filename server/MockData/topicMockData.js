@@ -290,4 +290,6 @@ const topic_data = [
   },
 ];
 
-module.exports = topic_data;
+module.exports = {
+  topic_data,
+};
