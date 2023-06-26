@@ -1,21 +1,15 @@
 const Pool = require("pg").Pool;
+require("dotenv").config();
+
 let pool = null;
 
-const user = process.env.PGDATABASE;
-const password = process.env.PGPASSWORD;
 async function get_pool() {
   if (pool !== null) {
     return pool;
   }
   pool = new Pool({
-    /*
-    -------------------------------------------------------
-    // USER and PASSWORD NOT WORKING FROM .env file
-    // need a way to get these variables from .env to here
-    -------------------------------------------------------
-   */
-    user: "postgres",
-    password: "password",
+    user: process.env.PGUSER,
+    password: process.env.PGPASSWORD,
   });
 
   await pool.connect();
