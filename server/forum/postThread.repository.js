@@ -1,4 +1,4 @@
-const pool = require("../db");
+const get_pool = require("../db");
 
 /* 
 -----------------------------------
@@ -22,12 +22,11 @@ const createThread = async (
   author
 ) => {
   try {
-    // Date for inserting into created_at variable, This never to be input by the user.
+    const Pool = await get_pool();
+    const client = await Pool.connect();
+
     const created_at = new Date().toISOString();
-
-    const Pool = await pool();
-
-    const newThread = await Pool.query(createThreadSQL, [
+    const newThread = await client.query(createThreadSQL, [
       thread_title,
       thread_text,
       updated_at,
@@ -36,9 +35,13 @@ const createThread = async (
       created_at,
     ]);
 
+    client.release(); // Release client back to the pool for reuse in future requests.
+
     return newThread.rows[0];
   } catch (error) {
-    throw Error(error);
+    console.error(error);
+    throw new Error("Error creating thread");
   }
 };
+
 module.exports = { createThread };
