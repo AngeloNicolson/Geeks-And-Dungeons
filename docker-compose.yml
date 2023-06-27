@@ -9,22 +9,19 @@ services:
     environment:
       - CHOKIDAR_USEPOLLING=true
       - REACT_APP_API_URL=http://localhost:5000
-      # For running a ci pipeline in github when the project is ready or if others begin to work on project
+        # For running a ci pipeline in github when the project is ready or if others begin to work on project
       # - CI=true
-    depends_on:
-      - server
     volumes:
       - ./client:/app
       - /app/node_modules
   server:
     build:
       context: ./server
+    command: npm run dev
     ports:
       - "5000:5000"
     environment:
       - CHOKIDAR_USEPOLLING=true
-    env_file:
-      - ./server/.env
     depends_on:
       - database
     volumes:

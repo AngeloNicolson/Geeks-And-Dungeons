@@ -1,26 +1,21 @@
 # Gets the node image
-FROM node:19
+FROM node:14
 
 # Create a folder called App
-# Runs all code and commands from this direcetory 
+# Runs all code and commands from this directory 
 WORKDIR /app
 
-# Copy package.json first so that it is cached. This is done for perfomance reasons, so that docker can spin up faster on reload.
-# We do this because realistically packege.json doesnt get changed very often.
-# " . " means current directory
-COPY package.json .
+# Copy package.json and package-lock.json first so that dependencies are cached
+COPY package*.json ./
 
-# Commands to run
-RUN ["npm", "install"]
+# Install dependencies
+RUN npm install
 
-# After the above results are cached, when we change or hot reload we then only copy over source code. 
-COPY . /app
+# After the above results are cached, when we change or hot reload, we then only copy over source code
+COPY . .
 
 # Container exposes port
 EXPOSE 5000
 
-# run this command at entrypoint/on start 
-ENTRYPOINT ["npm", "run", "start:dev"]
-
-
-# Reference: [FreeCodeCamp] https://www.youtube.com/watch?v=9zUHg7xjIqQ
+# Set the entrypoint command to use nodemon
+CMD ["npm", "run", "dev"]
