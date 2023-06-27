@@ -10,6 +10,8 @@ async function get_pool() {
   pool = new Pool({
     user: process.env.PGUSER,
     password: process.env.PGPASSWORD,
+    database: process.env.PGDATABASE,
+    host: process.env.PGHOST,
   });
 
   await pool.connect();
