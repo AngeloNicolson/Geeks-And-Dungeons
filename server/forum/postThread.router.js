@@ -3,6 +3,9 @@ const router = express.Router();
 const repository = require("./postThread.repository");
 const Joi = require("joi");
 
+// UTILS
+const sanitizeInput = require("../utils/sanitization");
+
 const queryValidationMiddleware = require("../middleware/queryValidationMiddleware");
 
 /*
@@ -32,11 +35,11 @@ router.post(
       const { thread_title, thread_text, updated_at, topic_id, author } =
         request.body;
       const newPost = await repository.createThread(
-        thread_title,
-        thread_text,
+        sanitizeInput(thread_title),
+        sanitizeInput(thread_text),
         updated_at,
-        topic_id,
-        author
+        sanitizeInput(topic_id),
+        sanitizeInput(author)
       );
       return response.json(newPost);
     } catch (err) {
