@@ -1,23 +1,21 @@
-# use the node 19 version image
+# Use the node 19 version image
 FROM node:19
 
 # Create a folder called App
-# Runs all code and commands from this direcetory 
+# Runs all code and commands from this directory 
 WORKDIR /app
 
-# Copy package.json first so that it is cached. This is done for perfomance reasons, so that docker can spin up faster on reload.
-# We do this because realistically packege.json doesnt get changed very often.
-# " . " means current directory
-COPY package.json .
+# Copy package.json and package-lock.json first so that they are cached. This is done for performance reasons, as these files don't change frequently.
+COPY package*.json ./
 
-# run an install
-RUN ["npm","install"]
+# Install dependencies
+RUN npm install
 
-# After the above results are cached, when we change or hot reload we then only copy over source code. 
-COPY . /app
+# Copy the entire client application code into the container
+COPY . .
 
-# expose a docker container port where the client should run
+# Expose a container port where the client should run
 EXPOSE 3000
 
-# set/run a command as the entry point to run the app
-ENTRYPOINT ["npm", "start"]
+# Start the client application with nodemon for hot reloading
+CMD ["npm", "run", "start:dev"]
