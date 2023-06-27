@@ -1,12 +1,14 @@
+// MIDDLEWARE IMPORTS
 const express = require("express");
 const router = express.Router();
-const repository = require("./postThread.repository");
 const Joi = require("joi");
+const queryValidationMiddleware = require("../middleware/queryValidationMiddleware");
 
-// UTILS
+// UTILS IMPORTS
 const sanitizeInput = require("../utils/sanitization");
 
-const queryValidationMiddleware = require("../middleware/queryValidationMiddleware");
+// REPOSITORY IMPORTS
+const repository = require("./postThread.repository");
 
 /*
 ----------------------------------
