@@ -19,11 +19,8 @@ services:
       context: ./server
     ports:
       - "5000:5000"
-    environment:
-      - PGDATABASE=postgres
-      - PGHOST=database
-      - PGPASSWORD=password
-      - PGUSER=postgres
+    env_file:
+      - ./server/.env
     depends_on:
       - database
     volumes:

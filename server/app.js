@@ -3,7 +3,6 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const { auth } = require("express-oauth2-jwt-bearer");
-
 // ROUTE IMPORTS
 const postThreadRouter = require("./forum/postThread.router");
 const getThreadRouter = require("./forum/getThreads.router");
