@@ -43,3 +43,15 @@
   margin-top: 0.5rem;
   border-radius: 50%;
 }
+.truncated-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.threadContent {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Adjust the number of lines to fit your design */
+  -webkit-box-orient: vertical;
+}

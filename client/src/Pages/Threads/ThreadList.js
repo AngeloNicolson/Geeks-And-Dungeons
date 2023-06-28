@@ -18,7 +18,12 @@ const ThreadFeed = ({ threads }) => {
             </p>
             <li className={styles.threadGrid}>
               <h3 className={styles.threadTitle}>{thread.thread_title}</h3>
-              <p>{thread.thread_text}</p>
+              <div className={styles.threadContent}>
+                <div
+                  className={styles.truncatedText}
+                  dangerouslySetInnerHTML={{ __html: thread.thread_text }}
+                ></div>
+              </div>
               <p>{formatDate(thread.created_at)}</p>
             </li>
           </div>
