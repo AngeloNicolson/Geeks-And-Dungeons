@@ -9,6 +9,7 @@ const ThreadFeed = ({ threads }) => {
           <div className={styles.threadContent}>
             <h3 className={styles.threadTitle}>{thread.thread_title}</h3>
             <p className={styles.date}>{formatDate(thread.created_at)}</p>
+            <div className={styles.bar}>Placeholder option bar</div>
           </div>
         </div>
       ))}
@@ -17,9 +18,3 @@ const ThreadFeed = ({ threads }) => {
 };
 
 export default ThreadFeed;
-
-/*
----------------------------
-        CREDITS
----------------------------
-*/

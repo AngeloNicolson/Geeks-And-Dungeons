@@ -2,14 +2,18 @@
   display: grid;
   grid-gap: 0.7rem;
 }
+
 .threadItem {
+  overflow: hidden;
   background-color: rgb(27, 27, 27);
   border: 1px solid rgb(69, 69, 69);
   border-radius: 0.2rem;
 }
+
 .threadContent {
-  margin-left: 1rem;
+  padding-left: 1rem;
   margin-top: -0.5rem;
+  position: relative;
 }
 
 .threadTitle {
@@ -17,9 +21,20 @@
   font-size: 1.2rem;
   font-weight: 700;
 }
+
 .date {
   color: #ffffff;
 }
+
+.bar {
+  /* position: absolute; */
+  bottom: 0;
+  margin-left: -1rem;
+  width: 102%;
+  height: 2rem;
+  color: #161616;
+  background-color: rgb(22, 22, 22);
+}
 .threadItem:hover {
-  border: 1px solid rgb(145, 145, 145);
+  border: 1px solid rgb(122, 122, 122);
 }
