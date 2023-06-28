@@ -1,45 +1,25 @@
 .threadCard {
   display: grid;
-  grid-gap: 1rem;
-  height: 11rem;
+  grid-gap: 0.7rem;
 }
-.threadGrid {
-  height: 11rem;
-  list-style: none;
-  padding-left: 1rem;
+.threadItem {
+  background-color: rgb(27, 27, 27);
+  border: 1px solid rgb(69, 69, 69);
   border-radius: 0.2rem;
-  background-color: aliceblue;
 }
-.button_title {
-  position: relative;
-  color: rgb(255, 187, 0);
-  margin-top: 1.9rem;
-  padding: 1rem;
+.threadContent {
+  margin-left: 1rem;
+  margin-top: -0.5rem;
+}
+
+.threadTitle {
+  color: #ffffff;
   font-size: 1.2rem;
   font-weight: 700;
-  text-shadow: 0rem 0.1rem 0.5rem #9c9c9c;
 }
-.thread_button {
-  display: grid;
-  align-self: center;
-  border-radius: 50%;
-  margin-left: 0.5rem;
+.date {
+  color: #ffffff;
 }
-.card_layout {
-  display: grid;
-  grid-template-columns: 0.5fr 1.2fr 5fr;
-  background-color: rgb(40, 40, 40);
-  height: 11rem;
-}
-.threadTitle {
-  color: rgb(0, 0, 0);
-}
-.button_container {
-  display: grid;
-  background: rgb(0, 0, 0);
-  width: 10rem;
-  height: 10rem;
-  margin-left: -5rem;
-  margin-top: 0.5rem;
-  border-radius: 50%;
+.threadItem:hover {
+  border: 1px solid rgb(145, 145, 145);
 }
