@@ -3,8 +3,8 @@ import { React, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navigation from "../../components/Navigation/Navigation.js";
 import ThreadFeed from "./ThreadList.js";
-import EyeButton from "../../components/Buttons/EyeButton/EyeButton.js";
-import Button from "../../components/Buttons/EyeButton/testButton.js";
+import CreatureButton from "../../components/Buttons/CreatureButton/CreatureButton.js";
+
 // STYLES
 import styles from "../PageLayout.module.css";
 // API
@@ -34,8 +34,9 @@ function ThreadPage() {
       <Navigation />
       <div className={styles.body_inner}>
         <div className={styles.createThreadButton}>
-          {/* <Button></Button> */}
-          <EyeButton onClick={navigateToCreateThread}>Creatfe thread</EyeButton>
+          <CreatureButton onClick={navigateToCreateThread}>
+            Creatfe thread
+          </CreatureButton>
         </div>
 
         <div className={styles.div_identification}>
