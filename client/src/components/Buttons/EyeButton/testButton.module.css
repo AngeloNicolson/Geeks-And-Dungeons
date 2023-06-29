@@ -1,0 +1,23 @@
+.outer-circle {
+  position: relative;
+  width: 18rem;
+  height: 18rem;
+  border-radius: 50%;
+  background: lightblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.inner-circle {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background: blue;
+  position: absolute;
+  left: -2px;
+  top: -2px;
+  transform: translate(-50%, -50%);
+  transition: left 0.3s ease, top 0.3s ease;
+}

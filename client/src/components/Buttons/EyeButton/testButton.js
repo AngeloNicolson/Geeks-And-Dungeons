@@ -1,11 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
+import styles from "./testButton.module.css";
 
-import styles from "./EyeButton.module.css";
-
-// Use the prop to pass the title into this button. You will also need to pass name into the CSS file for the secondary name to show up.
-// Otherwise it will still show submit as the secondary title
-// Will need to fix alter this when I learn another way i can handle the secondary title
-const EyeButton = ({ onClick }) => {
+const Button = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [bubblePosition, setBubblePosition] = useState({ x: 140, y: 77 });
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -61,6 +57,7 @@ const EyeButton = ({ onClick }) => {
       movementRef.current = null;
     }
   }, [isHovered, mousePosition]);
+
   return (
     <div
       className={styles["outer-circle"]}
@@ -68,30 +65,8 @@ const EyeButton = ({ onClick }) => {
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <svg width="0" height="0">
-        <filter id="black-heart-container">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="7" result="blur" />
-          <feColorMatrix
-            in="blur"
-            mode="matrix"
-            values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 77 -77"
-            result="goo"
-          />
-          <feTurbulence baseFrequency="0.052" numOctaves="1" />
-
-          <feDisplacementMap
-            id="displacement"
-            in="blur"
-            scale="27"
-            xChannelSelector="G"
-            yChannelSelector="B"
-          />
-
-          <feBlend id="blend-mode" in="gooey" mode="overlay" />
-        </filter>
-      </svg>
       <div
-        className={styles["black-heart"]}
+        className={styles["inner-circle"]}
         style={{
           left: `${bubblePosition.x - 2}px`,
           top: `${bubblePosition.y - 2}px`,
@@ -100,4 +75,28 @@ const EyeButton = ({ onClick }) => {
     </div>
   );
 };
-export default EyeButton;
+
+export default Button;
+
+// <svg width="0" height="0">
+// <filter id="black-heart">
+//   <feGaussianBlur in="SourceGraphic" stdDeviation="7" result="blur" />
+//   <feColorMatrix
+//     in="blur"
+//     mode="matrix"
+//     values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 77 -77"
+//     result="goo"
+//   />
+//   <feTurbulence baseFrequency="0.052" numOctaves="1" />
+
+//   <feDisplacementMap
+//     id="displacement"
+//     in="blur"
+//     scale="27"
+//     xChannelSelector="G"
+//     yChannelSelector="B"
+//   />
+
+//   <feBlend id="blend-mode" in="gooey" mode="overlay" />
+// </filter>
+// </svg>

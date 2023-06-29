@@ -6,6 +6,9 @@
   margin-right: 25%;
   margin-bottom: 10rem;
 }
+.createThreadButton {
+  align-self: center;
+}
 .pageTitle {
   font-family: "Source Code Pro";
   text-transform: uppercase;
