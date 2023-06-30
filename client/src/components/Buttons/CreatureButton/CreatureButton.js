@@ -102,6 +102,7 @@ const EyeButton = ({ onClick }) => {
             top: `${bubblePosition.y - 2}px`,
           }}
         />
+        <div className={styles["rotating-circle"]} />
       </div>
       <div className={styles.text}>{buttonTitle}</div>
       <svg width="0" height="0">
