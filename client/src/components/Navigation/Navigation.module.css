@@ -21,9 +21,8 @@
 }
 
 .rightNavigation {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  place-items: center;
   background-color: rgb(117, 117, 117);
   border-top-right-radius: 1.7rem;
   border-bottom-right-radius: 1.7rem;
@@ -35,9 +34,8 @@
 }
 
 .leftNavigation {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  place-items: center;
   background-color: rgb(117, 117, 117);
   border-top-left-radius: 1.7rem;
   border-bottom-left-radius: 1.7rem;
