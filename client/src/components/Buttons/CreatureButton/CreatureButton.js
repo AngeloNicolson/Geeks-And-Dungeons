@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-
+import { useNavigate } from "react-router-dom";
 import styles from "./CreatureButton.module.css";
 
 // Use the prop to pass the title into this button. You will also need to pass name into the CSS file for the secondary name to show up.
@@ -8,13 +8,14 @@ import styles from "./CreatureButton.module.css";
 
 const buttonTitle = "INTERACT\nWITH THE CREATURE\nTO SUMMON A\nTHREAD";
 
-const EyeButton = ({ onClick }) => {
+const EyeButton = ({ onClick, navigateTo }) => {
   const [isHovered, setIsHovered] = useState(false);
   const [bubblePosition, setBubblePosition] = useState({ x: 140, y: 77 });
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const outerCircleRef = useRef(null);
   const innerCircleRef = useRef(null);
   const movementRef = useRef(null);
+  const navigate = useNavigate();
 
   const handleMouseEnter = () => {
     setIsHovered(true);
@@ -23,6 +24,15 @@ const EyeButton = ({ onClick }) => {
   const handleMouseLeave = () => {
     setIsHovered(false);
     setMousePosition({ x: 120, y: 77 });
+  };
+
+  const handleBlackHeartClick = () => {
+    if (onClick) {
+      onClick();
+    }
+    if (navigateTo) {
+      navigate(navigateTo);
+    }
   };
 
   const interpolate = (start, end, factor) => {
@@ -90,6 +100,7 @@ const EyeButton = ({ onClick }) => {
       ref={outerCircleRef}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      onClick={handleBlackHeartClick}
     >
       <div className={styles["outer-circle"]}>
         <div

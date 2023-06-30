@@ -37,7 +37,7 @@ const Navigation = () => {
         </ul>
       </div>
       <div className={styles.centerNavigation}>
-        <CreatureButton />
+        <CreatureButton navigateTo="/createthread" />
       </div>
       <div className={styles.rightNavigation}>
         <ul className={styles.personalNavigation}>
