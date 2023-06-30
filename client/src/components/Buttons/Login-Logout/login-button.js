@@ -15,7 +15,7 @@ export const LoginButton = () => {
 
   return (
     <p className={styles.navigationItem} onClick={handleLogin}>
-      Log In
+      LOG IN
     </p>
   );
 };
