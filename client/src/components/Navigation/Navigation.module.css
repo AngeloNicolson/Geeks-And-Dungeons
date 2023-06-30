@@ -3,7 +3,7 @@
   grid-template-columns: 1fr auto 1fr;
   align-items: start;
   gap: 10px;
-  padding: 2rem;
+  padding: 4rem;
 }
 
 .siteNavigation,
@@ -19,6 +19,7 @@
 .leftNavigation li {
   margin: 0 10px;
 }
+
 .rightNavigation {
   display: flex;
   align-items: center;
@@ -28,6 +29,7 @@
   border-bottom-right-radius: 1.7rem;
   padding-right: 0.9rem;
 }
+
 .leftNavigation {
   display: flex;
   align-items: center;
@@ -52,6 +54,10 @@
   font-weight: 900;
   cursor: pointer;
   letter-spacing: 0.15rem;
+}
+
+.navigationItem.active {
+  color: black;
 }
 
 .centerNavigation {
@@ -87,6 +93,11 @@
   margin-left: -20px;
   padding-left: 0.7rem;
 }
+
 .navigationItem:hover {
   color: rgba(0, 0, 0);
+}
+
+.navigationItem.active:hover {
+  color: rgb(255, 255, 255);
 }

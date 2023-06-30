@@ -1,4 +1,5 @@
 import React from "react";
+import { Link, useLocation } from "react-router-dom";
 import styles from "./Navigation.module.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import { LogoutButton } from "../Buttons/Login-Logout/logout-button";
@@ -7,20 +8,31 @@ import CreatureButton from "../Buttons/CreatureButton/CreatureButton";
 
 const Navigation = () => {
   const { isAuthenticated } = useAuth0();
+  const location = useLocation();
+
+  const isActive = (path) => {
+    return location.pathname === path ? styles.active : "";
+  };
 
   return (
     <div className={styles.mainNavigation}>
       <div className={styles.leftNavigation}>
         <ul className={styles.siteNavigation}>
           <li>
-            <a href="/" className={styles.navigationItem}>
+            <Link
+              to="/"
+              className={`${styles.navigationItem} ${isActive("/")}`}
+            >
               FORUMS
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="meetpeople" className={styles.navigationItem}>
+            <Link
+              to="/meetpeople"
+              className={`${styles.navigationItem} ${isActive("/meetpeople")}`}
+            >
               MEET PEOPLE
-            </a>
+            </Link>
           </li>
         </ul>
       </div>
@@ -32,9 +44,12 @@ const Navigation = () => {
           {!isAuthenticated && (
             <>
               <li>
-                <a href="/profile" className={styles.navigationItem}>
+                <Link
+                  to="/profile"
+                  className={`${styles.navigationItem} ${isActive("/profile")}`}
+                >
                   PROFILE
-                </a>
+                </Link>
               </li>
               <li className={styles.navigationItem}>
                 <LoginButton />
@@ -44,9 +59,12 @@ const Navigation = () => {
           {isAuthenticated && (
             <>
               <li>
-                <a href="/profile" className={styles.navigationItem}>
+                <Link
+                  to="/profile"
+                  className={`${styles.navigationItem} ${isActive("/profile")}`}
+                >
                   PROFILE
-                </a>
+                </Link>
               </li>
               <li className={styles.navigationItem}>
                 <LogoutButton />
