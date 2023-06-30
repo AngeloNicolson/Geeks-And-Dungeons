@@ -55,6 +55,28 @@ const Navigation = () => {
           )}
         </ul>
       </div>
+      <svg width="0" height="0">
+        <filter id="black-heart-container">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="7" result="blur" />
+          <feColorMatrix
+            in="blur"
+            mode="matrix"
+            values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 77 -77"
+            result="goo"
+          />
+          <feTurbulence baseFrequency="0.052" numOctaves="1" />
+
+          <feDisplacementMap
+            id="displacement"
+            in="blur"
+            scale="27"
+            xChannelSelector="G"
+            yChannelSelector="B"
+          />
+
+          <feBlend id="blend-mode" in="gooey" mode="overlay" />
+        </filter>
+      </svg>
     </div>
   );
 };

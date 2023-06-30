@@ -7,3 +7,6 @@
   cursor: pointer;
   margin: inherit;
 }
+.navigationItem:hover {
+  color: rgba(0, 0, 0);
+}
