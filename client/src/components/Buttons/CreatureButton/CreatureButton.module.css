@@ -24,17 +24,18 @@
 }
 
 .black-heart {
-  width: 3.7rem;
+  width: 3.6rem;
   height: 4rem;
   border-radius: 50%;
   background: #ac0000;
-  box-shadow: 0 0 5px 2.5px #575757;
+  box-shadow: 0 0 10px 15px #000000;
   position: absolute;
   left: -2px;
   top: -2px;
   transform: translate(-50%, -50%);
   transition: left 0.3s ease, top 0.3s ease;
   animation: rotation 5s infinite linear;
+  z-index: 1;
 }
 .black-heart:hover {
   cursor: pointer;
@@ -119,13 +120,13 @@
     transform: rotate(-175deg);
   }
   75% {
-    background: rgb(62, 62, 62);
+    background: rgb(71, 16, 16);
   }
   80% {
     transform: rotate(-185deg);
   }
   85% {
-    background: rgb(71, 16, 16);
+    background: rgb(62, 62, 62);
   }
   100% {
     transform: rotate(-365deg);
