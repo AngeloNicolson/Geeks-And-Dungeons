@@ -80,7 +80,7 @@
   background-color: rgba(253, 253, 253, 0.1);
   box-shadow: 0 0 7rem 0 #171818 inset;
   filter: url(#black-heart-container);
-  animation: gaussianRotation 10s infinite linear;
+  animation: gaussianRotation 30s infinite linear;
 }
 
 @keyframes black-heart {
