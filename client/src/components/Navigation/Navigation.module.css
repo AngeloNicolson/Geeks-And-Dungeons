@@ -28,6 +28,10 @@
   border-top-right-radius: 1.7rem;
   border-bottom-right-radius: 1.7rem;
   padding-right: 0.9rem;
+  align-self: start;
+  justify-self: start;
+  margin-left: -20px;
+  padding-left: 0.7rem;
 }
 
 .leftNavigation {
@@ -38,6 +42,9 @@
   border-top-left-radius: 1.7rem;
   border-bottom-left-radius: 1.7rem;
   padding-right: 0.8rem;
+  align-self: start;
+  justify-self: end;
+  margin-right: -20px;
 }
 
 .personalNavigation a,
@@ -80,20 +87,6 @@
   padding-left: 2.5rem;
   z-index: 1;
 }
-
-.leftNavigation {
-  align-self: start;
-  justify-self: end;
-  margin-right: -20px;
-}
-
-.rightNavigation {
-  align-self: start;
-  justify-self: start;
-  margin-left: -20px;
-  padding-left: 0.7rem;
-}
-
 .navigationItem:hover {
   color: rgba(0, 0, 0);
 }
