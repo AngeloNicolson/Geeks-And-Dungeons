@@ -28,6 +28,21 @@ const api = {
       body: JSON.stringify(body),
     });
   },
+
+  updateUserAuth0Id: async (username, auth0Id) => {
+    const body = {
+      username,
+      auth0Id,
+    };
+
+    await fetch(`${process.env.REACT_APP_API_URL}/api/update-user-auth0-id`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(body),
+    });
+  },
 };
 
 export default api;
