@@ -1,22 +1,19 @@
 // PAGE ELEMENTS
 import { React, useState } from "react";
-import Navigation from "../../components/Navigation/Navigation.js";
-import Segment from "../../components/Segment/Segment";
+import Navigation from "../../Navigation/Navigation";
+import Segment from "../../Segment/Segment.js";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import SubmitButtonHealVial from "../../components/Buttons/HealthVialStyleButton/SubmitButtonHealthVial";
+import SubmitButtonHealVial from "../../Buttons/HealthVialStyleButton/SubmitButtonHealthVial.js";
 import { useAuth0 } from "@auth0/auth0-react";
 
 // STYLES
 import "./CreateThreadPage.css";
 import styles from "../PageLayout.module.css";
-import QuillToolbar, {
-  modules,
-  formats,
-} from "../../components/TextEditor/TextEditor";
+import QuillToolbar, { modules, formats } from "../../TextEditor/TextEditor.js";
 
 // API
-import api from "../../Api";
+import api from "../../../Api.js";
 
 function CreateThreadPage() {
   const [text, SetText] = useState("");

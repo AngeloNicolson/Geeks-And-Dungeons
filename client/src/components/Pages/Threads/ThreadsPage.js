@@ -1,12 +1,12 @@
 // PAGE ELEMENTS
 import { React, useState, useEffect } from "react";
-import Navigation from "../../components/Navigation/Navigation.js";
+import Navigation from "../../Navigation/Navigation.js";
 import ThreadFeed from "./ThreadList.js";
 
 // STYLES
 import styles from "../PageLayout.module.css";
 // API
-import api from "../../Api";
+import api from "../../../Api";
 
 function ThreadPage() {
   const [threads, setThreads] = useState([]);
