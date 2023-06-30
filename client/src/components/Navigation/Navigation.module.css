@@ -1,37 +1,67 @@
 .mainNavigation {
   display: grid;
-  padding-top: 2rem;
-  background-color: rgba(50, 50, 50, 0.249);
-  grid-template-columns: 2fr 1fr 2fr;
-  padding-bottom: 4rem;
-  /* color: rgb(255, 255, 255); */
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 10px;
+  padding: 2rem;
 }
-.logo_home {
-  background-color: aliceblue;
-  display: grid;
-  justify-items: center;
-  padding: 1rem;
-}
-.siteNavigation {
-  display: grid;
-  list-style: none;
-  margin-right: 1rem;
-  grid-template-columns: 1fr 1fr;
-  justify-self: end;
-  /* color: rgb(255, 255, 255); */
-  /* text-decoration: none; */
-}
+
+.siteNavigation,
 .personalNavigation {
   display: grid;
+  grid-auto-flow: column;
   list-style: none;
-  margin-left: -1rem;
-  grid-template-columns: 1fr 1fr 2fr;
-  justify-self: start;
+  justify-content: center;
 }
-.navigationItem {
-  /* background: rgb(0, 163, 57); */
+
+.personalNavigation li,
+.leftNavigation li {
+  margin: 0 10px;
+}
+
+.personalNavigation,
+.leftNavigation {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: rgba(211, 211, 211, 0.3);
+  border-radius: 20px;
+  padding-right: 10px;
+}
+
+.personalNavigation a,
+.leftNavigation a {
   color: white;
-  padding: 1rem;
   text-decoration: none;
   font-weight: 900;
+  cursor: pointer;
+}
+
+.navigationItem {
+  color: white;
+  text-decoration: none;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.centerNavigation {
+  grid-column: 2;
+  background: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 1) 67%,
+    rgba(169, 169, 169, 1) 100%
+  );
+  border-radius: 50%;
+  height: 23rem;
+  justify-self: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 2.5rem;
+  padding-left: 2.5rem;
+}
+
+.leftNavigation {
+  justify-content: flex-end; /* Adjusted alignment */
+  margin-right: -10px;
 }
