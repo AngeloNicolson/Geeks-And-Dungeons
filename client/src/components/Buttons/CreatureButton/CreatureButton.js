@@ -32,6 +32,10 @@ const EyeButton = ({ onClick, navigateTo }) => {
     }
     if (navigateTo) {
       navigate(navigateTo);
+    } else {
+      console.error(
+        "No navigation endpoint specified for the EyeButton component."
+      );
     }
   };
 
