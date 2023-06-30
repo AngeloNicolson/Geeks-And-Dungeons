@@ -1,7 +1,7 @@
 .mainNavigation {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
-  align-items: center;
+  align-items: start;
   gap: 10px;
   padding: 2rem;
 }
@@ -12,21 +12,30 @@
   grid-auto-flow: column;
   list-style: none;
   justify-content: center;
+  padding: 0 10px;
 }
 
 .personalNavigation li,
 .leftNavigation li {
   margin: 0 10px;
 }
-
-.personalNavigation,
+.rightNavigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(117, 117, 117);
+  border-top-right-radius: 1.7rem;
+  border-bottom-right-radius: 1.7rem;
+  padding-right: 0.9rem;
+}
 .leftNavigation {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  background-color: rgba(211, 211, 211, 0.3);
-  border-radius: 20px;
-  padding-right: 10px;
+  justify-content: center;
+  background-color: rgb(117, 117, 117);
+  border-top-left-radius: 1.7rem;
+  border-bottom-left-radius: 1.7rem;
+  padding-right: 0.8rem;
 }
 
 .personalNavigation a,
@@ -48,20 +57,32 @@
   grid-column: 2;
   background: radial-gradient(
     circle,
-    rgba(0, 0, 0, 1) 67%,
-    rgba(169, 169, 169, 1) 100%
+    rgba(0, 0, 0) 65%,
+    rgb(121, 121, 121) 85%,
+    rgb(117, 117, 117) 100%
   );
-  border-radius: 50%;
-  height: 23rem;
+  border-bottom-left-radius: 20rem;
+  border-bottom-right-radius: 20rem;
+  height: 16rem;
+  width: 20rem;
   justify-self: center;
   display: flex;
   align-items: center;
   justify-content: center;
   padding-right: 2.5rem;
   padding-left: 2.5rem;
+  z-index: 1;
 }
 
 .leftNavigation {
-  justify-content: flex-end; /* Adjusted alignment */
-  margin-right: -10px;
+  align-self: start;
+  justify-self: end;
+  margin-right: -20px;
+}
+
+.rightNavigation {
+  align-self: start;
+  justify-self: start;
+  margin-left: -20px;
+  padding-left: 0.7rem;
 }
