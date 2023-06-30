@@ -22,14 +22,11 @@ function ThreadPage() {
     };
     fetchData();
   }, []);
+
   return (
     <>
       <Navigation />
       <div className={styles.body_inner}>
-        <a href="/createthread" className={styles.createThread_button}>
-          Create thread
-        </a>
-
         <div className={styles.div_identification}>
           <ThreadFeed threads={threads} />
         </div>

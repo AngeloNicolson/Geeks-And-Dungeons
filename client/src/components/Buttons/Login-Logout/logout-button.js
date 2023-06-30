@@ -14,7 +14,7 @@ export const LogoutButton = () => {
 
   return (
     <p className={styles.navigationItem} onClick={handleLogout}>
-      Log Out
+      LOGOUT
     </p>
   );
 };
