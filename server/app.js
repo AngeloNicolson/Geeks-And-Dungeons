@@ -7,6 +7,7 @@ const { auth } = require("express-oauth2-jwt-bearer");
 // ROUTE IMPORTS
 const postThreadRouter = require("./forum/postThread.router");
 const getThreadRouter = require("./forum/getThreads.router");
+const profileRouter = require("./profile/profile.router");
 
 const jwtCheck = auth({
   audience: "https://gnd-api",
@@ -27,5 +28,6 @@ app.use("/api/get-threads", getThreadRouter);
 // PROTECTED ROUTES
 app.use(jwtCheck); // PROTECTS ROUTES BELOW
 app.use("/api/new-thread", postThreadRouter);
+app.use("/api/profile", profileRouter);
 
 module.exports = app;
