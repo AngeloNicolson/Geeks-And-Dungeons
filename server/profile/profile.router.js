@@ -11,10 +11,10 @@ const repository = require("./profile.repository");
 ----------------------------------
 */
 // Get user profile by username
-router.get("/:username", async (request, response) => {
+router.get("/:auth0_id", async (request, response) => {
   try {
-    const { username } = request.params;
-    const userProfile = await repository.getUserProfileByUsername(username);
+    const { auth0_id } = request.params;
+    const userProfile = await repository.getUserProfileById(auth0_id);
     response.json(userProfile);
   } catch (error) {
     console.error(error);

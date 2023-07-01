@@ -10,24 +10,24 @@ INSERT INTO users (username, auth0_id)
 VALUES ($1, $2)
 ON CONFLICT (auth0_id) DO NOTHING
 `;
-const getUserProfileByUsernameSQL = "SELECT * FROM users WHERE username = $1";
+const getUserProfileByUsernameSQL = "SELECT * FROM users WHERE auth0_id = $1";
 /* 
 -----------------------------------
            REPOSITORIES
 -----------------------------------
 */
 // Retrieve user profile by username
-const getUserProfileByUsername = async (username) => {
+const getUserProfileById = async (auth0_id) => {
   try {
     const pool = await get_pool();
     const client = await pool.connect();
 
-    const values = [username];
+    const values = [auth0_id];
 
     const result = await client.query(getUserProfileByUsernameSQL, values);
     client.release();
 
-    return result.rows[0];
+    return result.rows;
   } catch (error) {
     console.error(error);
     throw new Error("Error retrieving user profile");
@@ -55,4 +55,4 @@ const updateUserProfileByUsername = async (username, auth0_id) => {
   }
 };
 
-module.exports = { getUserProfileByUsername, updateUserProfileByUsername };
+module.exports = { getUserProfileById, updateUserProfileByUsername };
