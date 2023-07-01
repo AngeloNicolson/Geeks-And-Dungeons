@@ -1,16 +1,30 @@
-const { Pool } = require("pg");
 const get_pool = require("../db");
 
+/* 
+-----------------------------------
+           SQL QUERRIES
+-----------------------------------
+*/
+const updateUserProfileByUsernameSQL = `
+INSERT INTO users (username, auth0_id)
+VALUES ($1, $2)
+ON CONFLICT (auth0_id) DO NOTHING
+`;
+const getUserProfileByUsernameSQL = "SELECT * FROM users WHERE username = $1";
+/* 
+-----------------------------------
+           REPOSITORIES
+-----------------------------------
+*/
 // Retrieve user profile by username
 const getUserProfileByUsername = async (username) => {
   try {
     const pool = await get_pool();
     const client = await pool.connect();
 
-    const query = "SELECT * FROM users WHERE username = $1";
     const values = [username];
-    const result = await client.query(query, values);
 
+    const result = await client.query(getUserProfileByUsernameSQL, values);
     client.release();
 
     return result.rows[0];
@@ -21,20 +35,15 @@ const getUserProfileByUsername = async (username) => {
 };
 
 // Update user profile by username
-const updateUserProfileByUsername = async (username, newProfileData) => {
+const updateUserProfileByUsername = async (username, auth0Id) => {
   try {
     const pool = await get_pool();
     const client = await pool.connect();
 
-    const query = "UPDATE users SET ... WHERE username = $1";
-    const values = [username];
-    // Construct the query and values based on the new profile data
+    const values = [username, auth0Id];
 
-    const result = await client.query(query, values);
-
-    client.release();
-
-    return result.rowCount > 0;
+    await client.query(updateUserProfileByUsernameSQL, values);
+    client.release(); // Release client back to the pool for reuse in future requests.
   } catch (error) {
     console.error(error);
     throw new Error("Error updating user profile");
