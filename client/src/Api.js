@@ -29,13 +29,19 @@ const api = {
     });
   },
 
-  updateUserAuth0Id: async (username, auth0Id) => {
-    const body = {
-      username,
-      auth0Id,
-    };
+  getUserProfile: async (auth0_id) => {
+    const response = await fetch(
+      `${process.env.REACT_APP_API_URL}/api/profile/${auth0_id}`
+    );
+    return await response.json();
+  },
 
-    await fetch(`${process.env.REACT_APP_API_URL}/api/update-user-auth0-id`, {
+  updateUserProfile: async (auth0_id, username) => {
+    const body = {
+      auth0_id: auth0_id,
+      username: username,
+    };
+    await fetch(`${process.env.REACT_APP_API_URL}/api/profile`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
