@@ -26,7 +26,7 @@ app.use("/images", express.static("images"));
 app.use("/api/get-threads", getThreadRouter);
 
 // PROTECTED ROUTES
-app.use(jwtCheck); // PROTECTS ROUTES BELOW
+// app.use(jwtCheck); // PROTECTS ROUTES BELOW
 app.use("/api/new-thread", postThreadRouter);
 app.use("/api/profile", profileRouter);
 

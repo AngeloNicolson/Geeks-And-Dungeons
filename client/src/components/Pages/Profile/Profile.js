@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import api from "../../../Api";
 import styles from "./Profile.module.css";
+import Navigation from "../../Navigation/Navigation";
 
 const Profile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -9,11 +10,15 @@ const Profile = () => {
   const [isUsernameSet, setIsUsernameSet] = useState(false);
 
   useEffect(() => {
+    // Check username on load
     const checkUsername = async () => {
-      const userProfile = await api.getUserProfile(user.sub);
-
-      console.log("User profile:", userProfile);
       try {
+        const userProfile = await api.getUserProfile(user.sub);
+        if (userProfile !== undefined && userProfile[0].username) {
+          setUsername(userProfile[0].username);
+          setIsUsernameSet(true);
+        }
+        console.log(userProfile[0].username);
       } catch (error) {
         console.error("Error retrieving user profile:", error);
       }
@@ -42,7 +47,8 @@ const Profile = () => {
   if (!isAuthenticated) {
     // Handle the case where the user is not authenticated
     return (
-      <div>
+      <div className={styles.profileContainer}>
+        <Navigation />
         <p>Please log in to view your profile.</p>
       </div>
     );
@@ -51,7 +57,8 @@ const Profile = () => {
   if (isUsernameSet) {
     // Handle the case where the username is already set
     return (
-      <div>
+      <div className={styles.profileContainer}>
+        <Navigation />
         <img src={user.picture} alt="Profile" />
         <h2 className={styles.profileText}>{user.name}</h2>
         <p className={styles.profileText}>{user.email}</p>
@@ -62,7 +69,8 @@ const Profile = () => {
 
   // Render the form to set the username
   return (
-    <div>
+    <div className={styles.profileContainer}>
+      <Navigation />
       <img src={user.picture} alt="Profile" />
       <h2 className={styles.profileText}>{user.name}</h2>
       <p className={styles.profileText}>{user.email}</p>
@@ -73,9 +81,12 @@ const Profile = () => {
             type="text"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+            className={styles.input}
           />
         </label>
-        <button type="submit">Set Username</button>
+        <button type="submit" className={styles.button}>
+          Set Username
+        </button>
       </form>
     </div>
   );
