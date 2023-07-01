@@ -25,7 +25,6 @@ const createThread = async (
   try {
     const Pool = await get_pool();
     const client = await Pool.connect();
-
     const created_at = new Date().toISOString();
 
     const values = [
@@ -36,8 +35,8 @@ const createThread = async (
       author,
       created_at,
     ];
-    const newThread = await client.query(createThreadSQL, values);
 
+    const newThread = await client.query(createThreadSQL, values);
     client.release(); // Release client back to the pool for reuse in future requests.
 
     return newThread.rows[0];

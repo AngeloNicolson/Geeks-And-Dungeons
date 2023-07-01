@@ -35,15 +35,20 @@ const getUserProfileByUsername = async (username) => {
 };
 
 // Update user profile by username
-const updateUserProfileByUsername = async (username, auth0Id) => {
+const updateUserProfileByUsername = async (username, auth0_id) => {
   try {
     const pool = await get_pool();
     const client = await pool.connect();
 
-    const values = [username, auth0Id];
+    const values = [username, auth0_id];
 
-    await client.query(updateUserProfileByUsernameSQL, values);
+    const newProfile = await client.query(
+      updateUserProfileByUsernameSQL,
+      values
+    );
     client.release(); // Release client back to the pool for reuse in future requests.
+
+    return newProfile.rows[0];
   } catch (error) {
     console.error(error);
     throw new Error("Error updating user profile");
