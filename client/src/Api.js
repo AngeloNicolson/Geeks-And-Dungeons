@@ -30,7 +30,7 @@ const api = {
   },
 
   getUserProfile: async (auth0_id, accessToken) => {
-    const response = await fetch(
+    return await fetch(
       `${process.env.REACT_APP_API_URL}/api/profile/${auth0_id}`,
       {
         headers: {
@@ -38,13 +38,13 @@ const api = {
         },
       }
     );
-    return await response.json();
   },
 
   updateUserProfile: async (auth0_id, username, accessToken) => {
     const body = {
       auth0_id: auth0_id,
       username: username,
+      accessToken,
     };
     await fetch(`${process.env.REACT_APP_API_URL}/api/profile`, {
       method: "POST",
