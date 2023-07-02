@@ -28,12 +28,20 @@ const Profile = () => {
           }
         }
       } catch (error) {
-        console.error("Error storing username:", error);
+        console.error("Error storing/fetching profile:", error);
       }
     };
 
-    storeUsername();
-  }, [isAuthenticated, user.sub, user.nickname, getAccessTokenSilently]);
+    if (!isLoading) {
+      storeUsername();
+    }
+  }, [
+    isAuthenticated,
+    isLoading,
+    user.sub,
+    user.nickname,
+    getAccessTokenSilently,
+  ]);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -54,7 +62,7 @@ const Profile = () => {
   return (
     <div className={styles.profileContainer}>
       <Navigation />
-      <h1 className={styles.profileTitle}>Your Profile</h1>
+      <h1 className={styles.profileTitle}>Profile</h1>
       <img src={user.picture} alt="Profile" />
       <h2 className={styles.profileText}>User Name: {displayName}</h2>
       <p className={styles.profileText}>Email: {user.email}</p>
