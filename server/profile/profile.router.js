@@ -1,10 +1,11 @@
 // MIDDLEWARE IMPORTS
 const express = require("express");
 const router = express.Router();
+const Joi = require("joi");
+const queryValidationMiddleware = require("../middleware/queryValidationMiddleware");
 
 // REPOSITORY IMPORTS
 const repository = require("./profile.repository");
-const queryValidationMiddleware = require("../middleware/queryValidationMiddleware");
 
 /*
 ----------------------------------
@@ -12,7 +13,8 @@ const queryValidationMiddleware = require("../middleware/queryValidationMiddlewa
 ----------------------------------
 */
 const getUserProfile = Joi.object({
-  auth0_id: Joi.string().required(),
+  auth0_id: Joi.string(),
+  accessToken: Joi.string().required(),
 });
 
 const createUserName = Joi.object({
@@ -34,7 +36,7 @@ router.get(
     try {
       const { auth0_id } = request.params;
       const userProfile = await repository.getUserProfileById(auth0_id);
-      response.json(userProfile);
+      return response.json(userProfile);
     } catch (error) {
       console.error(error);
       response.status(500).json({ error: "Internal Server Error" });
@@ -44,7 +46,7 @@ router.get(
 
 router.post(
   "/",
-  ueryValidationMiddleware(createUserName),
+  queryValidationMiddleware(createUserName),
   async (request, response) => {
     try {
       const { username, auth0_id } = request.body;
