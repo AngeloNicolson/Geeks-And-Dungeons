@@ -1,10 +1,13 @@
 import { React, useEffect, useState } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import { useNavigate } from "react-router-dom";
+
+// PAGE ELEMENTS
 import Navigation from "../../Navigation/Navigation";
 import Segment from "../../Segment/Segment.js";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import SubmitButtonHealVial from "../../Buttons/HealthVialStyleButton/SubmitButtonHealthVial.js";
-import { useAuth0 } from "@auth0/auth0-react";
 
 // STYLES
 import "./CreateThreadPage.css";
@@ -15,16 +18,29 @@ import QuillToolbar, { modules, formats } from "../../TextEditor/TextEditor.js";
 import api from "../../../Api.js";
 
 function CreateThreadPage() {
+  const navigate = useNavigate();
   const [text, setText] = useState("");
   const [topic, setTopic] = useState(0);
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const { user, isLoading, getAccessTokenSilently } = useAuth0();
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     try {
       const accessToken = await getAccessTokenSilently();
-      await api.createThread(title, text, topic, author, accessToken);
+      const response = await api.createThread(
+        title,
+        text,
+        topic,
+        author,
+        accessToken
+      );
+      if (!response.ok) {
+        // Set error in here
+      } else {
+        navigate("/");
+      }
     } catch (err) {
       console.error(err.message);
     }
