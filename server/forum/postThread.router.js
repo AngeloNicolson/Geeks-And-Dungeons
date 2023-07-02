@@ -21,7 +21,6 @@ const createThreadSchema = Joi.object({
   updated_at: Joi.date(),
   topic_id: Joi.number().required(),
   author: Joi.string().required(),
-  accessToken: Joi.string().required(),
 });
 
 /*

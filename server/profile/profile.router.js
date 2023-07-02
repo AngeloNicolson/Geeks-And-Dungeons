@@ -14,13 +14,11 @@ const repository = require("./profile.repository");
 */
 const getUserProfile = Joi.object({
   auth0_id: Joi.string(),
-  accessToken: Joi.string().required(),
 });
 
 const createUserName = Joi.object({
   username: Joi.string().required(),
   auth0_id: Joi.string().required(),
-  accessToken: Joi.string().required(),
 });
 
 /*

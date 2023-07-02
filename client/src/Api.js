@@ -16,7 +16,6 @@ const api = {
       thread_text: text,
       topic_id: topic,
       author: userID,
-      accessToken,
     };
 
     await fetch(`${process.env.REACT_APP_API_URL}/api/new-thread`, {
@@ -30,21 +29,22 @@ const api = {
   },
 
   getUserProfile: async (auth0_id, accessToken) => {
-    return await fetch(
+    const results = await fetch(
       `${process.env.REACT_APP_API_URL}/api/profile/${auth0_id}`,
       {
         headers: {
+          "Content-Type": "application/json",
           Authorization: `Bearer ${accessToken}`,
         },
       }
     );
+    return results.json();
   },
 
   updateUserProfile: async (auth0_id, username, accessToken) => {
     const body = {
       auth0_id: auth0_id,
       username: username,
-      accessToken,
     };
     await fetch(`${process.env.REACT_APP_API_URL}/api/profile`, {
       method: "POST",
