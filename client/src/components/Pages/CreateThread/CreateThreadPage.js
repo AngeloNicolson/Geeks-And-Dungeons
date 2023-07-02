@@ -1,5 +1,4 @@
-// PAGE ELEMENTS
-import { React, useState } from "react";
+import { React, useEffect, useState } from "react";
 import Navigation from "../../Navigation/Navigation";
 import Segment from "../../Segment/Segment.js";
 import ReactQuill from "react-quill";
@@ -16,25 +15,49 @@ import QuillToolbar, { modules, formats } from "../../TextEditor/TextEditor.js";
 import api from "../../../Api.js";
 
 function CreateThreadPage() {
-  const [text, SetText] = useState("");
-  const [topic, SetTopic] = useState(0);
-  const [title, SetTitle] = useState("");
-  const [userID, SetUserID] = useState("");
-  const { getAccessTokenSilently } = useAuth0();
+  const [text, setText] = useState("");
+  const [topic, setTopic] = useState(0);
+  const [title, setTitle] = useState("");
+  const [author, setAuthor] = useState("");
+  const { user, isLoading, getAccessTokenSilently } = useAuth0();
 
   const handleSubmit = async () => {
     try {
       const accessToken = await getAccessTokenSilently();
-      await api.createThread(title, text, topic, userID, accessToken);
+      await api.createThread(title, text, topic, author, accessToken);
     } catch (err) {
       console.error(err.message);
     }
   };
-  /* This function pulls the id from the segment child. This is a work around for passing prop to parent.
-  (May need to change in future depending on how react handles this functionality in the future. Or if I use a library to handle this)
-  */
+
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        console.log(author);
+        const accessToken = await getAccessTokenSilently();
+        const userProfile = await api.getUserProfile(user.sub, accessToken);
+        console.log(userProfile); // Check the value of userProfile
+        console.log(userProfile[0]); // Check the value of userProfile[0]
+
+        if (userProfile && userProfile.length > 0 && userProfile[0].username) {
+          setAuthor(userProfile[0].username);
+        } else {
+          console.log("User profile data is not available");
+        }
+      } catch (err) {
+        console.error(err.message);
+      }
+    };
+    if (!isLoading) {
+      getUser();
+    }
+  }, [user.sub, isLoading, getAccessTokenSilently, author]);
+
   function getCardId(topic_id) {
-    SetTopic(topic_id);
+    setTopic(topic_id);
+  }
+  if (isLoading) {
+    return <div>Loading...</div>;
   }
   return (
     <>
@@ -43,19 +66,7 @@ function CreateThreadPage() {
         <div className={styles.threadPage_cards}>
           <Segment title="games" getCardId={getCardId} />
         </div>
-        console.log(getAccessTokenSilently);
         <form onSubmit={handleSubmit}>
-          <label>Text</label>
-          <label>userID</label>
-          <input
-            type="text"
-            value={userID}
-            onChange={(event) => {
-              SetUserID(event.target.value);
-            }}
-            required
-          />
-          <br />
           <div className={styles.editorContainer}>
             <input
               className={styles.threadTitleEntry}
@@ -64,7 +75,7 @@ function CreateThreadPage() {
               placeholder={"Thread Title"}
               value={title}
               onChange={(event) => {
-                SetTitle(event.target.value);
+                setTitle(event.target.value);
               }}
             />
             <QuillToolbar toolbarId={"t1"} />
@@ -72,7 +83,7 @@ function CreateThreadPage() {
             <ReactQuill
               theme="snow"
               value={text}
-              onChange={SetText}
+              onChange={setText}
               placeholder={"Start your awesome thread..."}
               modules={modules("t1")}
               formats={formats}
@@ -86,6 +97,7 @@ function CreateThreadPage() {
     </>
   );
 }
+
 export default CreateThreadPage;
 
 /*
