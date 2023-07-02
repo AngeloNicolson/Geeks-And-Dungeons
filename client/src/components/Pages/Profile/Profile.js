@@ -5,21 +5,26 @@ import styles from "./Profile.module.css";
 import Navigation from "../../Navigation/Navigation";
 
 const Profile = () => {
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  const { user, isAuthenticated, isLoading, getAccessTokenSilently } =
+    useAuth0();
   const [username, setUsername] = useState("");
 
   useEffect(() => {
     const storeUsername = async () => {
       try {
-        if (isAuthenticated && user && user.sub && user.nickname) {
-          const userProfile = await api.getUserProfile(user.sub);
+        if (isAuthenticated) {
+          const accessToken = await getAccessTokenSilently();
+          const userProfile = await api.getUserProfile(user.sub, accessToken);
+
           if (
-            !(userProfile && userProfile.length > 0 && userProfile[0].username)
+            userProfile &&
+            userProfile.length > 0 &&
+            userProfile[0].username
           ) {
-            await api.updateUserProfile(user.sub, user.nickname);
-            console.log("username set");
-          } else {
             setUsername(userProfile[0].username);
+          } else {
+            await api.updateUserProfile(user.sub, user.nickname, accessToken);
+            setUsername(user.nickname);
           }
         }
       } catch (error) {
@@ -28,13 +33,14 @@ const Profile = () => {
     };
 
     storeUsername();
-  }, [isAuthenticated, user]);
+  }, [isAuthenticated, user.sub, user.nickname, getAccessTokenSilently]);
 
   if (isLoading) {
     return <div>Loading...</div>;
   }
 
   if (!isAuthenticated) {
+    // Handle the case where the user is not authenticated
     return (
       <div className={styles.profileContainer}>
         <Navigation />

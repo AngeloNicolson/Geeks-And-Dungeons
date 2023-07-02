@@ -29,14 +29,19 @@ const api = {
     });
   },
 
-  getUserProfile: async (auth0_id) => {
+  getUserProfile: async (auth0_id, accessToken) => {
     const response = await fetch(
-      `${process.env.REACT_APP_API_URL}/api/profile/${auth0_id}`
+      `${process.env.REACT_APP_API_URL}/api/profile/${auth0_id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
     );
     return await response.json();
   },
 
-  updateUserProfile: async (auth0_id, username) => {
+  updateUserProfile: async (auth0_id, username, accessToken) => {
     const body = {
       auth0_id: auth0_id,
       username: username,
@@ -45,6 +50,7 @@ const api = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
       },
       body: JSON.stringify(body),
     });
