@@ -36,8 +36,6 @@ function CreateThreadPage() {
         console.log(author);
         const accessToken = await getAccessTokenSilently();
         const userProfile = await api.getUserProfile(user.sub, accessToken);
-        console.log(userProfile); // Check the value of userProfile
-        console.log(userProfile[0]); // Check the value of userProfile[0]
 
         if (userProfile && userProfile.length > 0 && userProfile[0].username) {
           setAuthor(userProfile[0].username);
