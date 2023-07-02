@@ -54,10 +54,10 @@ const Profile = () => {
   return (
     <div className={styles.profileContainer}>
       <Navigation />
+      <h1 className={styles.profileTitle}>Your Profile</h1>
       <img src={user.picture} alt="Profile" />
-      <h2 className={styles.profileText}>{displayName}</h2>
-      <p className={styles.profileText}>{user.email}</p>
-      <p className={styles.profileText}>{displayName}</p>
+      <h2 className={styles.profileText}>User Name: {displayName}</h2>
+      <p className={styles.profileText}>Email: {user.email}</p>
     </div>
   );
 };
