@@ -28,6 +28,33 @@ const api = {
       body: JSON.stringify(body),
     });
   },
+
+  getUserProfile: async (auth0_id, accessToken) => {
+    const response = await fetch(
+      `${process.env.REACT_APP_API_URL}/api/profile/${auth0_id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+    return await response.json();
+  },
+
+  updateUserProfile: async (auth0_id, username, accessToken) => {
+    const body = {
+      auth0_id: auth0_id,
+      username: username,
+    };
+    await fetch(`${process.env.REACT_APP_API_URL}/api/profile`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+      body: JSON.stringify(body),
+    });
+  },
 };
 
 export default api;

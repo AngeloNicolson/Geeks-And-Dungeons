@@ -1,5 +1,5 @@
 import styles from "./ThreadList.module.css";
-import { formatDate } from "../../Utils/formatDate";
+import { formatDate } from "../../../Utils/formatDate";
 
 const ThreadFeed = ({ threads }) => {
   return (
