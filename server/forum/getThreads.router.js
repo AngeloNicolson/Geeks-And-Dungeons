@@ -4,8 +4,9 @@ const repository = require("./getThreads.repository");
 
 router.get("/:id", async (request, response, next) => {
   try {
-    const forumPosts = await repository.getSingleThread();
-    return response.json(forumPosts);
+    const { id } = request.params;
+    const forumPost = await repository.getSingleThread(id);
+    return response.json(forumPost);
   } catch (error) {
     console.error(error.message);
     next(error);
