@@ -21,10 +21,6 @@ const jwtCheck = auth({
 app.use(cors());
 app.use(express.json());
 
-// ERROR HANDLERS
-app.use(joiErrorHandler);
-app.use(errorHandler);
-
 app.use(express.static("public")); // Function to serve all static files inside public directory.
 app.use("/images", express.static("images"));
 
@@ -35,5 +31,9 @@ app.use("/api/get-threads", getThreadRouter);
 app.use(jwtCheck); // PROTECTS ROUTES BELOW
 app.use("/api/new-thread", postThreadRouter);
 app.use("/api/profile", profileRouter);
+
+// ERROR HANDLERS
+app.use(joiErrorHandler);
+app.use(errorHandler);
 
 module.exports = app;
