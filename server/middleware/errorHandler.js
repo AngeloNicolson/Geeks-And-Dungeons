@@ -1,6 +1,12 @@
 const errorHandler = (error, request, response, next) => {
-  response.status(error.status || 500).json({
-    message: error.message,
+  console.error(error.stack || error.message);
+  const statusCode = error.status || 500;
+  const errorMessage = error.message || "Internal Server Error";
+
+  return response.status(statusCode).json({
+    error: {
+      message: errorMessage,
+    },
   });
 };
 
