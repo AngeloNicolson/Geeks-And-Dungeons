@@ -8,6 +8,7 @@ import Segment from "../../Segment/Segment.js";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import SubmitButtonHealVial from "../../Buttons/HealthVialStyleButton/SubmitButtonHealthVial.js";
+import ErrorMessage from "../../ErrorHandler/ErrorMessage";
 
 // STYLES
 import "./CreateThreadPage.css";
@@ -23,6 +24,7 @@ function CreateThreadPage() {
   const [topic, setTopic] = useState(0);
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const { user, isLoading, getAccessTokenSilently } = useAuth0();
 
   const handleSubmit = async (event) => {
@@ -37,7 +39,17 @@ function CreateThreadPage() {
         accessToken
       );
       if (!response.ok) {
-        // Set error in here
+        const errorResponse = await response.json();
+        if (errorResponse.errors) {
+          const errorMessages = errorResponse.errors.map(
+            (error) => error.message
+          );
+          setErrorMessage(errorMessages.join(", "));
+        } else {
+          setErrorMessage(
+            "Failed to submit. An unknown error occurred. Please try again later"
+          );
+        }
       } else {
         navigate("/");
       }
@@ -80,6 +92,7 @@ function CreateThreadPage() {
         <div className={styles.threadPage_cards}>
           <Segment title="games" getCardId={getCardId} />
         </div>
+        {errorMessage && <ErrorMessage message={errorMessage} />}
         <form onSubmit={handleSubmit}>
           <div className={styles.editorContainer}>
             <input
