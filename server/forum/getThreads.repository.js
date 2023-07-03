@@ -19,7 +19,7 @@ const getThreads = async () => {
     const result = await Pool.query(getPostSQL);
     return result.rows;
   } catch (error) {
-    throw Error(error);
+    throw new Error("Error getting threads");
   }
 };
 module.exports = { getThreads };

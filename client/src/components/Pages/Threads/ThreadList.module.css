@@ -9,6 +9,9 @@
   border: 1px solid rgb(69, 69, 69);
   border-radius: 0.2rem;
 }
+.threadItem:hover {
+  border: 1px solid rgb(122, 122, 122);
+}
 
 .threadContent {
   padding-left: 1rem;
@@ -27,7 +30,8 @@
 }
 
 .bar {
-  /* position: absolute; */
+  display: grid;
+  align-content: center;
   bottom: 0;
   margin-left: -1rem;
   width: 102%;
@@ -35,6 +39,9 @@
   color: #161616;
   background-color: rgb(22, 22, 22);
 }
-.threadItem:hover {
-  border: 1px solid rgb(122, 122, 122);
+.author {
+  font-size: 0.7rem;
+  color: #c0c0c0;
+  padding-left: 0.5rem;
+  /* padding-bottom: 0.5rem; */
 }

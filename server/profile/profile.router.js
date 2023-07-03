@@ -12,15 +12,13 @@ const repository = require("./profile.repository");
      JOI VALIDATION SCHEMA'S
 ----------------------------------
 */
-const getUserProfile = Joi.object({
+const getUserProfileSchema = Joi.object({
   auth0_id: Joi.string(),
-  accessToken: Joi.string().required(),
 });
 
-const createUserName = Joi.object({
+const createUserNameSchema = Joi.object({
   username: Joi.string().required(),
   auth0_id: Joi.string().required(),
-  accessToken: Joi.string().required(),
 });
 
 /*
@@ -31,23 +29,24 @@ const createUserName = Joi.object({
 // Get user profile by Auth0 id
 router.get(
   "/:auth0_id",
-  queryValidationMiddleware(getUserProfile),
-  async (request, response) => {
+  queryValidationMiddleware(getUserProfileSchema),
+  async (request, response, next) => {
     try {
       const { auth0_id } = request.params;
       const userProfile = await repository.getUserProfileById(auth0_id);
       return response.json(userProfile);
     } catch (error) {
       console.error(error);
-      response.status(500).json({ error: "Internal Server Error" });
+      next(error);
     }
   }
 );
 
+// Create username and auth0_id
 router.post(
   "/",
-  queryValidationMiddleware(createUserName),
-  async (request, response) => {
+  queryValidationMiddleware(createUserNameSchema),
+  async (request, response, next) => {
     try {
       const { username, auth0_id } = request.body;
       const newprofileUsername = await repository.updateUserProfileByUsername(
@@ -57,18 +56,14 @@ router.post(
 
       return response.json(newprofileUsername);
     } catch (error) {
-      if (error.status && error.status === 400) {
-        return response.status(400).json({ error: error.message });
-      } else {
-        console.error(error);
-        return response.status(500).json({ error: "Internal Server Error" });
-      }
+      console.error(error);
+      next(error);
     }
   }
 );
 
 // // Update user profile by username
-// router.put("/:username", async (req, res) => {
+// router.put("/:username", async (request, response, next) => {
 //   try {
 //     const { username } = req.params;
 //     const newProfileData = req.body;
@@ -78,9 +73,9 @@ router.post(
 //     );
 //     res.json({ updated });
 //   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: "Internal Server Error" });
-//   }
+//   console.error(error);
+//   next(error);
+// }
 // });
 
 module.exports = router;

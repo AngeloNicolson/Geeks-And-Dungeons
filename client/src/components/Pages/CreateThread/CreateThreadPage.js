@@ -1,11 +1,14 @@
+import { React, useEffect, useState } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import { useNavigate } from "react-router-dom";
+
 // PAGE ELEMENTS
-import { React, useState } from "react";
 import Navigation from "../../Navigation/Navigation";
 import Segment from "../../Segment/Segment.js";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import SubmitButtonHealVial from "../../Buttons/HealthVialStyleButton/SubmitButtonHealthVial.js";
-import { useAuth0 } from "@auth0/auth0-react";
+import ErrorMessage from "../../ErrorHandler/ErrorMessage";
 
 // STYLES
 import "./CreateThreadPage.css";
@@ -16,25 +19,71 @@ import QuillToolbar, { modules, formats } from "../../TextEditor/TextEditor.js";
 import api from "../../../Api.js";
 
 function CreateThreadPage() {
-  const [text, SetText] = useState("");
-  const [topic, SetTopic] = useState(0);
-  const [title, SetTitle] = useState("");
-  const [userID, SetUserID] = useState("");
-  const { getAccessTokenSilently } = useAuth0();
+  const navigate = useNavigate();
+  const [text, setText] = useState("");
+  const [topic, setTopic] = useState(0);
+  const [title, setTitle] = useState("");
+  const [author, setAuthor] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const { user, isLoading, getAccessTokenSilently } = useAuth0();
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     try {
       const accessToken = await getAccessTokenSilently();
-      await api.createThread(title, text, topic, userID, accessToken);
+      const response = await api.createThread(
+        title,
+        text,
+        topic,
+        author,
+        accessToken
+      );
+      if (!response.ok) {
+        const errorResponse = await response.json();
+        if (errorResponse.errors) {
+          const errorMessages = errorResponse.errors.map(
+            (error) => error.message
+          );
+          setErrorMessage(errorMessages.join(", "));
+        } else {
+          setErrorMessage(
+            "Failed to submit. An unknown error occurred. Please try again later"
+          );
+        }
+      } else {
+        navigate("/");
+      }
     } catch (err) {
       console.error(err.message);
     }
   };
-  /* This function pulls the id from the segment child. This is a work around for passing prop to parent.
-  (May need to change in future depending on how react handles this functionality in the future. Or if I use a library to handle this)
-  */
+
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        console.log(author);
+        const accessToken = await getAccessTokenSilently();
+        const userProfile = await api.getUserProfile(user.sub, accessToken);
+
+        if (userProfile && userProfile.length > 0 && userProfile[0].username) {
+          setAuthor(userProfile[0].username);
+        } else {
+          console.log("User profile data is not available");
+        }
+      } catch (err) {
+        console.error(err.message);
+      }
+    };
+    if (!isLoading) {
+      getUser();
+    }
+  }, [user.sub, isLoading, getAccessTokenSilently, author]);
+
   function getCardId(topic_id) {
-    SetTopic(topic_id);
+    setTopic(topic_id);
+  }
+  if (isLoading) {
+    return <div>Loading...</div>;
   }
   return (
     <>
@@ -43,19 +92,8 @@ function CreateThreadPage() {
         <div className={styles.threadPage_cards}>
           <Segment title="games" getCardId={getCardId} />
         </div>
-        console.log(getAccessTokenSilently);
+        {errorMessage && <ErrorMessage message={errorMessage} />}
         <form onSubmit={handleSubmit}>
-          <label>Text</label>
-          <label>userID</label>
-          <input
-            type="text"
-            value={userID}
-            onChange={(event) => {
-              SetUserID(event.target.value);
-            }}
-            required
-          />
-          <br />
           <div className={styles.editorContainer}>
             <input
               className={styles.threadTitleEntry}
@@ -64,7 +102,7 @@ function CreateThreadPage() {
               placeholder={"Thread Title"}
               value={title}
               onChange={(event) => {
-                SetTitle(event.target.value);
+                setTitle(event.target.value);
               }}
             />
             <QuillToolbar toolbarId={"t1"} />
@@ -72,7 +110,7 @@ function CreateThreadPage() {
             <ReactQuill
               theme="snow"
               value={text}
-              onChange={SetText}
+              onChange={setText}
               placeholder={"Start your awesome thread..."}
               modules={modules("t1")}
               formats={formats}
@@ -86,6 +124,7 @@ function CreateThreadPage() {
     </>
   );
 }
+
 export default CreateThreadPage;
 
 /*
