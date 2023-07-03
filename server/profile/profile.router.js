@@ -9,14 +9,14 @@ const repository = require("./profile.repository");
 
 /*
 ----------------------------------
-     JOI VALIDATION SCHEMA'S
+     JOI VALIDATION SCHEMAS
 ----------------------------------
 */
-const getUserProfile = Joi.object({
-  auth0_id: Joi.string(),
+const getUserProfileSchema = Joi.object({
+  auth0_id: Joi.string().required(),
 });
 
-const createUserName = Joi.object({
+const createUserNameSchema = Joi.object({
   username: Joi.string().required(),
   auth0_id: Joi.string().required(),
 });
@@ -29,38 +29,35 @@ const createUserName = Joi.object({
 // Get user profile by Auth0 id
 router.get(
   "/:auth0_id",
-  queryValidationMiddleware(getUserProfile),
-  async (request, response) => {
+  queryValidationMiddleware(getUserProfileSchema),
+  async (request, response, next) => {
     try {
       const { auth0_id } = request.params;
       const userProfile = await repository.getUserProfileById(auth0_id);
       return response.json(userProfile);
     } catch (error) {
       console.error(error);
-      response.status(500).json({ error: "Internal Server Error" });
+      next(error);
     }
   }
 );
 
+// Create username and auth0_id
 router.post(
   "/",
-  queryValidationMiddleware(createUserName),
-  async (request, response) => {
+  queryValidationMiddleware(createUserNameSchema),
+  async (request, response, next) => {
     try {
       const { username, auth0_id } = request.body;
-      const newprofileUsername = await repository.updateUserProfileByUsername(
+      const newProfileUsername = await repository.updateUserProfileByUsername(
         username,
         auth0_id
       );
 
-      return response.json(newprofileUsername);
+      return response.json(newProfileUsername);
     } catch (error) {
-      if (error.status && error.status === 400) {
-        return response.status(400).json({ error: error.message });
-      } else {
-        console.error(error);
-        return response.status(500).json({ error: "Internal Server Error" });
-      }
+      console.error(error);
+      next(error);
     }
   }
 );
@@ -75,10 +72,10 @@ router.post(
 //       newProfileData
 //     );
 //     res.json({ updated });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ error: "Internal Server Error" });
-//   }
+//  } catch (error) {
+//   console.error(error);
+//   next(error);
+// }
 // });
 
 module.exports = router;

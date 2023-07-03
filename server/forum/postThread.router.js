@@ -16,8 +16,14 @@ const repository = require("./postThread.repository");
 ----------------------------------
 */
 const createThreadSchema = Joi.object({
-  thread_title: Joi.string().required(),
-  thread_text: Joi.string().required(),
+  thread_title: Joi.string().required().messages({
+    "string.empty": "Thread title cannot be empty",
+    "any.required": "Thread title is required",
+  }),
+  thread_text: Joi.string().required().messages({
+    "string.empty": "Thread text cannot be empty",
+    "any.required": "Thread text is required",
+  }),
   updated_at: Joi.date(),
   topic_id: Joi.number().required(),
   author: Joi.string().required(),
@@ -31,7 +37,7 @@ const createThreadSchema = Joi.object({
 router.post(
   "/",
   queryValidationMiddleware(createThreadSchema),
-  async (request, response) => {
+  async (request, response, next) => {
     try {
       const { thread_title, thread_text, updated_at, topic_id, author } =
         request.body;
@@ -43,13 +49,9 @@ router.post(
         sanitizeInput(author)
       );
       return response.json(newPost);
-    } catch (err) {
-      if (error.status && error.status === 400) {
-        return response.status(400).json({ error: error.message });
-      } else {
-        console.error(error);
-        return response.status(500).json({ error: "Internal Server Error" });
-      }
+    } catch (error) {
+      console.error(error);
+      next(error);
     }
   }
 );

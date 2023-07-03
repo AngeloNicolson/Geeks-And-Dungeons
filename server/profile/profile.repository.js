@@ -12,6 +12,7 @@ ON CONFLICT (auth0_id) DO NOTHING
 RETURNING username, auth0_id
 `;
 const getUserProfileByUsernameSQL = "SELECT * FROM users WHERE auth0_id = $1";
+
 /* 
 -----------------------------------
            REPOSITORIES
@@ -47,7 +48,7 @@ const updateUserProfileByUsername = async (username, auth0_id) => {
       updateUserProfileByUsernameSQL,
       values
     );
-    client.release(); // Release client back to the pool for reuse in future requests.
+    client.release();
 
     return newProfile.rows[0];
   } catch (error) {
