@@ -8,6 +8,7 @@ import { AuthenticationGuard } from "./Auth/authentication-guard";
 import CreateThreadPage from "./components/Pages/CreateThread/CreateThreadPage";
 import ThreadsPage from "./components/Pages/Threads/ThreadsPage";
 import Profile from "./components/Pages/Profile/Profile";
+import SingleThreadPage from "./components/Pages/Threads/SingleThreadPage";
 
 const App = () => {
   const { isLoading } = useAuth0();
@@ -34,6 +35,11 @@ const App = () => {
           exact
           path="/profile"
           element={<AuthenticationGuard component={Profile} />}
+        />
+        <Route
+          exact
+          path="/thread/:id"
+          element={<AuthenticationGuard component={SingleThreadPage} />}
         />
       </Routes>
     </div>
