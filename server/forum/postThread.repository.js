@@ -25,7 +25,7 @@ const createThread = async (
   try {
     const Pool = await get_pool();
     const client = await Pool.connect();
-    const created_at = new Date().toISOString();
+    const created_at = new Date();
 
     const values = [
       thread_title,
