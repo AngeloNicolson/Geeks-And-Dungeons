@@ -8,6 +8,8 @@ const { auth } = require("express-oauth2-jwt-bearer");
 const postThreadRouter = require("./forum/postThread.router");
 const getThreadRouter = require("./forum/getThreads.router");
 const profileRouter = require("./profile/profile.router");
+const errorHandler = require("./middleware/errorHandler");
+const joiErrorHandler = require("./middleware/joiErrorHandler");
 
 const jwtCheck = auth({
   audience: "https://gnd-api",
@@ -18,6 +20,10 @@ const jwtCheck = auth({
 // MIDDLEWARE
 app.use(cors());
 app.use(express.json());
+
+// ERROR HANDLERS
+app.use(joiErrorHandler);
+app.use(errorHandler);
 
 app.use(express.static("public")); // Function to serve all static files inside public directory.
 app.use("/images", express.static("images"));
