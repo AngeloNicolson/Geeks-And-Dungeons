@@ -16,10 +16,15 @@ const getPostsSQL = `SELECT * FROM thread`;
 const getSingleThread = async (thread_id) => {
   try {
     const Pool = await pool();
-
     const values = [thread_id];
     const result = await Pool.query(getSinglePostSQL, values);
-    return result.rows;
+    const forumPost = result.rows[0];
+
+    if (!forumPost) {
+      throw new Error("Thread not found");
+    }
+
+    return forumPost;
   } catch (error) {
     throw new Error("Error getting thread");
   }
