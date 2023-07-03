@@ -13,7 +13,6 @@ const queryValidationMiddleware = (schema) => (request, response, next) => {
       next();
     }
   } catch (error) {
-    console.error(error.stack);
     next(error);
   }
 };
