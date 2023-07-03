@@ -9,11 +9,11 @@ const repository = require("./profile.repository");
 
 /*
 ----------------------------------
-     JOI VALIDATION SCHEMAS
+     JOI VALIDATION SCHEMA'S
 ----------------------------------
 */
 const getUserProfileSchema = Joi.object({
-  auth0_id: Joi.string().required(),
+  auth0_id: Joi.string(),
 });
 
 const createUserNameSchema = Joi.object({
@@ -49,12 +49,12 @@ router.post(
   async (request, response, next) => {
     try {
       const { username, auth0_id } = request.body;
-      const newProfileUsername = await repository.updateUserProfileByUsername(
+      const newprofileUsername = await repository.updateUserProfileByUsername(
         username,
         auth0_id
       );
 
-      return response.json(newProfileUsername);
+      return response.json(newprofileUsername);
     } catch (error) {
       console.error(error);
       next(error);
@@ -63,7 +63,7 @@ router.post(
 );
 
 // // Update user profile by username
-// router.put("/:username", async (req, res) => {
+// router.put("/:username", async (request, response, next) => {
 //   try {
 //     const { username } = req.params;
 //     const newProfileData = req.body;
@@ -72,7 +72,7 @@ router.post(
 //       newProfileData
 //     );
 //     res.json({ updated });
-//  } catch (error) {
+//   } catch (error) {
 //   console.error(error);
 //   next(error);
 // }
