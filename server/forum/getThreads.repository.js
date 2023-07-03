@@ -5,7 +5,7 @@ const pool = require("../db");
            SQL QUERRIES
 -----------------------------------
 */
-const getSinglePostSQL = `SELECT id, title, content, created_at FROM thread WHERE id = $1`;
+const getSinglePostSQL = `SELECT thread_id, thread_title, thread_text, created_at, topic_id, author FROM thread WHERE thread_id = $1`;
 
 const getPostsSQL = `SELECT * FROM thread`;
 /* 
@@ -13,14 +13,15 @@ const getPostsSQL = `SELECT * FROM thread`;
        REPOSITORY FUNCTIONS
 -----------------------------------
 */
-const getSingleThread = async () => {
+const getSingleThread = async (thread_id) => {
   try {
     const Pool = await pool();
-    const values = [id];
+
+    const values = [thread_id];
     const result = await Pool.query(getSinglePostSQL, values);
     return result.rows;
   } catch (error) {
-    throw new Error("Error getting threads");
+    throw new Error("Error getting thread");
   }
 };
 
