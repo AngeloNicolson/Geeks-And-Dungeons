@@ -7,7 +7,7 @@ const pool = require("../db");
 */
 const getSinglePostSQL = `SELECT thread_id, thread_title, thread_text, created_at, topic_id, author FROM thread WHERE thread_id = $1`;
 
-const getPostsSQL = `SELECT * FROM thread`;
+const getPostsSQL = `SELECT thread_id, thread_title, created_at, author FROM thread`;
 /* 
 -----------------------------------
        REPOSITORY FUNCTIONS
