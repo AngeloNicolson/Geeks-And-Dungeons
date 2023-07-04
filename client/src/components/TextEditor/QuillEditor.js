@@ -5,6 +5,31 @@ import QuillToolbar, { modules, formats } from "./QuillToolbar";
 
 const QuillEditor = ({ onPaste, getText }) => {
   const quillRef = useRef(null);
+  const [editorContent, setEditorContent] = useState("");
+
+  useEffect(() => {
+    const quill = quillRef.current?.getEditor();
+    if (quill) {
+      quill.on("text-change", handleTextChange);
+    }
+
+    return () => {
+      if (quill) {
+        quill.off("text-change", handleTextChange);
+      }
+    };
+  });
+
+  const handleTextChange = () => {
+    const quill = quillRef.current?.getEditor();
+    if (quill) {
+      const unprivilegedEditor =
+        quillRef.current?.makeUnprivilegedEditor(quill);
+      const text = unprivilegedEditor.getText();
+      setEditorContent(text);
+      getText(text); // Callback to parent component with the text content
+    }
+  };
 
   useEffect(() => {
     if (quillRef.current) {
@@ -24,7 +49,7 @@ const QuillEditor = ({ onPaste, getText }) => {
       }
     };
 
-    const quill = quillRef.current && quillRef.current.getEditor();
+    const quill = quillRef.current?.getEditor();
     if (quill) {
       quill.clipboard.addMatcher(Node.TEXT_NODE, (node, delta) => {
         const text = node.data;
@@ -57,19 +82,19 @@ const QuillEditor = ({ onPaste, getText }) => {
       const quill = quillRef.current.getEditor();
       if (quill) {
         const unprivilegedEditor =
-          quillRef.current.makeUnprivilegedEditor(quill);
+          quillRef.current?.makeUnprivilegedEditor(quill);
         const text = unprivilegedEditor.getText();
         console.log(text);
-        // This if statment is to stop quill from inserting \n into the editor,
+        setEditorContent(text);
         if (text.trim() !== "") {
           getText(text); // Callback to parent component with the text content
         }
       }
     }
-  }, [getText]);
+  }, [getText, editorContent]);
 
   const insertTextAtSelection = (text) => {
-    const quill = quillRef.current && quillRef.current.getEditor();
+    const quill = quillRef.current?.getEditor();
     if (quill) {
       const selection = quill.getSelection();
       if (selection) {
