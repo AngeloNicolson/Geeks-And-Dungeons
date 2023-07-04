@@ -2,6 +2,7 @@
 import { React, useState, useEffect } from "react";
 import Navigation from "../../Navigation/Navigation.js";
 import ThreadFeed from "./ThreadList.js";
+import ErrorMessage from "../../ErrorHandler/ErrorMessage.js";
 
 // STYLES
 import styles from "../PageLayout.module.css";
@@ -10,16 +11,22 @@ import api from "../../../Api";
 
 function ThreadPage() {
   const [threads, setThreads] = useState([]);
+  const [errorMessage, setErrorMessage] = useState("");
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const threadResults = await api.getThreads();
+        if (!threadResults.ok) {
+          throw new Error("Failed to fetch threads");
+        }
         const threadData = await threadResults.json();
         setThreads(threadData);
       } catch (error) {
-        console.log(error);
+        setErrorMessage(error.message);
       }
     };
+
     fetchData();
   }, []);
 
@@ -28,6 +35,7 @@ function ThreadPage() {
       <Navigation />
       <div className={styles.body_inner}>
         <div className={styles.div_identification}>
+          {errorMessage && <ErrorMessage message={errorMessage} />}
           <ThreadFeed threads={threads} />
         </div>
       </div>
