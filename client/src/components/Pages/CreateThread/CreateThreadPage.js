@@ -32,6 +32,10 @@ function CreateThreadPage() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if (topic < 1) {
+      setErrorMessage("Please select a topic card");
+      return;
+    }
     try {
       const accessToken = await getAccessTokenSilently();
       const response = await api.createThread(
@@ -93,7 +97,7 @@ function CreateThreadPage() {
       <Navigation />
       <div className={styles.body_inner}>
         <div className={styles.threadPage_cards}>
-          <Segment title="games" getCardId={getCardId} />
+          <Segment title={"games"} getCardId={getCardId} />
         </div>
         {errorMessage && <ErrorMessage message={errorMessage} />}
         <form onSubmit={handleSubmit}>

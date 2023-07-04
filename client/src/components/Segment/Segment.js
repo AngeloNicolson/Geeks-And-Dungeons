@@ -12,7 +12,7 @@ import TopicCard from "../Topics/TopicCard";
 import topic_data from "../../MockData/topicMockData";
 
 // The segment is in control of the title and taking in the card categories
-const Segment = (props) => {
+const Segment = ({ getCardId, title }) => {
   let scroll = useRef(null);
   const [topiccards] = useState(topic_data);
   const [scrollX, setscrollX] = useState(0);
@@ -25,9 +25,13 @@ const Segment = (props) => {
   const [cardChoiceTwo, setCardChoiceTwo] = useState(null);
 
   const handleChoice = (topicCard) => {
-    cardChoiceOne ? setCardChoiceTwo(topicCard) : setCardChoiceOne(topicCard);
-    // This prop is tagged into this function to expose the topic_id for the form on the parent component
-    props.getCardId(topicCard.topic_id);
+    try {
+      cardChoiceOne ? setCardChoiceTwo(topicCard) : setCardChoiceOne(topicCard);
+      // This prop is tagged into this function to expose the topic_id for the form on the parent component
+      getCardId(topicCard.topic_id);
+    } catch (err) {
+      console.error(err.message);
+    }
   };
   const cardReset = (Card_2_Id) => {
     setCardChoiceOne(Card_2_Id);
@@ -83,7 +87,7 @@ const Segment = (props) => {
 
   return (
     <div className={styles.segment}>
-      <p className={styles.title}>{props.title}</p>
+      <p className={styles.title}>{title}</p>
       <div
         className={styles.buttonContainer}
         onMouseEnter={handleMouseEnter}
@@ -101,7 +105,7 @@ const Segment = (props) => {
                   topicCard={topicCard}
                   key={topicCard.topic_id}
                   handleChoice={handleChoice}
-                  onClick={() => props.getCardId(this.topicCard.topic_id)}
+                  onClick={() => getCardId(this.topicCard.topic_id)}
                   flipped={
                     topicCard === cardChoiceOne || topicCard === cardChoiceTwo
                   }
