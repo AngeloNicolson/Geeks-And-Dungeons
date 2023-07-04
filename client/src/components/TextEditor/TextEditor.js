@@ -1,5 +1,4 @@
 import React from "react";
-import { Quill } from "react-quill";
 import "./TextEditor.css";
 
 // Custom Undo button icon component for Quill editor. You can import it directly
@@ -34,24 +33,6 @@ function redoChange() {
   this.quill.history.redo();
 }
 
-// Add sizes to whitelist and register them
-const Size = Quill.import("formats/size");
-Size.whitelist = ["extra-small", "small", "medium", "large"];
-Quill.register(Size, true);
-
-// Add fonts to whitelist and register them
-const Font = Quill.import("formats/font");
-Font.whitelist = [
-  "arial",
-  "comic-sans",
-  "courier-new",
-  "georgia",
-  "helvetica",
-  "Inter",
-  "lucida",
-];
-Quill.register(Font, true);
-
 // Modules object for setting up the Quill editor
 export const modules = (props) => ({
   toolbar: {
@@ -62,17 +43,14 @@ export const modules = (props) => ({
     },
   },
   history: {
-    delay: 500,
-    maxStack: 100,
+    delay: 50,
+    maxStack: 150,
     userOnly: true,
   },
 });
 
 // Formats objects for setting up the Quill editor
 export const formats = [
-  "header",
-  "font",
-  "size",
   "bold",
   "italic",
   "underline",
@@ -101,26 +79,10 @@ export const QuillToolbar = (props) => {
             <button className="ql-strike" />
           </span>
           <span className="ql-formats">
-            <select className="ql-font">
-              <option defaultValue="comic-sans">Comic Sans</option>
-              <option value="arial"> Arial </option>
-              <option value="courier-new">Courier New</option>
-              <option value="georgia">Georgia</option>
-              <option value="helvetica">Helvetica</option>
-              <option value="Inter">Inter</option>
-              <option value="lucida">Lucida</option>
-            </select>
-            <select className="ql-size">
-              <option value="large">Large</option>
-              <option defaultValue="medium">Medium</option>
-              <option value="small">Small</option>
-            </select>
-            {/* <select className="ql-header">
-              <option defaultValue="">Normal</option>
-              <option value="1">Heading 1</option>
-              <option value="2">Heading 2</option>
-            </select> */}
+            <select className="ql-align" />
+            <select className="ql-color" />
           </span>
+
           <span className="ql-formats">
             <button className="ql-list" value="ordered" />
             <button className="ql-list" value="bullet" />
@@ -130,18 +92,10 @@ export const QuillToolbar = (props) => {
           <span className="ql-formats">
             <button className="ql-script" value="super" />
             <button className="ql-script" value="sub" />
-            {/* <button className="ql-blockquote" /> */}
-            {/* <button className="ql-direction" /> */}
-          </span>
-          <span className="ql-formats">
-            <select className="ql-align" />
-            <select className="ql-color" />
-            <select className="ql-background" />
           </span>
           <span className="ql-formats">
             <button className="ql-formula" />
             <button className="ql-code-block" />
-            {/* <button className="ql-clean" />s */}
           </span>
           {/* <span className="ql-formats">
             <button className="ql-link" />
