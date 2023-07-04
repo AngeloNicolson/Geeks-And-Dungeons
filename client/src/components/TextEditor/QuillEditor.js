@@ -84,8 +84,8 @@ const QuillEditor = ({ onPaste, getText }) => {
         const unprivilegedEditor =
           quillRef.current?.makeUnprivilegedEditor(quill);
         const text = unprivilegedEditor.getText();
-        console.log(text);
         setEditorContent(text);
+        // This if statment is to stop quill from inserting \n into the editor,
         if (text.trim() !== "") {
           getText(text); // Callback to parent component with the text content
         }
