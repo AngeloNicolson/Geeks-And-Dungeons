@@ -1,4 +1,4 @@
-const get_pool = require("../db");
+const get_pool = require("../../../db");
 
 /* 
 -----------------------------------

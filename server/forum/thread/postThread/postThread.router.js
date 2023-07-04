@@ -2,10 +2,10 @@
 const express = require("express");
 const router = express.Router();
 const Joi = require("joi");
-const queryValidationMiddleware = require("../middleware/queryValidationMiddleware");
+const queryValidationMiddleware = require("../../../middleware/queryValidationMiddleware");
 
 // UTILS IMPORTS
-const sanitizeInput = require("../utils/sanitization");
+const sanitizeInput = require("../../../utils/sanitization");
 
 // REPOSITORY IMPORTS
 const repository = require("./postThread.repository");

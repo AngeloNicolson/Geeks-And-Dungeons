@@ -5,8 +5,8 @@ const cors = require("cors");
 const { auth } = require("express-oauth2-jwt-bearer");
 
 // ROUTE IMPORTS
-const postThreadRouter = require("./forum/postThread.router");
-const getThreadRouter = require("./forum/getThreads.router");
+const postThreadRouter = require("./forum/thread/postThread/postThread.router");
+const getThreadRouter = require("./forum/thread/getThread/getThreads.router");
 const profileRouter = require("./profile/profile.router");
 const errorHandler = require("./middleware/errorHandler");
 const joiErrorHandler = require("./middleware/joiErrorHandler");
