@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 // PAGE ELEMENTS
 import Navigation from "../../Navigation/Navigation";
 import Segment from "../../Segment/Segment.js";
-import ReactQuill from "react-quill";
+import QuillEditor from "../../TextEditor/QuillEditor";
 import "react-quill/dist/quill.snow.css";
 import SubmitButtonHealVial from "../../Buttons/HealthVialStyleButton/SubmitButtonHealthVial.js";
 import ErrorMessage from "../../ErrorHandler/ErrorMessage";
@@ -13,7 +13,6 @@ import ErrorMessage from "../../ErrorHandler/ErrorMessage";
 // STYLES
 import "./CreateThreadPage.css";
 import styles from "../PageLayout.module.css";
-import QuillToolbar, { modules, formats } from "../../TextEditor/TextEditor.js";
 
 // API
 import api from "../../../Api.js";
@@ -27,8 +26,16 @@ function CreateThreadPage() {
   const [errorMessage, setErrorMessage] = useState("");
   const { user, isLoading, getAccessTokenSilently } = useAuth0();
 
+  const handleGetText = (value) => {
+    setText(value);
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if (topic < 1) {
+      setErrorMessage("Please select a topic card");
+      return;
+    }
     try {
       const accessToken = await getAccessTokenSilently();
       const response = await api.createThread(
@@ -61,14 +68,15 @@ function CreateThreadPage() {
   useEffect(() => {
     const getUser = async () => {
       try {
-        console.log(author);
         const accessToken = await getAccessTokenSilently();
         const userProfile = await api.getUserProfile(user.sub, accessToken);
 
         if (userProfile && userProfile.length > 0 && userProfile[0].username) {
           setAuthor(userProfile[0].username);
         } else {
-          console.log("User profile data is not available");
+          setErrorMessage(
+            "User profile data is not available. Please logout and login again"
+          );
         }
       } catch (err) {
         console.error(err.message);
@@ -90,7 +98,7 @@ function CreateThreadPage() {
       <Navigation />
       <div className={styles.body_inner}>
         <div className={styles.threadPage_cards}>
-          <Segment title="games" getCardId={getCardId} />
+          <Segment title={"games"} getCardId={getCardId} />
         </div>
         {errorMessage && <ErrorMessage message={errorMessage} />}
         <form onSubmit={handleSubmit}>
@@ -105,16 +113,7 @@ function CreateThreadPage() {
                 setTitle(event.target.value);
               }}
             />
-            <QuillToolbar toolbarId={"t1"} />
-
-            <ReactQuill
-              theme="snow"
-              value={text}
-              onChange={setText}
-              placeholder={"Start your awesome thread..."}
-              modules={modules("t1")}
-              formats={formats}
-            />
+            <QuillEditor getText={handleGetText} />
             <div className={styles.custom_SubmitButton}>
               <SubmitButtonHealVial title="Submit" />
             </div>

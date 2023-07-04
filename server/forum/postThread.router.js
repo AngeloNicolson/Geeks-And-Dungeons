@@ -25,7 +25,10 @@ const createThreadSchema = Joi.object({
     "any.required": "Thread text is required",
   }),
   updated_at: Joi.date(),
-  topic_id: Joi.number().required(),
+  topic_id: Joi.number().required().messages({
+    "number.empty": "Please select a topic card",
+    "any.required": "Topic card is required",
+  }),
   author: Joi.string().required(),
 });
 
