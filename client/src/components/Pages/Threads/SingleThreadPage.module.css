@@ -15,7 +15,6 @@
 .threadContainer {
   overflow: hidden;
   background-color: rgb(27, 27, 27);
-  border: 1px solid rgb(69, 69, 69);
   border-radius: 0.2rem;
 }
 
@@ -33,7 +32,6 @@
 }
 
 .threadText {
-  /* padding: 1.7rem; */
   color: #ffffff;
   padding-bottom: 1.5rem;
   padding-left: 0.5rem;
@@ -48,7 +46,6 @@
   display: grid;
   align-content: center;
   bottom: 0;
-  /* margin-left: -1rem; */
   width: 102%;
   height: 2rem;
   color: #161616;
@@ -58,5 +55,4 @@
   font-size: 0.7rem;
   color: #c0c0c0;
   padding-left: 0.5rem;
-  /* padding-bottom: 0.5rem; */
 }
