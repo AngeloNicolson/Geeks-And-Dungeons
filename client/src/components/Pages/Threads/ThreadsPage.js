@@ -33,9 +33,9 @@ function ThreadPage() {
   return (
     <>
       <Navigation />
+      {errorMessage && <ErrorMessage message={errorMessage} />}
       <div className={styles.body_inner}>
         <div className={styles.div_identification}>
-          {errorMessage && <ErrorMessage message={errorMessage} />}
           <ThreadFeed threads={threads} />
         </div>
       </div>

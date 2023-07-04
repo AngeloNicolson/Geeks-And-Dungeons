@@ -43,9 +43,8 @@ const Segment = ({ getCardId, title }) => {
     if (cardChoiceOne && cardChoiceTwo) {
       if (cardChoiceOne.topic_id !== cardChoiceTwo.topic_id) {
         cardReset(cardChoiceTwo);
-        console.log("Reset activated");
       } else {
-        console.log("Reset Not activated");
+        console.error("Card reset Not activated");
       }
     }
   }, [cardChoiceOne, cardChoiceTwo]);

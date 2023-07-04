@@ -68,14 +68,15 @@ function CreateThreadPage() {
   useEffect(() => {
     const getUser = async () => {
       try {
-        console.log(author);
         const accessToken = await getAccessTokenSilently();
         const userProfile = await api.getUserProfile(user.sub, accessToken);
 
         if (userProfile && userProfile.length > 0 && userProfile[0].username) {
           setAuthor(userProfile[0].username);
         } else {
-          console.log("User profile data is not available");
+          setErrorMessage(
+            "User profile data is not available. Please logout and login again"
+          );
         }
       } catch (err) {
         console.error(err.message);
