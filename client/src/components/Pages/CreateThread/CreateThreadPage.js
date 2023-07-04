@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 // PAGE ELEMENTS
 import Navigation from "../../Navigation/Navigation";
 import Segment from "../../Segment/Segment.js";
-import ReactQuill from "react-quill";
+import QuillEditor from "../../TextEditor/QuillEditor";
 import "react-quill/dist/quill.snow.css";
 import SubmitButtonHealVial from "../../Buttons/HealthVialStyleButton/SubmitButtonHealthVial.js";
 import ErrorMessage from "../../ErrorHandler/ErrorMessage";
@@ -13,7 +13,6 @@ import ErrorMessage from "../../ErrorHandler/ErrorMessage";
 // STYLES
 import "./CreateThreadPage.css";
 import styles from "../PageLayout.module.css";
-import QuillToolbar, { modules, formats } from "../../TextEditor/TextEditor.js";
 
 // API
 import api from "../../../Api.js";
@@ -26,6 +25,10 @@ function CreateThreadPage() {
   const [author, setAuthor] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const { user, isLoading, getAccessTokenSilently } = useAuth0();
+
+  const handleGetText = (value) => {
+    setText(value);
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -105,16 +108,9 @@ function CreateThreadPage() {
                 setTitle(event.target.value);
               }}
             />
-            <QuillToolbar toolbarId={"t1"} />
+            {/* <QuillToolbar toolbarId={"t1"} /> */}
 
-            <ReactQuill
-              theme="snow"
-              value={text}
-              onChange={setText}
-              placeholder={"Start your awesome thread..."}
-              modules={modules("t1")}
-              formats={formats}
-            />
+            <QuillEditor getText={handleGetText} />
             <div className={styles.custom_SubmitButton}>
               <SubmitButtonHealVial title="Submit" />
             </div>
