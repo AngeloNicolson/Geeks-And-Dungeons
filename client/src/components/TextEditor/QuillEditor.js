@@ -5,7 +5,6 @@ import QuillToolbar, { modules, formats } from "./QuillToolbar";
 
 const QuillEditor = ({ onPaste, getText }) => {
   const quillRef = useRef(null);
-  const [editorContent, setEditorContent] = useState("");
 
   useEffect(() => {
     if (quillRef.current) {
@@ -60,8 +59,11 @@ const QuillEditor = ({ onPaste, getText }) => {
         const unprivilegedEditor =
           quillRef.current.makeUnprivilegedEditor(quill);
         const text = unprivilegedEditor.getText();
-        setEditorContent(text);
-        getText(text); // Callback to parent component with the text content
+        console.log(text);
+        // This if statment is to stop quill from inserting \n into the editor,
+        if (text.trim() !== "") {
+          getText(text); // Callback to parent component with the text content
+        }
       }
     }
   }, [getText]);
