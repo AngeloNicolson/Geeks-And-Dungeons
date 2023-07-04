@@ -108,8 +108,6 @@ function CreateThreadPage() {
                 setTitle(event.target.value);
               }}
             />
-            {/* <QuillToolbar toolbarId={"t1"} /> */}
-
             <QuillEditor getText={handleGetText} />
             <div className={styles.custom_SubmitButton}>
               <SubmitButtonHealVial title="Submit" />
