@@ -1,0 +1,56 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Code+Pro:200,900");
+.replyContainer {
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+.replyCard {
+  display: grid;
+  grid-gap: 0.7rem;
+  padding: 5rem;
+}
+
+.replyContainer {
+  overflow: hidden;
+  background-color: rgb(27, 27, 27);
+  border-radius: 0.2rem;
+}
+
+.replyContent {
+  padding-left: 1rem;
+  margin-top: -0.5rem;
+  position: relative;
+}
+
+.replyTitle {
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding-left: 0.5rem;
+}
+
+.replyText {
+  color: #ffffff;
+  padding-bottom: 1.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.date {
+  color: #ffffff;
+}
+
+.bar {
+  display: grid;
+  align-content: center;
+  bottom: 0;
+  width: 102%;
+  height: 2rem;
+  color: #161616;
+  background-color: rgb(22, 22, 22);
+}
+.author {
+  font-size: 0.7rem;
+  color: #c0c0c0;
+  padding-left: 0.5rem;
+}

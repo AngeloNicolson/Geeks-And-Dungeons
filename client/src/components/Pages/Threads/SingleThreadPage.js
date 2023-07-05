@@ -4,7 +4,7 @@ import { formatDate } from "../../../Utils/formatDate";
 // PAGE ELEMENTS
 import ErrorMessage from "../../ErrorHandler/ErrorMessage";
 import Navigation from "../../Navigation/Navigation";
-import ReplyChain from "./threadReplies";
+import ReplyChain from "./Replies/ThreadReplies";
 
 // STYLES
 import styles from "./SingleThreadPage.module.css";
@@ -67,7 +67,7 @@ const SingleThreadPage = () => {
                 )}
               </p>
             </div>
-            <ReplyChain />
+            <ReplyChain threadId={id} />
           </div>
         )}
       </div>
