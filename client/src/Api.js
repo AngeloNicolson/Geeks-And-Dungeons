@@ -7,14 +7,16 @@
 // One file to contain all interation with the server side.
 
 const api = {
+  /* 
+----------------------------------------
+              THREADS
+----------------------------------------
+*/
   getThreads: async () =>
     await fetch(`${process.env.REACT_APP_API_URL}/api/get-threads`),
 
   getSingleThread: async (id) =>
     await fetch(`${process.env.REACT_APP_API_URL}/api/get-threads/${id}`),
-
-  getReplies: async (id) =>
-    await fetch(`${process.env.REACT_APP_API_URL}/api/get-replies/${id}`),
 
   createThread: async (title, text, topic, userID, accessToken) => {
     const body = {
@@ -34,6 +36,36 @@ const api = {
     });
   },
 
+  /* 
+----------------------------------------
+              REPLIES
+----------------------------------------
+*/
+  getReplies: async (id) =>
+    await fetch(`${process.env.REACT_APP_API_URL}/api/get-replies/${id}`),
+
+  createReply: async (text, id, userID, accessToken) => {
+    const body = {
+      reply_text: text,
+      thread_id: id,
+      author: userID,
+    };
+
+    return await fetch(`${process.env.REACT_APP_API_URL}/api/new-reply`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+      body: JSON.stringify(body),
+    });
+  },
+
+  /* 
+----------------------------------------
+              PROFILE
+----------------------------------------
+*/
   getUserProfile: async (auth0_id, accessToken) => {
     const results = await fetch(
       `${process.env.REACT_APP_API_URL}/api/profile/${auth0_id}`,
