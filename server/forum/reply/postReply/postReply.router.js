@@ -8,7 +8,7 @@ const queryValidationMiddleware = require("../../../middleware/queryValidationMi
 const sanitizeInput = require("../../../utils/sanitization");
 
 // REPOSITORY IMPORTS
-const repository = require("./postThread.repository");
+const repository = require("./postReply.repository");
 
 /*
 ----------------------------------
