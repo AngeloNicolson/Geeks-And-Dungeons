@@ -45,7 +45,7 @@ router.get(
 // Create username and auth0_id
 router.post(
   "/",
-  queryValidationMiddleware(createUserNameSchema),
+  queryValidationMiddleware(null, createUserNameSchema),
   async (request, response, next) => {
     try {
       const { username, auth0_id } = request.body;

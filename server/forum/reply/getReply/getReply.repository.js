@@ -22,8 +22,8 @@ const getReplies = async (thread_id) => {
     const result = await Pool.query(getRepliesSQL, values);
     const replies = result.rows;
 
-    if (!forumPost) {
-      throw new Error("Thread not found");
+    if (!replies) {
+      throw new Error("Reply not found");
     }
 
     return replies;

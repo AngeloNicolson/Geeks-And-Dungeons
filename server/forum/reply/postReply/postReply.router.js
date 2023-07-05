@@ -34,7 +34,7 @@ const createReplySchema = Joi.object({
 */
 router.post(
   "/",
-  queryValidationMiddleware(createReplySchema),
+  queryValidationMiddleware(null, createReplySchema),
   async (request, response, next) => {
     try {
       const { reply_text, thread_id, author } = request.body;

@@ -39,7 +39,7 @@ const createThreadSchema = Joi.object({
 */
 router.post(
   "/",
-  queryValidationMiddleware(createThreadSchema),
+  queryValidationMiddleware(null, createThreadSchema),
   async (request, response, next) => {
     try {
       const { thread_title, thread_text, updated_at, topic_id, author } =

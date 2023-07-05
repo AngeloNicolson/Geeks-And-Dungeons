@@ -32,7 +32,6 @@ app.use("/api/get-threads", getThreadRouter);
 // PROTECTED ROUTES
 app.use(jwtCheck); // PROTECTS ROUTES BELOW
 app.use("/api/new-thread", postThreadRouter);
-app.use("/api/get-threads", getThreadRouter);
 app.use("/api/new-reply", postReplyRouter);
 app.use("/api/get-replies", getReplyRouter);
 app.use("/api/profile", profileRouter);
