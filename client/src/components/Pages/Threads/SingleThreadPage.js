@@ -1,9 +1,10 @@
 import { useParams } from "react-router-dom";
-import ErrorMessage from "../../ErrorHandler/ErrorMessage";
+import { React, useState, useEffect } from "react";
 import { formatDate } from "../../../Utils/formatDate";
 // PAGE ELEMENTS
-import { React, useState, useEffect } from "react";
+import ErrorMessage from "../../ErrorHandler/ErrorMessage";
 import Navigation from "../../Navigation/Navigation";
+import ReplyChain from "./threadReplies";
 
 // STYLES
 import styles from "./SingleThreadPage.module.css";
@@ -66,6 +67,7 @@ const SingleThreadPage = () => {
                 )}
               </p>
             </div>
+            <ReplyChain />
           </div>
         )}
       </div>

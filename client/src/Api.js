@@ -13,6 +13,9 @@ const api = {
   getSingleThread: async (id) =>
     await fetch(`${process.env.REACT_APP_API_URL}/api/get-threads/${id}`),
 
+  getReplies: async (id) =>
+    await fetch(`${process.env.REACT_APP_API_URL}/api/get-replies/${id}`),
+
   createThread: async (title, text, topic, userID, accessToken) => {
     const body = {
       thread_title: title,
