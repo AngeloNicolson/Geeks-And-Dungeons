@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { formatDate } from "../../../../Utils/formatDate";
 // PAGE ELEMENTS
 import ErrorMessage from "../../../ErrorHandler/ErrorMessage";
+
 // STYLES
 import styles from "./ThreadReplies.module.css";
 // API
@@ -43,7 +45,9 @@ const ReplyChain = () => {
             <p className={styles.replyTitle}>
               <span className={styles.author}>{reply.author}</span>
               <span className={styles.dot}> • </span>
-              <span className={styles.date}>{reply.created_at}</span>
+              <span className={styles.date}>
+                {formatDate(reply.created_at)}
+              </span>
             </p>
             <p className={styles.replyText}>{reply.reply_text}</p>
           </div>
