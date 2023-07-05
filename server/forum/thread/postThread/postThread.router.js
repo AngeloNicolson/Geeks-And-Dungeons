@@ -2,10 +2,10 @@
 const express = require("express");
 const router = express.Router();
 const Joi = require("joi");
-const queryValidationMiddleware = require("../middleware/queryValidationMiddleware");
+const queryValidationMiddleware = require("../../../middleware/queryValidationMiddleware");
 
 // UTILS IMPORTS
-const sanitizeInput = require("../utils/sanitization");
+const sanitizeInput = require("../../../utils/sanitization");
 
 // REPOSITORY IMPORTS
 const repository = require("./postThread.repository");
@@ -39,7 +39,7 @@ const createThreadSchema = Joi.object({
 */
 router.post(
   "/",
-  queryValidationMiddleware(createThreadSchema),
+  queryValidationMiddleware(null, createThreadSchema),
   async (request, response, next) => {
     try {
       const { thread_title, thread_text, updated_at, topic_id, author } =
