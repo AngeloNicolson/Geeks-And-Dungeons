@@ -69,6 +69,7 @@ const ReplyChain = () => {
       if (response.ok) {
         // Reset the reply text
         setText("");
+        setIsFocused(false);
         // Fetch the updated replies
         fetchReplies();
       } else {
@@ -82,50 +83,66 @@ const ReplyChain = () => {
 
   const handleCancelComment = () => {
     setText("");
+    setIsFocused(false);
   };
 
   useEffect(() => {
     const textAreaElement = textAreaRef.current;
     if (textAreaElement) {
-      textAreaElement.style.height = "0.05rem";
+      textAreaElement.style.height = ".5rem";
       textAreaElement.style.height = `${textAreaElement.scrollHeight}px`;
     }
   }, [text]);
+
   const handleTextAreaFocus = () => {
     setIsFocused(true);
   };
 
   const handleTextAreaBlur = () => {
-    setIsFocused(false);
+    if (text === "") {
+      setIsFocused(false);
+    } else {
+      return;
+    }
   };
+
+  const isCommentDisabled = text.trim().length === 0;
   if (errorMessage) {
     return <ErrorMessage message={errorMessage} />;
   }
 
   return (
     <div className={styles.replyContainer}>
-      <textarea
-        value={text}
-        ref={textAreaRef}
-        onBlur={handleTextAreaBlur}
-        onFocus={handleTextAreaFocus}
-        placeholder="What do you think?"
-        className={styles.replyTextArea}
-        onChange={(e) => setText(e.target.value)}
-      />
-      {isFocused && (
-        <div className={styles.commentButtonContainer}>
-          <button
-            className={styles.commentButton}
-            onClick={handleCancelComment}
-          >
-            Cancel
-          </button>
-          <button className={styles.commentButton} onClick={handleReplySubmit}>
-            Comment
-          </button>
-        </div>
-      )}
+      <div className={styles.commentContainer}>
+        <textarea
+          value={text}
+          ref={textAreaRef}
+          onBlur={handleTextAreaBlur}
+          onFocus={handleTextAreaFocus}
+          placeholder="What do you think?"
+          className={styles.replyTextArea}
+          style={{ resize: "none" }}
+          onChange={(e) => setText(e.target.value)}
+        />
+        {isFocused && (
+          <div className={styles.commentButtonContainer}>
+            <button
+              className={styles.commentButton}
+              onClick={handleCancelComment}
+            >
+              Cancel
+            </button>
+            <button
+              onClick={handleReplySubmit}
+              className={
+                isCommentDisabled ? styles.disabledButton : styles.commentButton
+              }
+            >
+              Comment
+            </button>
+          </div>
+        )}
+      </div>
       {replies.map((reply) => (
         <div key={reply.reply_id} className={styles.replyCard}>
           <div className={styles.replyContent}>
