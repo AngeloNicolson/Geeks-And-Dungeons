@@ -11,13 +11,13 @@ services:
       - key: REACT_APP_API_URL
         fromService:
           type: web
-          name: api
+          name: server
           envVarKey: RENDER_EXTERNAL_URL
 # Api - Server
   - type: web
     name: server
     env: docker # Will read api Dockerfile?
-    rootDir: api
+    rootDir: server
     region: singapore
     envVars:
       - key: API_PORT
