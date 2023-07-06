@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 import { formatDate } from "../../../../Utils/formatDate";
 // PAGE ELEMENTS
 import ErrorMessage from "../../../ErrorHandler/ErrorMessage";
@@ -11,27 +12,85 @@ import api from "../../../../Api";
 
 const ReplyChain = () => {
   const { id } = useParams();
+  const [text, setText] = useState("");
+  const [author, setAuthor] = useState("");
   const [replies, setReplies] = useState([]);
+
   const [errorMessage, setErrorMessage] = useState(null);
+  const { user, isLoading, getAccessTokenSilently } = useAuth0();
+  const textAreaRef = useRef(null);
 
   useEffect(() => {
-    const fetchReplies = async () => {
-      try {
-        const replyChainResults = await api.getReplies(id);
-        if (replyChainResults.ok) {
-          const replyChainData = await replyChainResults.json();
-          setReplies(replyChainData);
-        } else {
-          setErrorMessage("Failed to fetch replies");
-        }
-      } catch (error) {
+    fetchReplies();
+  }, [id]);
+
+  const fetchReplies = async () => {
+    try {
+      const replyChainResults = await api.getReplies(id);
+      if (replyChainResults.ok) {
+        const replyChainData = await replyChainResults.json();
+        setReplies(replyChainData);
+      } else {
         setErrorMessage("Failed to fetch replies");
-        console.error(error);
+      }
+    } catch (error) {
+      setErrorMessage("Failed to fetch replies");
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        const accessToken = await getAccessTokenSilently();
+        const userProfile = await api.getUserProfile(user.sub, accessToken);
+
+        if (userProfile && userProfile.length > 0 && userProfile[0].username) {
+          setAuthor(userProfile[0].username);
+        } else {
+          setErrorMessage(
+            "User profile data is not available. Please logout and login again"
+          );
+        }
+      } catch (err) {
+        console.error(err.message);
       }
     };
 
-    fetchReplies();
-  }, [id]);
+    if (!isLoading) {
+      getUser();
+    }
+  }, [user.sub, isLoading, getAccessTokenSilently]);
+
+  const handleReplySubmit = async () => {
+    try {
+      const accessToken = await getAccessTokenSilently();
+      const response = await api.createReply(text, id, author, accessToken);
+      if (response.ok) {
+        // Reset the reply text
+        setText("");
+        // Fetch the updated replies
+        fetchReplies();
+      } else {
+        setErrorMessage("Failed to submit reply");
+      }
+    } catch (error) {
+      setErrorMessage("Failed to submit reply");
+      console.error(error);
+    }
+  };
+
+  const handleCancelComment = () => {
+    setText("");
+  };
+
+  useEffect(() => {
+    const textAreaElement = textAreaRef.current;
+    if (textAreaElement) {
+      textAreaElement.style.height = "0.05rem";
+      textAreaElement.style.height = `${textAreaElement.scrollHeight}px`;
+    }
+  }, [text]);
 
   if (errorMessage) {
     return <ErrorMessage message={errorMessage} />;
@@ -39,6 +98,21 @@ const ReplyChain = () => {
 
   return (
     <div className={styles.replyContainer}>
+      <textarea
+        className={styles.replyTextArea}
+        placeholder="What do you think?"
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        ref={textAreaRef}
+      />
+      <div className={styles.commentButtonContainer}>
+        <button className={styles.commentButton} onClick={handleCancelComment}>
+          Cancel
+        </button>
+        <button className={styles.commentButton} onClick={handleReplySubmit}>
+          Comment
+        </button>
+      </div>
       {replies.map((reply) => (
         <div key={reply.reply_id} className={styles.replyCard}>
           <div className={styles.replyContent}>

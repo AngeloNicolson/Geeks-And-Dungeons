@@ -16,26 +16,27 @@
   overflow: hidden;
   background-color: rgb(27, 27, 27);
   border-radius: 0.2rem;
+  padding-bottom: 1.2rem;
 }
 
 .threadContent {
-  padding-left: 1rem;
   margin-top: -0.5rem;
   position: relative;
+  padding-bottom: 1.2rem;
+  padding-left: 1.2rem;
+  padding-right: 1.2rem;
 }
 
 .threadTitle {
   color: #ffffff;
   font-size: 1.2rem;
   font-weight: 700;
-  padding-left: 0.5rem;
 }
 
 .threadText {
   color: #ffffff;
-  padding-bottom: 1.5rem;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 1.7rem;
 }
 
 .date {

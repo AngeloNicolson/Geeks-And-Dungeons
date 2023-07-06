@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Source+Code+Pro:200,900");
+
 .replyContainer {
   padding-left: 5%;
   padding-right: 5%;
@@ -23,14 +24,11 @@
 
 .replyTitle {
   color: #ffffff;
-  /* font-size: 1.2rem; */
   font-weight: 700;
-  /* padding-left: 0.5rem; */
 }
 
 .replyText {
   color: #ffffff;
-  /* padding-bottom: 1.5rem; */
   padding-right: 0.5rem;
 }
 
@@ -48,7 +46,48 @@
   color: #161616;
   background-color: rgb(22, 22, 22);
 }
+
 .author {
   font-size: 0.7rem;
   color: #c0c0c0;
+}
+
+.replyTextArea {
+  width: 100%;
+  min-height: 1rem;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  resize: vertical;
+  resize: none;
+  /* padding: 5px 0; */
+  background-color: rgb(27, 27, 27);
+  color: #ffffff;
+  position: relative;
+  outline: none;
+}
+
+.replyTextArea::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #ffffff;
+}
+
+.commentButtonContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.commentButton {
+  padding: 10px 20px;
+  background-color: #464646;
+  color: #fff;
+  /* border: none; */
+  border-radius: 1.2rem;
+  border-style: none;
+  cursor: pointer;
 }

@@ -10,7 +10,7 @@
 .ql-container {
   border-bottom-left-radius: 0.35em;
   border-bottom-right-radius: 0.35em;
-  background-color: #efefef;
+  background-color: #b9b9b9;
 }
 .ql-container:focus-within {
   background-color: #f6f6f6;

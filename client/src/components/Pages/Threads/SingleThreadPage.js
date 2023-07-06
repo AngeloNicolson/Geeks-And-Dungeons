@@ -48,13 +48,6 @@ const SingleThreadPage = () => {
           <ErrorMessage message="Failed to fetch thread data." />
         ) : (
           <div key={thread.thread_id} className={styles.threadContainer}>
-            <div className={styles.threadContent}>
-              <h3 className={styles.threadTitle}>{thread.thread_title}</h3>
-              <div
-                className={styles.threadText}
-                dangerouslySetInnerHTML={{ __html: thread.thread_text }}
-              />
-            </div>
             <div className={styles.bar}>
               <p className={styles.author}>
                 Posted by: {thread.author}{" "}
@@ -67,9 +60,16 @@ const SingleThreadPage = () => {
                 )}
               </p>
             </div>
-            <ReplyChain threadId={id} />
+            <div className={styles.threadContent}>
+              <h3 className={styles.threadTitle}>{thread.thread_title}</h3>
+              <div
+                className={styles.threadText}
+                dangerouslySetInnerHTML={{ __html: thread.thread_text }}
+              />
+            </div>
           </div>
         )}
+        <ReplyChain threadId={id} />
       </div>
     </>
   );
