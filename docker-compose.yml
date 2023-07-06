@@ -22,6 +22,7 @@ services:
       - "5000:5000"
     environment:
       - CHOKIDAR_USEPOLLING=true
+      - DATABASE_URL=${DATABASE_URL}
     depends_on:
       - database
     volumes:

@@ -1,5 +1,5 @@
 # Gets the node image
-FROM node:19
+FROM node:14
 
 # Create a folder called App
 # Runs all code and commands from this directory 
