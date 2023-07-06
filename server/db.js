@@ -7,12 +7,7 @@ async function get_pool() {
   if (pool !== null) {
     return pool;
   }
-  pool = new Pool({
-    user: process.env.PGUSER,
-    password: process.env.PGPASSWORD,
-    database: process.env.PGDATABASE,
-    host: process.env.PGHOST,
-  });
+  pool = new Pool({ connectionString: process.env.DATABASE_URL });
 
   await pool.connect();
 
