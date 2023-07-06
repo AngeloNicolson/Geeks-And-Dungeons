@@ -1,9 +1,10 @@
 import { useParams } from "react-router-dom";
-import ErrorMessage from "../../ErrorHandler/ErrorMessage";
+import { React, useState, useEffect } from "react";
 import { formatDate } from "../../../Utils/formatDate";
 // PAGE ELEMENTS
-import { React, useState, useEffect } from "react";
+import ErrorMessage from "../../ErrorHandler/ErrorMessage";
 import Navigation from "../../Navigation/Navigation";
+import ReplyChain from "./Replies/ThreadReplies";
 
 // STYLES
 import styles from "./SingleThreadPage.module.css";
@@ -47,13 +48,6 @@ const SingleThreadPage = () => {
           <ErrorMessage message="Failed to fetch thread data." />
         ) : (
           <div key={thread.thread_id} className={styles.threadContainer}>
-            <div className={styles.threadContent}>
-              <h3 className={styles.threadTitle}>{thread.thread_title}</h3>
-              <div
-                className={styles.threadText}
-                dangerouslySetInnerHTML={{ __html: thread.thread_text }}
-              />
-            </div>
             <div className={styles.bar}>
               <p className={styles.author}>
                 Posted by: {thread.author}{" "}
@@ -66,8 +60,16 @@ const SingleThreadPage = () => {
                 )}
               </p>
             </div>
+            <div className={styles.threadContent}>
+              <h3 className={styles.threadTitle}>{thread.thread_title}</h3>
+              <div
+                className={styles.threadText}
+                dangerouslySetInnerHTML={{ __html: thread.thread_text }}
+              />
+            </div>
           </div>
         )}
+        <ReplyChain threadId={id} />
       </div>
     </>
   );
