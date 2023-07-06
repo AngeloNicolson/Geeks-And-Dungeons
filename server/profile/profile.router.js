@@ -4,6 +4,9 @@ const router = express.Router();
 const Joi = require("joi");
 const queryValidationMiddleware = require("../middleware/queryValidationMiddleware");
 
+// UTILS IMPORTS
+const sanitizeInput = require("../utils/sanitization");
+
 // REPOSITORY IMPORTS
 const repository = require("./profile.repository");
 
@@ -33,7 +36,9 @@ router.get(
   async (request, response, next) => {
     try {
       const { auth0_id } = request.params;
-      const userProfile = await repository.getUserProfileById(auth0_id);
+      const userProfile = await repository.getUserProfileById(
+        sanitizeInput(auth0_id)
+      );
       return response.json(userProfile);
     } catch (error) {
       console.error(error);
@@ -50,8 +55,8 @@ router.post(
     try {
       const { username, auth0_id } = request.body;
       const newprofileUsername = await repository.updateUserProfileByUsername(
-        username,
-        auth0_id
+        sanitizeInput(username),
+        sanitizeInput(auth0_id)
       );
 
       return response.json(newprofileUsername);
