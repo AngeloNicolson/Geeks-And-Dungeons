@@ -136,9 +136,11 @@ This website has little real world usage until more functionality is implemented
 
 ## Roadmap
 
-- [x] Update README
 - [x] Implement Auth0
-- [ ] Restrict HTML tags from user inputs before storing into database, using <a href="https://www.npmjs.com/package/sanitize-html">sanitize-html package</a>
+- [x] Restrict HTML tags from user inputs before storing into database, using <a href="https://www.npmjs.com/package/sanitize-html">sanitize-html package</a>
+- [ ] Add ability to delete threads and all associated replies
+- [ ] Filter replies by category and order my most recent
+- [ ] Add thread voting system
 - [ ] Encode/decode all database read and writes to base64 format
 - [ ] Implement the profile creation and personality Deck features.
 
