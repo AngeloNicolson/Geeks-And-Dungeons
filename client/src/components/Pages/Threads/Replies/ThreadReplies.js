@@ -15,7 +15,7 @@ const ReplyChain = () => {
   const [text, setText] = useState("");
   const [author, setAuthor] = useState("");
   const [replies, setReplies] = useState([]);
-
+  const [isFocused, setIsFocused] = useState(false);
   const [errorMessage, setErrorMessage] = useState(null);
   const { user, isLoading, getAccessTokenSilently } = useAuth0();
   const textAreaRef = useRef(null);
@@ -91,7 +91,13 @@ const ReplyChain = () => {
       textAreaElement.style.height = `${textAreaElement.scrollHeight}px`;
     }
   }, [text]);
+  const handleTextAreaFocus = () => {
+    setIsFocused(true);
+  };
 
+  const handleTextAreaBlur = () => {
+    setIsFocused(false);
+  };
   if (errorMessage) {
     return <ErrorMessage message={errorMessage} />;
   }
@@ -99,20 +105,27 @@ const ReplyChain = () => {
   return (
     <div className={styles.replyContainer}>
       <textarea
-        className={styles.replyTextArea}
-        placeholder="What do you think?"
         value={text}
-        onChange={(e) => setText(e.target.value)}
         ref={textAreaRef}
+        onBlur={handleTextAreaBlur}
+        onFocus={handleTextAreaFocus}
+        placeholder="What do you think?"
+        className={styles.replyTextArea}
+        onChange={(e) => setText(e.target.value)}
       />
-      <div className={styles.commentButtonContainer}>
-        <button className={styles.commentButton} onClick={handleCancelComment}>
-          Cancel
-        </button>
-        <button className={styles.commentButton} onClick={handleReplySubmit}>
-          Comment
-        </button>
-      </div>
+      {isFocused && (
+        <div className={styles.commentButtonContainer}>
+          <button
+            className={styles.commentButton}
+            onClick={handleCancelComment}
+          >
+            Cancel
+          </button>
+          <button className={styles.commentButton} onClick={handleReplySubmit}>
+            Comment
+          </button>
+        </div>
+      )}
       {replies.map((reply) => (
         <div key={reply.reply_id} className={styles.replyCard}>
           <div className={styles.replyContent}>
