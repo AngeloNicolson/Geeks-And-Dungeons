@@ -16,16 +16,19 @@ const repository = require("./deleteThread.repository");
 ----------------------------------
 */
 const deleteThreadSchema = Joi.object({
-  id: Joi.number().integer().positive(),
+  thread_id: Joi.number().integer().positive(),
 });
 
 router.delete(
-  "/id",
+  "/:thread_id",
+
   queryValidationMiddleware(deleteThreadSchema),
-  async () => {
+  async (request, response, next) => {
     try {
-      const { id } = request.params;
-      const threadDelete = await repository.deleteThread(sanitizeInput(id));
+      const { thread_id } = request.params;
+      const threadDelete = await repository.deleteThread(
+        sanitizeInput(thread_id)
+      );
       return response.json(threadDelete);
     } catch (error) {
       console.error(error.message);

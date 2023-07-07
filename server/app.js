@@ -7,6 +7,7 @@ const errorHandler = require("./middleware/errorHandler");
 const joiErrorHandler = require("./middleware/joiErrorHandler");
 
 // ROUTE IMPORTS
+const deleteThreadRouter = require("./forum/thread/deleteThread/deleteThread.router");
 const postThreadRouter = require("./forum/thread/postThread/postThread.router");
 const getThreadRouter = require("./forum/thread/getThread/getThreads.router");
 const postReplyRouter = require("./forum/reply/postReply/postReply.router");
@@ -29,6 +30,7 @@ app.use("/images", express.static("images"));
 // OPEN ROUTES
 app.use("/api/get-threads", getThreadRouter);
 app.use("/api/get-replies", getReplyRouter);
+app.use("/api/delete-thread", deleteThreadRouter);
 
 // PROTECTED ROUTES
 app.use(jwtCheck); // PROTECTS ROUTES BELOW
