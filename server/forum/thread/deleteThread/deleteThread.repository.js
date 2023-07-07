@@ -5,9 +5,13 @@ const get_pool = require("../../../db");
 -----------------------------------
 */
 const deleteThreadSQL = `
-DELETE FROM thread
-WHERE thread_id = $1`;
+  DELETE FROM thread
+  WHERE thread_id = $1
+  RETURNING thread_id`;
 
+const deleteRepliesSQL = `
+  DELETE FROM reply
+  WHERE thread_id = $1`;
 /* 
 -----------------------------------
            REPOSITORIES
@@ -15,16 +19,18 @@ WHERE thread_id = $1`;
 */
 const deleteThread = async (thread_id) => {
   try {
-    const Pool = await get_pool();
-    const client = await Pool.connect();
+    const pool = await get_pool();
+    const client = await pool.connect();
 
+    // Delete all replies associated with the thread
+    await client.query(deleteRepliesSQL, [thread_id]);
     const values = [thread_id];
     const oldThread = await client.query(deleteThreadSQL, values);
 
     return oldThread;
-  } catch {
+  } catch (error) {
     console.error(error);
-    throw new Error("Error deleting thread", error);
+    throw new Error("Error deleting thread: " + error.message);
   }
 };
 
