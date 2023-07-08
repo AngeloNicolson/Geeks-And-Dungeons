@@ -4,21 +4,29 @@ import { formatDate } from "../../../Utils/formatDate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisH } from "@fortawesome/free-solid-svg-icons";
 
-const ThreadFeed = ({ threads }) => {
-  const [showDeleteDropdown, setShowDeleteDropdown] = useState(false);
+const ThreadFeed = ({ threads, loggedInUser }) => {
+  const [deleteDropdowns, setDeleteDropdowns] = useState(new Map());
 
   const handleDeleteThread = (threadId) => {
     console.log("Delete thread with ID:", threadId);
   };
 
-  const toggleDeleteDropdown = (event) => {
-    event.stopPropagation();
-    setShowDeleteDropdown((prevState) => !prevState);
+  const toggleDeleteDropdown = (threadId) => {
+    setDeleteDropdowns((prevDropdowns) => {
+      const newDropdowns = new Map(prevDropdowns);
+      newDropdowns.set(threadId, !prevDropdowns.get(threadId));
+      return newDropdowns;
+    });
   };
 
   const handleButtonClick = (event) => {
     event.stopPropagation();
     console.log("button clicked:");
+  };
+
+  const isOwner = (thread) => {
+    console.log("THreadList", loggedInUser);
+    return loggedInUser && thread.auth0_id === loggedInUser.sub;
   };
 
   return (
@@ -41,12 +49,27 @@ const ThreadFeed = ({ threads }) => {
             <div className={styles.dropdownContainer}>
               <button
                 className={`${styles.button} ${styles.dropdownButton}`}
-                onClick={(event) => toggleDeleteDropdown(event)}
+                onClick={(event) => {
+                  event.stopPropagation();
+                  toggleDeleteDropdown(thread.thread_id);
+                }}
               >
                 <FontAwesomeIcon icon={faEllipsisH} />
               </button>
-              {showDeleteDropdown && (
+              {deleteDropdowns.get(thread.thread_id) && (
                 <div className={styles.dropdownContent}>
+                  {isOwner(thread) && (
+                    <button
+                      className={styles.deleteButton}
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        handleDeleteThread(thread.thread_id);
+                      }}
+                    >
+                      Delete
+                    </button>
+                  )}
+
                   <button
                     className={styles.deleteButton}
                     onClick={(event) => {
@@ -54,7 +77,7 @@ const ThreadFeed = ({ threads }) => {
                       handleDeleteThread(thread.thread_id);
                     }}
                   >
-                    Delete
+                    Edit
                   </button>
                 </div>
               )}

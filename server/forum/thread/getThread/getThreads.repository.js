@@ -12,9 +12,10 @@ JOIN users u ON t.author = u.id
 WHERE t.thread_id = $1`;
 
 const getPostsSQL = `
-SELECT t.thread_id, t.thread_title, t.thread_text, t.created_at, t.updated_at, t.topic_id, u.username AS author_username
+SELECT t.thread_id, t.thread_title, t.thread_text, t.created_at, t.updated_at, t.topic_id, u.username AS author_username, u.auth0_id
 FROM thread t
 JOIN users u ON t.author = u.id`;
+
 /* 
 -----------------------------------
        REPOSITORY FUNCTIONS
