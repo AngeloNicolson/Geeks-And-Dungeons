@@ -71,8 +71,8 @@ function CreateThreadPage() {
         const accessToken = await getAccessTokenSilently();
         const userProfile = await api.getUserProfile(user.sub, accessToken);
 
-        if (userProfile && userProfile.length > 0 && userProfile[0].username) {
-          setAuthor(userProfile[0].username);
+        if (userProfile && userProfile.length > 0 && userProfile[0].id) {
+          setAuthor(userProfile[0].id);
         } else {
           setErrorMessage(
             "User profile data is not available. Please logout and login again"

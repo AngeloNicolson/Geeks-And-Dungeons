@@ -5,5 +5,6 @@ CREATE TABLE thread (
   created_at TIMESTAMP NOT NULL,
   updated_at TIMESTAMP,
   topic_id INTEGER NOT NULL,
-  author VARCHAR(37) NOT NULL
+  author INTEGER NOT NULL,
+  FOREIGN KEY (author) REFERENCES users (id)
 );
