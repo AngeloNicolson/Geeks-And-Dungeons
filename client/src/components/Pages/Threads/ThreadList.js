@@ -31,9 +31,6 @@ const ThreadFeed = ({ threads }) => {
             window.location.href = `/thread/${thread.thread_id}`;
           }}
         >
-          <div className={styles.threadContent}>
-            <h3 className={styles.threadTitle}>{thread.thread_title}</h3>
-          </div>
           <div className={styles.bar}>
             <p className={styles.author}>
               Posted by: {thread.author}{" "}
@@ -41,34 +38,37 @@ const ThreadFeed = ({ threads }) => {
                 {formatDate(thread.created_at)}
               </span>
             </p>
-            <div className={styles.buttonGroup}>
-              <div onClick={handleButtonClick}>
-                <button className={styles.button}>Comment</button>
-              </div>
-              <div onClick={handleButtonClick}>
-                <button className={styles.button}>Share</button>
-              </div>
-              <div className={styles.dropdownContainer}>
-                <button
-                  className={`${styles.button} ${styles.dropdownButton}`}
-                  onClick={(event) => toggleDeleteDropdown(event)}
-                >
-                  <FontAwesomeIcon icon={faEllipsisH} />
-                </button>
-                {showDeleteDropdown && (
-                  <div className={styles.dropdownContent}>
-                    <button
-                      className={styles.deleteButton}
-                      onClick={(event) => {
-                        event.stopPropagation();
-                        handleDeleteThread(thread.thread_id);
-                      }}
-                    >
-                      Delete
-                    </button>
-                  </div>
-                )}
-              </div>
+            <div className={styles.dropdownContainer}>
+              <button
+                className={`${styles.button} ${styles.dropdownButton}`}
+                onClick={(event) => toggleDeleteDropdown(event)}
+              >
+                <FontAwesomeIcon icon={faEllipsisH} />
+              </button>
+              {showDeleteDropdown && (
+                <div className={styles.dropdownContent}>
+                  <button
+                    className={styles.deleteButton}
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      handleDeleteThread(thread.thread_id);
+                    }}
+                  >
+                    Delete
+                  </button>
+                </div>
+              )}
+            </div>
+          </div>
+          <div className={styles.threadContent}>
+            <h3 className={styles.threadTitle}>{thread.thread_title}</h3>
+          </div>
+          <div className={styles.buttonGroup}>
+            <div onClick={handleButtonClick}>
+              <button className={styles.button}>Comment</button>
+            </div>
+            <div onClick={handleButtonClick}>
+              <button className={styles.button}>Share</button>
             </div>
           </div>
         </div>
