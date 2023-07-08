@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "./ThreadList.module.css";
 import { formatDate } from "../../../Utils/formatDate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -6,6 +6,7 @@ import { faEllipsisH } from "@fortawesome/free-solid-svg-icons";
 
 const ThreadFeed = ({ threads, loggedInUser }) => {
   const [deleteDropdowns, setDeleteDropdowns] = useState(new Map());
+  const dropdownRef = useRef(null);
 
   const handleDeleteThread = (threadId) => {
     console.log("Delete thread with ID:", threadId);
@@ -25,9 +26,21 @@ const ThreadFeed = ({ threads, loggedInUser }) => {
   };
 
   const isOwner = (thread) => {
-    console.log("THreadList", loggedInUser);
     return loggedInUser && thread.auth0_id === loggedInUser.sub;
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setDeleteDropdowns(new Map());
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <div className={styles.threadCard}>
@@ -46,7 +59,7 @@ const ThreadFeed = ({ threads, loggedInUser }) => {
                 {formatDate(thread.created_at)}
               </span>
             </p>
-            <div className={styles.dropdownContainer}>
+            <div className={styles.dropdownContainer} ref={dropdownRef}>
               <button
                 className={`${styles.button} ${styles.dropdownButton}`}
                 onClick={(event) => {
