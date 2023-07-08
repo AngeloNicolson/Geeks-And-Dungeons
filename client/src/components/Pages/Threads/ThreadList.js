@@ -33,7 +33,7 @@ const ThreadFeed = ({ threads }) => {
         >
           <div className={styles.bar}>
             <p className={styles.author}>
-              Posted by: {thread.author}{" "}
+              Posted by: {thread.author_username}{" "}
               <span className={styles.date}>
                 {formatDate(thread.created_at)}
               </span>

@@ -50,7 +50,7 @@ const SingleThreadPage = () => {
           <div key={thread.thread_id} className={styles.threadContainer}>
             <div className={styles.bar}>
               <p className={styles.author}>
-                Posted by: {thread.author}{" "}
+                Posted by: {thread.author_username}{" "}
                 {thread.created_at ? (
                   <span className={styles.date}>
                     {formatDate(thread.created_at)}

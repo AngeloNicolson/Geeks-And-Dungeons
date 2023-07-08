@@ -1,3 +1,4 @@
+import { useAuth0 } from "@auth0/auth0-react";
 // PAGE ELEMENTS
 import { React, useState, useEffect } from "react";
 import Navigation from "../../Navigation/Navigation.js";
@@ -12,6 +13,7 @@ import api from "../../../Api";
 function ThreadPage() {
   const [threads, setThreads] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
+  const { isLoading, user } = useAuth0();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,11 +36,18 @@ function ThreadPage() {
     <>
       <Navigation />
       {errorMessage && <ErrorMessage message={errorMessage} />}
-      <div className={styles.body_inner}>
-        <div className={styles.div_identification}>
-          <ThreadFeed threads={threads} />
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : (
+        <div className={styles.body_inner}>
+          <div className={styles.div_identification}>
+            <ThreadFeed
+              threads={threads}
+              loggedInUserId={user ? user.sub : null}
+            />
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 }
