@@ -30,10 +30,10 @@ app.use("/images", express.static("images"));
 // OPEN ROUTES
 app.use("/api/get-threads", getThreadRouter);
 app.use("/api/get-replies", getReplyRouter);
-app.use("/api/delete-thread", deleteThreadRouter);
 
 // PROTECTED ROUTES
 app.use(jwtCheck); // PROTECTS ROUTES BELOW
+app.use("/api/delete-thread", deleteThreadRouter);
 app.use("/api/new-thread", postThreadRouter);
 app.use("/api/new-reply", postReplyRouter);
 app.use("/api/profile", profileRouter);
