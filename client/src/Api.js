@@ -36,7 +36,7 @@ const api = {
     });
   },
 
-  deleteThread: async (id, accessToken) => {
+  deleteThread: async (id, accessToken, userId) => {
     return await fetch(
       `${process.env.REACT_APP_API_URL}/api/delete-thread/${id}`,
       {
@@ -44,6 +44,7 @@ const api = {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${accessToken}`,
+          "X-User-Id": userId,
         },
       }
     );
