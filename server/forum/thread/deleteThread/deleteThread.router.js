@@ -26,8 +26,11 @@ router.delete(
   async (request, response, next) => {
     try {
       const { thread_id } = request.params;
+      const authenticatedUserId = request.headers["x-user-id"];
+
       const threadDelete = await repository.deleteThread(
-        sanitizeInput(thread_id)
+        sanitizeInput(thread_id),
+        authenticatedUserId
       );
       return response.json(threadDelete);
     } catch (error) {

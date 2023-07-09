@@ -17,20 +17,35 @@ const deleteRepliesSQL = `
            REPOSITORIES
 -----------------------------------
 */
-const deleteThread = async (thread_id) => {
+const deleteThread = async (thread_id, user_id) => {
   try {
     const pool = await get_pool();
     const client = await pool.connect();
 
-    // Delete all replies associated with the thread
-    await client.query(deleteRepliesSQL, [thread_id]);
-    const values = [thread_id];
-    const oldThread = await client.query(deleteThreadSQL, values);
+    // Check if the authenticated user is the owner of the thread
+    const getThreadQuery = `
+    SELECT t.thread_id, u.auth0_id
+    FROM thread t
+    JOIN users u ON t.author = u.id
+    WHERE t.thread_id = $1`;
 
-    return oldThread;
+    const threadValues = [thread_id];
+    const {
+      rows: [thread],
+    } = await client.query(getThreadQuery, threadValues);
+
+    if (thread.auth0_id === user_id) {
+      // Delete all replies associated with the thread
+      await client.query(deleteRepliesSQL, [thread_id]);
+      const values = [thread_id];
+      await client.query(deleteThreadSQL, values);
+      return { success: true, message: "Thread deleted successfully" };
+    } else {
+      throw Error("Unauthorized");
+    }
   } catch (error) {
     console.error(error);
-    throw new Error("Error deleting thread: " + error.message);
+    throw new Error(error.message);
   }
 };
 
