@@ -1,16 +1,19 @@
 import React, { useState, useEffect, useRef } from "react";
-import styles from "./ThreadList.module.css";
+
+// PAGE ELEMENTS
+import ErrorMessage from "../../ErrorHandler/ErrorMessage";
 import { formatDate } from "../../../Utils/formatDate";
+
+// STYLES
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisH } from "@fortawesome/free-solid-svg-icons";
+import styles from "./ThreadList.module.css";
 
-const ThreadFeed = ({ threads, loggedInUser }) => {
+const ThreadFeed = ({ threads, loggedInUser, handleThreadDelete }) => {
   const [deleteDropdowns, setDeleteDropdowns] = useState(new Map());
-  const dropdownRef = useRef(null);
+  const [errorMessage, setErrorMessage] = useState(null);
 
-  const handleDeleteThread = (threadId) => {
-    console.log("Delete thread with ID:", threadId);
-  };
+  const dropdownRef = useRef(null);
 
   const toggleDeleteDropdown = (threadId) => {
     setDeleteDropdowns((prevDropdowns) => {
@@ -18,6 +21,14 @@ const ThreadFeed = ({ threads, loggedInUser }) => {
       newDropdowns.set(threadId, !prevDropdowns.get(threadId));
       return newDropdowns;
     });
+  };
+
+  const handleDeleteThread = async (threadId) => {
+    try {
+      await handleThreadDelete(threadId);
+    } catch (error) {
+      setErrorMessage("Failed to delete thread");
+    }
   };
 
   const handleButtonClick = (event) => {
@@ -30,6 +41,7 @@ const ThreadFeed = ({ threads, loggedInUser }) => {
   };
 
   useEffect(() => {
+    // Checks if menu button has not been been clicked to close the container
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setDeleteDropdowns(new Map());
@@ -52,6 +64,7 @@ const ThreadFeed = ({ threads, loggedInUser }) => {
             window.location.href = `/thread/${thread.thread_id}`;
           }}
         >
+          {errorMessage && <ErrorMessage message={errorMessage} />}
           <div className={styles.bar}>
             <p className={styles.author}>
               Posted by: {thread.author_username}{" "}
@@ -59,7 +72,7 @@ const ThreadFeed = ({ threads, loggedInUser }) => {
                 {formatDate(thread.created_at)}
               </span>
             </p>
-            <div className={styles.dropdownContainer} ref={dropdownRef}>
+            <div className={styles.dropdownContainer}>
               <button
                 className={`${styles.button} ${styles.dropdownButton}`}
                 onClick={(event) => {
@@ -70,7 +83,7 @@ const ThreadFeed = ({ threads, loggedInUser }) => {
                 <FontAwesomeIcon icon={faEllipsisH} />
               </button>
               {deleteDropdowns.get(thread.thread_id) && (
-                <div className={styles.dropdownContent}>
+                <div className={styles.dropdownContent} ref={dropdownRef}>
                   {isOwner(thread) && (
                     <button
                       className={styles.deleteButton}
@@ -87,7 +100,6 @@ const ThreadFeed = ({ threads, loggedInUser }) => {
                     className={styles.deleteButton}
                     onClick={(event) => {
                       event.stopPropagation();
-                      handleDeleteThread(thread.thread_id);
                     }}
                   >
                     Edit
