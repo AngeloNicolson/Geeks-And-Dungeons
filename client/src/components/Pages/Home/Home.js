@@ -24,6 +24,8 @@ const degreesToRadians = (degrees) => {
 
 const HomePage = () => {
   const [activeAnnotation, setActiveAnnotation] = useState(null);
+  const [cameraRotation, setCameraRotation] = useState([0.4, 3.2, 0]);
+  const [cameraTarget, setCameraTarget] = useState([-2, 30, -27]);
 
   // Function to handle clicking an annotation
   const handleAnnotationClick = (annotationName) => {
@@ -172,8 +174,8 @@ const HomePage = () => {
           <PerspectiveCamera
             makeDefault
             fov={30}
-            // position={[-2, 10, 30]}
-            // rotation={[50, 5, 50]}
+            position={cameraTarget}
+            rotation={cameraRotation}
           />
 
           {/* Models */}
