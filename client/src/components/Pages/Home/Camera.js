@@ -14,9 +14,8 @@ const Camera = ({ target, rotation, active }) => {
       new THREE.Euler(...rotation)
     );
 
-    // Animate camera position and rotation
+    // Animate camera position only, not rotation
     const initialCameraPosition = camera.position.clone();
-    const initialCameraQuaternion = camera.quaternion.clone();
     const duration = 1.5; // Animation duration in seconds
     const startTime = Date.now();
 
@@ -27,11 +26,6 @@ const Camera = ({ target, rotation, active }) => {
       // Perform the animation using linear interpolation
       const t = Math.min(elapsed / duration, 1);
       camera.position.lerpVectors(initialCameraPosition, targetPosition, t);
-      camera.quaternion.slerpQuaternions(
-        initialCameraQuaternion,
-        targetQuaternion,
-        t
-      );
 
       if (t < 1) {
         // Continue animation until t reaches 1
@@ -42,10 +36,20 @@ const Camera = ({ target, rotation, active }) => {
     // Start the camera animation
     animateCamera();
 
+    // Set the camera's quaternion to match the target rotation immediately
+    camera.quaternion.set(
+      targetQuaternion.x,
+      targetQuaternion.y,
+      targetQuaternion.z,
+      targetQuaternion.w
+    );
+
     return () => {
       // Reset the camera to the original position and rotation
       camera.position.copy(initialCameraPosition);
-      camera.quaternion.copy(initialCameraQuaternion);
+      camera.quaternion.setFromEuler(
+        new THREE.Euler(...camera.rotation.toArray())
+      );
     };
   }, [active, camera, rotation, target]);
 

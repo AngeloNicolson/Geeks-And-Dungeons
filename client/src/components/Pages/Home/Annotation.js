@@ -1,5 +1,6 @@
 import React from "react";
 import { Html } from "@react-three/drei";
+import styles from "./Annotation.module.css";
 
 function Annotation({ children, onClose, ...props }) {
   return (
@@ -9,8 +10,7 @@ function Annotation({ children, onClose, ...props }) {
       occlude="blending"
       //   geometry={<roundedPlaneGeometry args={[1.66, 0.47, 0.24]} />}
     >
-      <div className="annotation">
-        {" "}
+      <div className={styles.annotation}>
         <button onClick={onClose}>Close</button>
         {children}
       </div>
