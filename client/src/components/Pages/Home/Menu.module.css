@@ -1,0 +1,26 @@
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  z-index: 999;
+}
+
+.menuItem {
+  color: white;
+  background: transparent;
+  font-size: 18px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.annotation {
+  color: white;
+  background: transparent;
+  padding: 5px;
+  font-size: 16px;
+  pointer-events: none; /* Prevent annotations from interfering with mouse interactions */
+}

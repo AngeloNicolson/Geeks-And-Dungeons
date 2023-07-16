@@ -5,6 +5,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { AuthenticationGuard } from "./Auth/authentication-guard";
 
 // PAGES
+import HomePage from "./components/Pages/Home/Home";
 import CreateThreadPage from "./components/Pages/CreateThread/CreateThreadPage";
 import ThreadsPage from "./components/Pages/Threads/ThreadsPage";
 import Profile from "./components/Pages/Profile/Profile";
@@ -29,7 +30,13 @@ const App = () => {
           element={<AuthenticationGuard component={CreateThreadPage} />}
         />
 
-        <Route exact path="/" element={<ThreadsPage />} />
+        <Route exact path="/" element={<HomePage />} />
+
+        <Route
+          exact
+          path="/threads"
+          element={<AuthenticationGuard component={ThreadsPage} />}
+        />
 
         <Route
           exact
