@@ -1,9 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useThree } from "@react-three/fiber";
+import { useThree, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
+import Hud from "../Hud/Hud";
 
-const Camera = ({ target, rotation, active }) => {
-  const cameraRef = useRef();
+const Camera = ({
+  target,
+  rotation,
+  active,
+  onAnimationComplete,
+  onAnnotationClick,
+}) => {
+  const groupRef = useRef();
   const { camera } = useThree();
   const windowHalfX = window.innerWidth / 2;
   const windowHalfY = window.innerHeight / 2;
@@ -57,7 +64,10 @@ const Camera = ({ target, rotation, active }) => {
         requestAnimationFrame(animateCamera);
       } else {
         setCameraAnimating(false); // Animation is complete, set the status to false
-        setAnimationCompleted(true); // Set animation completion status to true
+        setTimeout(() => {
+          setAnimationCompleted(true); // Set animation completion status to true
+          onAnimationComplete(); // Call the onAnimationComplete to trigger annotation render
+        }, 300);
       }
     };
 
@@ -71,6 +81,7 @@ const Camera = ({ target, rotation, active }) => {
     cameraAnimating,
     animationCompleted,
     targetQuaternion,
+    onAnimationComplete,
   ]);
 
   useEffect(() => {
@@ -113,7 +124,35 @@ const Camera = ({ target, rotation, active }) => {
     };
   });
 
-  return null; // We don't render anything for this component
+  useFrame(({ camera }) => {
+    if (groupRef.current) {
+      // Get the camera's position and rotation
+      const cameraPosition = camera.position.clone();
+      const cameraRotation = camera.rotation.clone();
+
+      // Calculate the hudOffset based on the camera's rotation
+      const hudOffset = new THREE.Vector3(0, 2, -10); // You can adjust the offset values here
+      hudOffset.applyEuler(cameraRotation);
+
+      // Calculate the position of the Hud based on the camera's position and rotation
+      const hudPosition = cameraPosition.clone().add(hudOffset);
+
+      // Set the position and rotation of the groupRef
+      groupRef.current.position.copy(hudPosition);
+      groupRef.current.rotation.copy(cameraRotation);
+    }
+  });
+
+  return (
+    <group ref={groupRef}>
+      {animationCompleted && (
+        <Hud
+          onClose={onAnimationComplete}
+          onAnnotationClick={onAnnotationClick}
+        />
+      )}
+    </group>
+  );
 };
 
 export default Camera;

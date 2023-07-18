@@ -8,11 +8,11 @@ function Annotation({ children, onClose, ...props }) {
       {...props}
       transform
       occlude="blending"
-      //   geometry={<roundedPlaneGeometry args={[1.66, 0.47, 0.24]} />}
+      //   geometry={<roundedPlaneGeometry args={[1.66, 0.47, 0.24]} />} // From an external library
     >
       <div className={styles.annotation}>
-        <button onClick={onClose}>Close</button>
         {children}
+        <button onClick={onClose}>Close</button>
       </div>
     </Html>
   );

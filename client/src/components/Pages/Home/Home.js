@@ -11,38 +11,38 @@ import {
   SoftShadows,
 } from "@react-three/postprocessing";
 import * as THREE from "three";
-import Annotation from "./Annotation";
-import Wolf from "./Wolf";
-import HangarModel from "./Hangar";
-import GlowingEyes from "./GlowingEyes";
-import Menu from "./Menu";
-import Camera from "./Camera";
+import Annotation from "./3dElements/Annotation";
+import Wolf from "./3dElements/Wolf";
+import HangarModel from "./3dElements/Hangar";
+import GlowingEyes from "./3dElements/GlowingEyes";
 
-const degreesToRadians = (degrees) => {
-  return degrees * (Math.PI / 180);
-};
+import Camera from "./Camera/Camera";
 
 const HomePage = () => {
-  const [activeAnnotation, setActiveAnnotation] = useState(null);
+  const [activeAnnotation, setActiveAnnotation] = useState("about-the-project");
+  const [showAnnotation, setShowAnnotation] = useState(false);
   const [cameraRotation, setCameraRotation] = useState([0.4, 3.2, 0]);
   const [cameraTarget, setCameraTarget] = useState([-2, 30, -27]);
 
   // Function to handle clicking an annotation
   const handleAnnotationClick = (annotationName) => {
     setActiveAnnotation(annotationName);
+    setShowAnnotation(false);
   };
 
   // Function to handle clicking the close button
   const handleAnnotationClose = () => {
     setActiveAnnotation(null);
+    setCameraRotation([0.4, 3.2, 0]);
+    setCameraTarget([-2, 30, -27]);
+  };
+  const handleAnimationComplete = () => {
+    setShowAnnotation(true);
   };
 
   return (
     <>
-      {/* Render the menu */}
-      <Menu onAnnotationClick={handleAnnotationClick} />
       <div style={{ height: "100vh" }}>
-        {/* HTML menu */}
         <Canvas shadows gl={{ alpha: false }} style={{ background: "black" }}>
           <EffectComposer>
             <DepthOfField
@@ -176,6 +176,7 @@ const HomePage = () => {
             fov={30}
             position={cameraTarget}
             rotation={cameraRotation}
+            onAnnotationClick={handleAnnotationClick}
           />
 
           {/* Models */}
@@ -183,15 +184,15 @@ const HomePage = () => {
           <GlowingEyes />
           <HangarModel castShadow receiveShadow />
 
-          {/* Soft Shadows */}
-          {/* <SoftShadows samples={3} /> */}
-          {/* Annotation */}
+          {/* Annotations */}
           <Camera
             target={[0, 13, 34]} // Set the target position for about-me annotation
             rotation={[0.1, 0, 0]} // Set the target rotation for about-me annotation
             active={activeAnnotation === "about-me"}
+            onAnimationComplete={handleAnimationComplete}
+            onAnnotationClick={handleAnnotationClick}
           />
-          {activeAnnotation === "about-me" && (
+          {showAnnotation && activeAnnotation === "about-me" && (
             <Annotation position={[5, 15, 18]} onClose={handleAnnotationClose}>
               <p style={{ fontSize: "0.5rem", color: "white" }}>
                 What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the
@@ -208,7 +209,14 @@ const HomePage = () => {
               <span style={{ fontSize: "1.5em" }}>🌖</span>
             </Annotation>
           )}
-          {activeAnnotation === "about-the-project" && (
+          <Camera
+            target={[-40, 1, 60]} // Set the target position for about-the-project annotation
+            rotation={[0.2, -0.5, 0.1]} // Set the target rotation for about-the-project annotation
+            active={activeAnnotation === "about-the-project"}
+            onAnimationComplete={handleAnimationComplete}
+            onAnnotationClick={handleAnnotationClick}
+          />
+          {showAnnotation && activeAnnotation === "about-the-project" && (
             <Annotation
               position={[1.75, 3, 2.5]}
               onClose={handleAnnotationClose}
@@ -228,7 +236,14 @@ const HomePage = () => {
               <span style={{ fontSize: "1.5em" }}>🌗</span>
             </Annotation>
           )}
-          {activeAnnotation === "my-interests" && (
+          <Camera
+            target={[-3, 10, 22]} // Set the target position for my-interests annotation
+            rotation={[-0.1, 0, 0]} // Set the target rotation for my-interests annotation
+            active={activeAnnotation === "my-interests"}
+            onAnimationComplete={handleAnimationComplete}
+            onAnnotationClick={handleAnnotationClick}
+          />
+          {showAnnotation && activeAnnotation === "my-interests" && (
             <Annotation position={[-2, 8, 5]} onClose={handleAnnotationClose}>
               <p style={{ fontSize: "0.5rem", color: "white" }}>
                 What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the
@@ -245,19 +260,6 @@ const HomePage = () => {
               <span style={{ fontSize: "0.5rem" }}>🌕</span>
             </Annotation>
           )}
-          {/* Use the Camera component */}
-
-          <Camera
-            target={[-40, 1, 60]} // Set the target position for about-the-project annotation
-            rotation={[0.2, -0.5, 0.1]} // Set the target rotation for about-the-project annotation
-            active={activeAnnotation === "about-the-project"}
-          />
-
-          <Camera
-            target={[-3, 10, 22]} // Set the target position for my-interests annotation
-            rotation={[-0.1, 0, 0]} // Set the target rotation for my-interests annotation
-            active={activeAnnotation === "my-interests"}
-          />
         </Canvas>
       </div>
     </>
