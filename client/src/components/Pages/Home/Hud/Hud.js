@@ -1,5 +1,6 @@
 import React from "react";
 import { Html } from "@react-three/drei";
+// STYLES
 import styles from "./Hud.module.css";
 
 const Hud = ({ position, onClose, onAnnotationClick, ...props }) => {
@@ -16,21 +17,18 @@ const Hud = ({ position, onClose, onAnnotationClick, ...props }) => {
           </button>
           <button
             className={styles.button}
-            onClick={() => onAnnotationClick("about-the-project")}
-          >
-            About The Project
-          </button>
-          <button
-            className={styles.button}
             onClick={() => onAnnotationClick("my-interests")}
           >
             My Interests
           </button>
-          {/* Add other buttons or elements as needed */}
+          <button
+            className={styles.button}
+            onClick={() => onAnnotationClick("about-the-project")}
+          >
+            About The Project
+          </button>
         </div>
       </Html>
-      {/* Add other components or annotations you want to attach to the hud */}
-      {/* ... */}
     </group>
   );
 };

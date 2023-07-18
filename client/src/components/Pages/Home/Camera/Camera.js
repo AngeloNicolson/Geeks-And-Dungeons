@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useThree, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
+
+// ELEMENTS
 import Hud from "../Hud/Hud";
 
 const Camera = ({
@@ -12,19 +14,24 @@ const Camera = ({
 }) => {
   const groupRef = useRef();
   const { camera } = useThree();
-  const windowHalfX = window.innerWidth / 2;
-  const windowHalfY = window.innerHeight / 2;
-  const mouse = new THREE.Vector2();
   const [cameraAnimating, setCameraAnimating] = useState(true);
   const [animationCompleted, setAnimationCompleted] = useState(false);
-  const [lastMousePosition, setLastMousePosition] = useState({
-    x: 0.0,
-    y: 0.0,
-  });
+  const [lastMousePosition, setLastMousePosition] = useState({ x: 0, y: 0 });
+
+  // Get window dimentions for the mouse detection
+  const windowHalfY = window.innerHeight / 2;
+  const windowHalfX = window.innerWidth / 2;
+
+  const mouse = new THREE.Vector2();
   const targetQuaternion = new THREE.Quaternion().setFromEuler(
     new THREE.Euler(...rotation)
   );
 
+  /* 
+----------------------------------------
+            CAMERA ANIMATION
+----------------------------------------
+*/
   useEffect(() => {
     if (!active) {
       // Reset animation status and completion whenever active prop changes
@@ -84,6 +91,11 @@ const Camera = ({
     onAnimationComplete,
   ]);
 
+  /* 
+----------------------------------------
+       DETECT MOUSE MOVEMENT
+----------------------------------------
+*/
   useEffect(() => {
     const handleMouseMove = (event) => {
       // Only update camera rotation if the animation is complete
@@ -124,6 +136,11 @@ const Camera = ({
     };
   });
 
+  /* 
+----------------------------------------
+              HUD OFFSET
+----------------------------------------
+*/
   useFrame(({ camera }) => {
     if (groupRef.current) {
       // Get the camera's position and rotation
