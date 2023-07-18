@@ -1,21 +1,21 @@
-import React, { useRef, useState } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls, PerspectiveCamera } from "@react-three/drei";
+import React, { useState } from "react";
+import { Canvas } from "@react-three/fiber";
+import { PerspectiveCamera } from "@react-three/drei";
 
+// EFFECTS
 import {
   Bloom,
   DepthOfField,
   EffectComposer,
   Noise,
   Vignette,
-  SoftShadows,
 } from "@react-three/postprocessing";
-import * as THREE from "three";
+
+// PAGE ELEMENTS
 import Annotation from "./3dElements/Annotation";
 import Wolf from "./3dElements/Wolf";
 import HangarModel from "./3dElements/Hangar";
 import GlowingEyes from "./3dElements/GlowingEyes";
-
 import Camera from "./Camera/Camera";
 
 const HomePage = () => {
@@ -36,6 +36,7 @@ const HomePage = () => {
     setCameraRotation([0.4, 3.2, 0]);
     setCameraTarget([-2, 30, -27]);
   };
+
   const handleAnimationComplete = () => {
     setShowAnnotation(true);
   };
@@ -60,6 +61,96 @@ const HomePage = () => {
             <Vignette eskil={false} offset={0.1} darkness={1} />
           </EffectComposer>
 
+          {/* Controls and Camera */}
+          <PerspectiveCamera
+            makeDefault
+            fov={30}
+            position={cameraTarget}
+            rotation={cameraRotation}
+            onAnnotationClick={handleAnnotationClick}
+          />
+
+          {/* Models */}
+          <Wolf castShadow receiveShadow />
+          <GlowingEyes />
+          <HangarModel castShadow receiveShadow />
+
+          {/* Annotations */}
+          <Camera
+            target={[0, 13, 34]} // Setting the target position for about-me annotation
+            rotation={[0.1, 0, 0]} // Setting the target rotation for about-me annotation
+            active={activeAnnotation === "about-me"}
+            onAnimationComplete={handleAnimationComplete}
+            onAnnotationClick={handleAnnotationClick}
+          />
+          {showAnnotation && activeAnnotation === "about-me" && (
+            <Annotation position={[5, 15, 18]} onClose={handleAnnotationClose}>
+              <p style={{ fontSize: "0.5rem", color: "white" }}>
+                What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the
+                printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard dummy text ever since the 1500s, when an
+                unknown printer took a galley of type and scrambled it to make a
+                type specimen book. It has survived not only five centuries, but
+                also the leap into electronic typesetting, remaining essentially
+                unchanged. It was popularised in the 1960s with the release of
+                Letraset sheets containing Lorem Ipsum passages, and more
+                recently with desktop publishing software like Aldus PageMaker
+                including versions of Lorem Ipsum.
+              </p>
+              <span style={{ fontSize: "1.5em" }}>🌖</span>
+            </Annotation>
+          )}
+          <Camera
+            target={[-40, 1, 60]} // Setting the target position for about-the-project annotation
+            rotation={[0.2, -0.5, 0.1]} // Setting the target rotation for about-the-project annotation
+            active={activeAnnotation === "about-the-project"}
+            onAnimationComplete={handleAnimationComplete}
+            onAnnotationClick={handleAnnotationClick}
+          />
+          {showAnnotation && activeAnnotation === "about-the-project" && (
+            <Annotation
+              position={[1.75, 3, 2.5]}
+              onClose={handleAnnotationClose}
+            >
+              <p style={{ fontSize: "0.5rem", color: "white" }}>
+                What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the
+                printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard dummy text ever since the 1500s, when an
+                unknown printer took a galley of type and scrambled it to make a
+                type specimen book. It has survived not only five centuries, but
+                also the leap into electronic typesetting, remaining essentially
+                unchanged. It was popularised in the 1960s with the release of
+                Letraset sheets containing Lorem Ipsum passages, and more
+                recently with desktop publishing software like Aldus PageMaker
+                including versions of Lorem Ipsum.
+              </p>{" "}
+              <span style={{ fontSize: "1.5em" }}>🌗</span>
+            </Annotation>
+          )}
+          <Camera
+            target={[-3, 10, 22]} // Setting the target position for my-interests annotation
+            rotation={[-0.1, 0, 0]} // Setting the target rotation for my-interests annotation
+            active={activeAnnotation === "my-interests"}
+            onAnimationComplete={handleAnimationComplete}
+            onAnnotationClick={handleAnnotationClick}
+          />
+          {showAnnotation && activeAnnotation === "my-interests" && (
+            <Annotation position={[-2, 8, 5]} onClose={handleAnnotationClose}>
+              <p style={{ fontSize: "0.5rem", color: "white" }}>
+                What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the
+                printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard dummy text ever since the 1500s, when an
+                unknown printer took a galley of type and scrambled it to make a
+                type specimen book. It has survived not only five centuries, but
+                also the leap into electronic typesetting, remaining essentially
+                unchanged. It was popularised in the 1960s with the release of
+                Letraset sheets containing Lorem Ipsum passages, and more
+                recently with desktop publishing software like Aldus PageMaker
+                including versions of Lorem Ipsum.
+              </p>
+              <span style={{ fontSize: "0.5rem" }}>🌕</span>
+            </Annotation>
+          )}
           {/* Lights */}
           <group>
             <pointLight
@@ -153,113 +244,7 @@ const HomePage = () => {
               decay={1}
               color="#7395C8"
             />
-            {/* <pointLight
-            position={[48, 16, -57]}
-            intensity={0.5}
-            distance={15}
-            decay={1}
-            color="#7395C8"
-          />
-          <pointLight
-            position={[48, 22, -57]}
-            intensity={0.5}
-            distance={15}
-            decay={1}
-            color="#7395C8"
-          /> */}
           </group>
-
-          {/* Controls and Camera */}
-          {/* <OrbitControls maxPolarAngle={10} enablePan={true} PanSpeed={0.5} /> */}
-          <PerspectiveCamera
-            makeDefault
-            fov={30}
-            position={cameraTarget}
-            rotation={cameraRotation}
-            onAnnotationClick={handleAnnotationClick}
-          />
-
-          {/* Models */}
-          <Wolf castShadow receiveShadow />
-          <GlowingEyes />
-          <HangarModel castShadow receiveShadow />
-
-          {/* Annotations */}
-          <Camera
-            target={[0, 13, 34]} // Set the target position for about-me annotation
-            rotation={[0.1, 0, 0]} // Set the target rotation for about-me annotation
-            active={activeAnnotation === "about-me"}
-            onAnimationComplete={handleAnimationComplete}
-            onAnnotationClick={handleAnnotationClick}
-          />
-          {showAnnotation && activeAnnotation === "about-me" && (
-            <Annotation position={[5, 15, 18]} onClose={handleAnnotationClose}>
-              <p style={{ fontSize: "0.5rem", color: "white" }}>
-                What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the
-                printing and typesetting industry. Lorem Ipsum has been the
-                industry's standard dummy text ever since the 1500s, when an
-                unknown printer took a galley of type and scrambled it to make a
-                type specimen book. It has survived not only five centuries, but
-                also the leap into electronic typesetting, remaining essentially
-                unchanged. It was popularised in the 1960s with the release of
-                Letraset sheets containing Lorem Ipsum passages, and more
-                recently with desktop publishing software like Aldus PageMaker
-                including versions of Lorem Ipsum.
-              </p>
-              <span style={{ fontSize: "1.5em" }}>🌖</span>
-            </Annotation>
-          )}
-          <Camera
-            target={[-40, 1, 60]} // Set the target position for about-the-project annotation
-            rotation={[0.2, -0.5, 0.1]} // Set the target rotation for about-the-project annotation
-            active={activeAnnotation === "about-the-project"}
-            onAnimationComplete={handleAnimationComplete}
-            onAnnotationClick={handleAnnotationClick}
-          />
-          {showAnnotation && activeAnnotation === "about-the-project" && (
-            <Annotation
-              position={[1.75, 3, 2.5]}
-              onClose={handleAnnotationClose}
-            >
-              <p style={{ fontSize: "0.5rem", color: "white" }}>
-                What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the
-                printing and typesetting industry. Lorem Ipsum has been the
-                industry's standard dummy text ever since the 1500s, when an
-                unknown printer took a galley of type and scrambled it to make a
-                type specimen book. It has survived not only five centuries, but
-                also the leap into electronic typesetting, remaining essentially
-                unchanged. It was popularised in the 1960s with the release of
-                Letraset sheets containing Lorem Ipsum passages, and more
-                recently with desktop publishing software like Aldus PageMaker
-                including versions of Lorem Ipsum.
-              </p>{" "}
-              <span style={{ fontSize: "1.5em" }}>🌗</span>
-            </Annotation>
-          )}
-          <Camera
-            target={[-3, 10, 22]} // Set the target position for my-interests annotation
-            rotation={[-0.1, 0, 0]} // Set the target rotation for my-interests annotation
-            active={activeAnnotation === "my-interests"}
-            onAnimationComplete={handleAnimationComplete}
-            onAnnotationClick={handleAnnotationClick}
-          />
-          {showAnnotation && activeAnnotation === "my-interests" && (
-            <Annotation position={[-2, 8, 5]} onClose={handleAnnotationClose}>
-              <p style={{ fontSize: "0.5rem", color: "white" }}>
-                What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the
-                printing and typesetting industry. Lorem Ipsum has been the
-                industry's standard dummy text ever since the 1500s, when an
-                unknown printer took a galley of type and scrambled it to make a
-                type specimen book. It has survived not only five centuries, but
-                also the leap into electronic typesetting, remaining essentially
-                unchanged. It was popularised in the 1960s with the release of
-                Letraset sheets containing Lorem Ipsum passages, and more
-                recently with desktop publishing software like Aldus PageMaker
-                including versions of Lorem Ipsum.
-              </p>
-              <span style={{ fontSize: "0.5rem" }}>🌕</span>
-            </Annotation>
-          )}
         </Canvas>
       </div>
     </>
