@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useThree, useFrame } from "@react-three/fiber";
 import * as THREE from "three";
-
 // ELEMENTS
 import Hud from "../Hud/Hud";
 
 const Camera = ({
+  fov,
   target,
   rotation,
   active,
@@ -98,33 +98,30 @@ const Camera = ({
 */
   useEffect(() => {
     const handleMouseMove = (event) => {
-      // Only update camera rotation if the animation is complete
       if (!cameraAnimating || !animationCompleted) return;
 
       mouse.x = (event.clientX - windowHalfX) / windowHalfX;
       mouse.y = (event.clientY - windowHalfY) / windowHalfY;
 
-      // Calculate the delta movement from the last recorded mouse position
-      const deltaMove = {
-        x: mouse.x - lastMousePosition.x,
-        y: mouse.y - lastMousePosition.y,
-      };
+      const rotationSpeed = 0.005; // Adjust this value to control rotation sensitivity
+      const targetQuaternion = new THREE.Quaternion().setFromEuler(
+        new THREE.Euler(rotation[0], rotation[1], 0, "YXZ")
+      );
 
-      // Adjust camera rotation based on mouse movement
-      const minRotationX = -0.5;
-      const maxRotationX = 0.5;
-      const minRotationY = -0.5;
-      const maxRotationY = 0.5;
-      camera.rotation.x = THREE.MathUtils.clamp(
-        rotation[0] + deltaMove.y * 0.01,
-        minRotationX,
-        maxRotationX
+      const deltaQuaternionX = new THREE.Quaternion().setFromAxisAngle(
+        new THREE.Vector3(1, 0, 0),
+        -mouse.y * rotationSpeed
       );
-      camera.rotation.y = THREE.MathUtils.clamp(
-        rotation[1] + deltaMove.x * 0.01,
-        minRotationY,
-        maxRotationY
+      const deltaQuaternionY = new THREE.Quaternion().setFromAxisAngle(
+        new THREE.Vector3(0, 1, 0),
+        -mouse.x * rotationSpeed
       );
+
+      const newQuaternion = targetQuaternion
+        .clone()
+        .multiply(deltaQuaternionX)
+        .multiply(deltaQuaternionY);
+      camera.quaternion.copy(newQuaternion);
 
       // Update the last recorded mouse position
       setLastMousePosition({ x: mouse.x, y: mouse.y });
@@ -159,6 +156,14 @@ const Camera = ({
       groupRef.current.rotation.copy(cameraRotation);
     }
   });
+
+  // Function to update the camera's FOV
+  useEffect(() => {
+    if (camera && active && fov) {
+      camera.fov = fov;
+      camera.updateProjectionMatrix();
+    }
+  }, [active, camera, fov]);
 
   return (
     <group ref={groupRef}>
