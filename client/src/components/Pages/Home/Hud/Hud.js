@@ -5,7 +5,7 @@ import styles from "./Hud.module.css";
 
 const Hud = ({ position, onClose, onAnnotationClick, ...props }) => {
   return (
-    <group position={position}>
+    <group position={[0, 0.5, 0]}>
       {/* Render the menu in front of the camera */}
       <Html {...props} transform occlude="blending">
         <div className={styles.menu}>

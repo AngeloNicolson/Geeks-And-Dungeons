@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Canvas } from "@react-three/fiber";
+import { Link } from "react-router-dom";
 import { PerspectiveCamera } from "@react-three/drei";
 
 // EFFECTS
@@ -18,11 +19,16 @@ import HangarModel from "./3dElements/Hangar";
 import GlowingEyes from "./3dElements/GlowingEyes";
 import Camera from "./Camera/Camera";
 
+// STYLES
+import styles from "./Home.module.css";
+import GitHubIcon from "../../../Assets/Icons/GitHubIcon";
+import LinkedInIcon from "../../../Assets/Icons/LinkedinIcon";
+
 const HomePage = () => {
-  const [activeAnnotation, setActiveAnnotation] = useState("about-the-project");
+  const [activeAnnotation, setActiveAnnotation] = useState("default");
   const [showAnnotation, setShowAnnotation] = useState(false);
-  const [cameraRotation, setCameraRotation] = useState([0.4, 3.2, 0]);
-  const [cameraTarget, setCameraTarget] = useState([-2, 30, -27]);
+  // const [cameraRotation, setCameraRotation] = useState([0.2, -0.5, 0]);
+  // const [cameraTarget, setCameraTarget] = useState([-40, 1, 60]);
 
   // Function to handle clicking an annotation
   const handleAnnotationClick = (annotationName) => {
@@ -32,9 +38,9 @@ const HomePage = () => {
 
   // Function to handle clicking the close button
   const handleAnnotationClose = () => {
-    setActiveAnnotation(null);
-    setCameraRotation([0.4, 3.2, 0]);
-    setCameraTarget([-2, 30, -27]);
+    setActiveAnnotation("default");
+    // setCameraRotation([0.2, -0.5, 0]);
+    // setCameraTarget([-40, 1, 60]);
   };
 
   const handleAnimationComplete = () => {
@@ -62,14 +68,22 @@ const HomePage = () => {
           </EffectComposer>
 
           {/* Controls and Camera */}
-          <PerspectiveCamera
+
+          {/* <PerspectiveCamera
             makeDefault
             fov={30}
             position={cameraTarget}
             rotation={cameraRotation}
             onAnnotationClick={handleAnnotationClick}
+          /> */}
+          <Camera
+            fov={32}
+            target={[-35, 2, 50]} // Setting the target position for about-the-project annotation
+            rotation={[0.3, -0.75, 0.2]} // Setting the target rotation for about-the-project annotation
+            active={activeAnnotation === "default"}
+            onAnimationComplete={handleAnimationComplete}
+            onAnnotationClick={handleAnnotationClick}
           />
-
           {/* Models */}
           <Wolf castShadow receiveShadow />
           <GlowingEyes />
@@ -77,78 +91,154 @@ const HomePage = () => {
 
           {/* Annotations */}
           <Camera
-            target={[0, 13, 34]} // Setting the target position for about-me annotation
-            rotation={[0.1, 0, 0]} // Setting the target rotation for about-me annotation
+            fov={32}
+            target={[-2, 13, 36]} // Setting the target position for about-me annotation
+            rotation={[0.11, -0.19, 0]} // Setting the target rotation for about-me annotation
             active={activeAnnotation === "about-me"}
             onAnimationComplete={handleAnimationComplete}
             onAnnotationClick={handleAnnotationClick}
           />
           {showAnnotation && activeAnnotation === "about-me" && (
-            <Annotation position={[5, 15, 18]} onClose={handleAnnotationClose}>
-              <p style={{ fontSize: "0.5rem", color: "white" }}>
-                What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the
-                printing and typesetting industry. Lorem Ipsum has been the
-                industry's standard dummy text ever since the 1500s, when an
-                unknown printer took a galley of type and scrambled it to make a
-                type specimen book. It has survived not only five centuries, but
-                also the leap into electronic typesetting, remaining essentially
-                unchanged. It was popularised in the 1960s with the release of
-                Letraset sheets containing Lorem Ipsum passages, and more
-                recently with desktop publishing software like Aldus PageMaker
-                including versions of Lorem Ipsum.
+            <Annotation
+              position={[5, 14.5, 22]}
+              rotation={[0.11, -0.19, 0]}
+              onClose={handleAnnotationClose}
+            >
+              <p className={styles.annotationContents}>
+                Hello Visitor, My name is Angelo,
+                <br />
+                <br />
+                A little bit about myself: I am on a quest for knowledge and
+                what I can do do improve peoples lives through tech. Currently
+                at this stage in my quest I am studying software development at
+                Developers Institute.
+                <br />
+                <br />
+                To hone my skills I am currently working on a community forum
+                website for geeks, my vision extends beyond just a website. My
+                ultimate dream and goal is to open a tech company that produces
+                engaging and interactive games, content and learning materials
+                for people of all ages. I aspire to make a positive impact on
+                the New Zealand tech industry by retaining local talent instead
+                of losing them to overseas companies.
+                <br />
+                <br />
+                If I do not know somthing then i dont let that hold me back, I
+                find solutions to problems and practice until the problem is
+                solved.
+                <br />
+                <br />
+                The journey of an student programmer with large visions may be
+                challenging, but with my passion, dedication, and drive, I'm
+                confident that I can positively impact the tech industry and the
+                people around me. If you have any advice or guidance, I'd be
+                grateful to hear it.
               </p>
-              <span style={{ fontSize: "1.5em" }}>🌖</span>
+            </Annotation>
+          )}
+
+          <Camera
+            fov={32}
+            target={[-2.5, 7.2, 29]} // Setting the target position for my-interests annotation
+            rotation={[0, 0, 0]} // Setting the target rotation for my-interests annotation
+            active={activeAnnotation === "my-interests"}
+            onAnimationComplete={handleAnimationComplete}
+            onAnnotationClick={handleAnnotationClick}
+          />
+          {showAnnotation && activeAnnotation === "my-interests" && (
+            <Annotation position={[-1.6, 7, 9]} onClose={handleAnnotationClose}>
+              <p className={styles.annotationContents}>
+                <h3>AI</h3>
+                One of my interests is artificial intelligence (AI). I am
+                captivated by its dynamic nature and boundless potential to
+                tackle real-world challenges. Specifically, I am deeply
+                fascinated by AI's capacity to enhance internet safety for
+                younger children, envisioning powerful content filtering
+                systems, parental control tools, and real-time monitoring
+                mechanisms to safeguard them from harmful online content
+                Providing parents with the control and tools they need to
+                protect their children is my driving force.
+                <br />
+                <h3>Image analysis</h3>
+                Another inspiring realm that fascinates me is image analysis,
+                where machine learning algorithms can revolutionize web
+                development and 3D model design processes. I dream of creating a
+                system that optimizes and creates 3D designs and assets for the
+                gaming industry, empowering artists to unleash their creativity
+                on the finer details.
+                <br />
+                {/* <h3>3D Printing</h3>
+                Through thousands of hours in 3D applications, I wanted to see
+                my designs come to life this led me design props from scratch,
+                ideas, beloved movies and games, fueling my problem solving
+                ability, enhancing my creativity and joy.
+                <br /> */}
+                <h3>Open source</h3>
+                For me, this journey is more than mere business or project
+                aspirations. I am driven by a strong belief in morally correct
+                practices and building a community of like-minded enthusiasts
+                and collaborators. Embracing open-source software and content is
+                a vital part of my vision, as I firmly believe that sharing
+                knowledge with a roots in an open-source mindset fuels
+                innovation and progress.
+                <br />
+                <h3>Vision</h3>I see technology as a powerful means to foster
+                human connections and enhance lives. By prioritizing community
+                and responsible AI usage, my ultimate goal is to revolutionize
+                internet safety and create an enjoyable and secure digital world
+                for all. My journey as a tech enthusiast is fueled by a deep
+                desire to make a difference, one idea and project at a time. I'm
+                eager to explore new frontiers, push boundaries, and above all,
+                learn
+              </p>
             </Annotation>
           )}
           <Camera
-            target={[-40, 1, 60]} // Setting the target position for about-the-project annotation
-            rotation={[0.2, -0.5, 0.1]} // Setting the target rotation for about-the-project annotation
+            fov={32}
+            target={[-6.4, 4.2, 10]} // Setting the target position for about-the-project annotation
+            rotation={[0, -2.5, 0]} // Setting the targe5 rotation for about-the-project annotation
             active={activeAnnotation === "about-the-project"}
             onAnimationComplete={handleAnimationComplete}
             onAnnotationClick={handleAnnotationClick}
           />
           {showAnnotation && activeAnnotation === "about-the-project" && (
             <Annotation
-              position={[1.75, 3, 2.5]}
+              position={[0.7, 4.5, 25]}
+              rotation={[0, -2.5, 0]}
               onClose={handleAnnotationClose}
             >
-              <p style={{ fontSize: "0.5rem", color: "white" }}>
-                What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the
-                printing and typesetting industry. Lorem Ipsum has been the
-                industry's standard dummy text ever since the 1500s, when an
-                unknown printer took a galley of type and scrambled it to make a
-                type specimen book. It has survived not only five centuries, but
-                also the leap into electronic typesetting, remaining essentially
-                unchanged. It was popularised in the 1960s with the release of
-                Letraset sheets containing Lorem Ipsum passages, and more
-                recently with desktop publishing software like Aldus PageMaker
-                including versions of Lorem Ipsum.
-              </p>{" "}
-              <span style={{ fontSize: "1.5em" }}>🌗</span>
-            </Annotation>
-          )}
-          <Camera
-            target={[-3, 10, 22]} // Setting the target position for my-interests annotation
-            rotation={[-0.1, 0, 0]} // Setting the target rotation for my-interests annotation
-            active={activeAnnotation === "my-interests"}
-            onAnimationComplete={handleAnimationComplete}
-            onAnnotationClick={handleAnnotationClick}
-          />
-          {showAnnotation && activeAnnotation === "my-interests" && (
-            <Annotation position={[-2, 8, 5]} onClose={handleAnnotationClose}>
-              <p style={{ fontSize: "0.5rem", color: "white" }}>
-                What is Lorem Ipsum? Lorem Ipsum is simply dummy text of the
-                printing and typesetting industry. Lorem Ipsum has been the
-                industry's standard dummy text ever since the 1500s, when an
-                unknown printer took a galley of type and scrambled it to make a
-                type specimen book. It has survived not only five centuries, but
-                also the leap into electronic typesetting, remaining essentially
-                unchanged. It was popularised in the 1960s with the release of
-                Letraset sheets containing Lorem Ipsum passages, and more
-                recently with desktop publishing software like Aldus PageMaker
-                including versions of Lorem Ipsum.
+              <p className={styles.annotationContents}>
+                Introducing a passion-driven project that aims to unite geeks
+                worldwide through a secure and vibrant digital platform.
+                Inspired by a deep fascination with AI, internet safety, and
+                image analysis, this endeavor focuses on creating a safe space
+                for like-minded individuals to connect and discuss their
+                favorite topics.
+                <br />
+                <br />
+                The project revolves around developing security middleware to
+                ensure robust authorization and authentication, allowing users
+                to interact with confidence. Leveraging expertise in web
+                development, including React and PostgreSQL, along with a
+                background in full-stack software development, this platform
+                will handle and store user input efficiently.
+                <br />
+                <br />
+                Driven by a strong belief in open-source collaboration and
+                morally correct practices, this project emphasizes community
+                building and responsible AI usage. The goal is to create a
+                digital forum that fosters genuine connections among geeks and
+                celebrates their diverse interests and passions.
+                <br />
+                <br />
+                With a keen eye for user experience (UX) and a deep passion for
+                geek culture, the project's founder is determined to
+                revolutionize internet safety and make a difference in the
+                online world. By bringing people together and fostering
+                meaningful interactions, this ambitious project strives to
+                create a global community where geeks can thrive and express
+                themselves freely.
               </p>
-              <span style={{ fontSize: "0.5rem" }}>🌕</span>
             </Annotation>
           )}
           {/* Lights */}

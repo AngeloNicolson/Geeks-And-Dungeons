@@ -50,7 +50,7 @@ const Camera = ({
 
     const animateCamera = () => {
       const currentTime = Date.now();
-      const elapsed = (currentTime - startTime) / 900;
+      const elapsed = (currentTime - startTime) / 850;
 
       // Perform the position animation using linear interpolation
       const t = Math.min(elapsed / duration, 1);
@@ -74,7 +74,7 @@ const Camera = ({
         setTimeout(() => {
           setAnimationCompleted(true); // Set animation completion status to true
           onAnimationComplete(); // Call the onAnimationComplete to trigger annotation render
-        }, 300);
+        }, 500);
       }
     };
 
@@ -94,44 +94,74 @@ const Camera = ({
   /* 
 ----------------------------------------
        DETECT MOUSE MOVEMENT
+
+       I have had to dissable this as it causes the text to flicker on the annotations. 
+       Dissapointed but will need to think of a solution like rotating the anotations with camera, 
+       But this task is to large for now With DI terms
 ----------------------------------------
 */
-  useEffect(() => {
-    const handleMouseMove = (event) => {
-      if (!cameraAnimating || !animationCompleted) return;
 
-      mouse.x = (event.clientX - windowHalfX) / windowHalfX;
-      mouse.y = (event.clientY - windowHalfY) / windowHalfY;
+  // useEffect(() => {
+  //   const handleMouseMove = (event) => {
+  //     if (!cameraAnimating || !animationCompleted) return;
 
-      const rotationSpeed = 0.005; // Adjust this value to control rotation sensitivity
-      const targetQuaternion = new THREE.Quaternion().setFromEuler(
-        new THREE.Euler(rotation[0], rotation[1], 0, "YXZ")
-      );
+  //     const minRotationX = -Math.PI; // Minimum rotation angle around X-axis (approximately -180 degrees)
+  //     const maxRotationX = Math.PI; // Maximum rotation angle around X-axis (approximately 180 degrees)
+  //     const minRotationY = -Math.PI; // Minimum rotation angle around Y-axis (approximately -180 degrees)
+  //     const maxRotationY = Math.PI; // Maximum rotation angle around Y-axis (approximately 180 degrees)
+  //     const minRotationZ = -Math.PI; // Minimum rotation angle around Z-axis (approximately -180 degrees)
+  //     const maxRotationZ = Math.PI; // Maximum rotation angle around Z-axis (approximately 180 degrees)
 
-      const deltaQuaternionX = new THREE.Quaternion().setFromAxisAngle(
-        new THREE.Vector3(1, 0, 0),
-        -mouse.y * rotationSpeed
-      );
-      const deltaQuaternionY = new THREE.Quaternion().setFromAxisAngle(
-        new THREE.Vector3(0, 1, 0),
-        -mouse.x * rotationSpeed
-      );
+  //     mouse.x = (event.clientX - windowHalfX) / windowHalfX;
+  //     mouse.y = (event.clientY - windowHalfY) / windowHalfY;
 
-      const newQuaternion = targetQuaternion
-        .clone()
-        .multiply(deltaQuaternionX)
-        .multiply(deltaQuaternionY);
-      camera.quaternion.copy(newQuaternion);
+  //     // Calculate the delta movement from the last recorded mouse position
+  //     const deltaMove = {
+  //       x: mouse.x - lastMousePosition.x,
+  //       y: mouse.y - lastMousePosition.y,
+  //     };
 
-      // Update the last recorded mouse position
-      setLastMousePosition({ x: mouse.x, y: mouse.y });
-    };
+  //     // If Mouse movement is small, no need to update camera rotation
+  //     if (Math.abs(deltaMove.x) < 0.01 && Math.abs(deltaMove.y) < 0.01) {
+  //       return;
+  //     }
 
-    document.addEventListener("mousemove", handleMouseMove);
-    return () => {
-      document.removeEventListener("mousemove", handleMouseMove);
-    };
-  });
+  //     const rotationSpeed = 0.005; // Adjust this value to control rotation sensitivity
+
+  //     // Calculate the new rotation angles based on mouse movement
+  //     const newRotationX = THREE.MathUtils.clamp(
+  //       rotation[0] + deltaMove.y * rotationSpeed,
+  //       minRotationX,
+  //       maxRotationX
+  //     );
+  //     const newRotationY = THREE.MathUtils.clamp(
+  //       rotation[1] + deltaMove.x * rotationSpeed,
+  //       minRotationY,
+  //       maxRotationY
+  //     );
+
+  //     // Calculate the delta movement around the z-axis and update the rotation
+  //     const deltaMoveZ =
+  //       Math.sqrt(deltaMove.x * deltaMove.x + deltaMove.y * deltaMove.y) *
+  //       rotationSpeed;
+  //     const newRotationZ = THREE.MathUtils.clamp(
+  //       rotation[2] + deltaMoveZ,
+  //       minRotationZ,
+  //       maxRotationZ
+  //     );
+
+  //     // Set the camera's rotation using Euler angles
+  //     camera.rotation.set(newRotationX, newRotationY, newRotationZ);
+
+  //     // Update the last recorded mouse position
+  //     setLastMousePosition({ x: mouse.x, y: mouse.y });
+  //   };
+
+  //   document.addEventListener("mousemove", handleMouseMove);
+  //   return () => {
+  //     document.removeEventListener("mousemove", handleMouseMove);
+  //   };
+  // });
 
   /* 
 ----------------------------------------

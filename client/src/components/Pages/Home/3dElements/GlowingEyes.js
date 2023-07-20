@@ -29,9 +29,6 @@ const GlowingEyes = () => {
     <>
       {/* Render the eyes model */}
       <primitive object={eyesMesh} position={[-2, 1, 10]} castShadows />
-
-      {/* HemisphereLight to simulate global illumination */}
-      <hemisphereLight intensity={0.1} skyColor="black" groundColor="grey" />
     </>
   );
 };
