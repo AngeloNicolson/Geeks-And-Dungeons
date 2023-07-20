@@ -109,23 +109,17 @@ const HomePage = () => {
                 <br />
                 <br />
                 A little bit about myself: I am on a quest for knowledge and
-                what I can do do improve peoples lives through tech. Currently
+                what I can do to improve peoples lives through tech. Currently
                 at this stage in my quest I am studying software development at
                 Developers Institute.
                 <br />
                 <br />
                 To hone my skills I am currently working on a community forum
-                website for geeks, my vision extends beyond just a website. My
-                ultimate dream and goal is to open a tech company that produces
-                engaging and interactive games, content and learning materials
-                for people of all ages. I aspire to make a positive impact on
-                the New Zealand tech industry by retaining local talent instead
-                of losing them to overseas companies.
-                <br />
-                <br />
-                If I do not know somthing then i dont let that hold me back, I
-                find solutions to problems and practice until the problem is
-                solved.
+                website for geeks, my vision extends beyond just a website. I
+                aspire to make a positive impact on the New Zealand tech
+                industry. If I do not know something then I don't let that hold
+                me back, I find solutions to problems and practice until the
+                problem is solved.
                 <br />
                 <br />
                 The journey of an student programmer with large visions may be
@@ -208,36 +202,34 @@ const HomePage = () => {
               onClose={handleAnnotationClose}
             >
               <p className={styles.annotationContents}>
-                Introducing a passion-driven project that aims to unite geeks
-                worldwide through a secure and vibrant digital platform.
-                Inspired by a deep fascination with AI, internet safety, and
-                image analysis, this endeavor focuses on creating a safe space
-                for like-minded individuals to connect and discuss their
-                favorite topics.
+                Geeks and Dungeons is a passion project that aims to unite geeks
+                worldwide to share thoughts and resources. The goal is to create
+                a digital forum that fosters genuine connections among geeks and
+                celebrates their unique interests and passions.
                 <br />
                 <br />
-                The project revolves around developing security middleware to
-                ensure robust authorization and authentication, allowing users
-                to interact with confidence. Leveraging expertise in web
-                development, including React and PostgreSQL, along with a
-                background in full-stack software development, this platform
-                will handle and store user input efficiently.
+                The project incorporates security middleware built around the
+                Auth0 service, ensuring robust authorization and authentication,
+                allowing users to interact with confidence. Leveraging my web
+                development studies in React and PostgreSQL, along with
+                familiarity with full-stack software development, I have built
+                this website to securely store and display user input.
                 <br />
                 <br />
-                Driven by a strong belief in open-source collaboration and
-                morally correct practices, this project emphasizes community
-                building and responsible AI usage. The goal is to create a
-                digital forum that fosters genuine connections among geeks and
-                celebrates their diverse interests and passions.
+                With a personal passion for unique user experiences and geek
+                culture, this project aims to bring people together and foster
+                meaningful interactions with an equally unique visual interface.
+                One day this website will enable users to express themselves
+                through their profile and personality deck (Upcoming feature).
+                This ambitious project strives to create a community where geeks
+                can thrive and express themselves freely.
                 <br />
                 <br />
-                With a keen eye for user experience (UX) and a deep passion for
-                geek culture, the project's founder is determined to
-                revolutionize internet safety and make a difference in the
-                online world. By bringing people together and fostering
-                meaningful interactions, this ambitious project strives to
-                create a global community where geeks can thrive and express
-                themselves freely.
+                Driven by a strong belief in open-source collaboration, this
+                project aims to keep all the code direct code written for Geeks
+                and dungeons as opensource and available to anyone, (This doesnt
+                extend to the libraries used as they have thier own indevidual
+                licencing).
               </p>
             </Annotation>
           )}
