@@ -181,7 +181,7 @@ const HomePage = () => {
           />
           {showAnnotation && activeAnnotation === "about-the-project" && (
             <Annotation
-              position={[1, 4.7, 26]}
+              position={[1.5, 4.9, 27]}
               rotation={[0, -2.7, 0]}
               onClose={handleAnnotationClose}
             >
