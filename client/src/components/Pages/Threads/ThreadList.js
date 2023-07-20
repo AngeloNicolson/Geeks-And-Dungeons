@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
 // PAGE ELEMENTS
 import ErrorMessage from "../../ErrorHandler/ErrorMessage";
@@ -12,6 +13,8 @@ import styles from "./ThreadList.module.css";
 const ThreadFeed = ({ threads, loggedInUser, handleThreadDelete }) => {
   const [deleteDropdowns, setDeleteDropdowns] = useState(new Map());
   const [errorMessage, setErrorMessage] = useState(null);
+
+  const navigate = useNavigate();
 
   const dropdownRef = useRef(null);
 
@@ -31,9 +34,9 @@ const ThreadFeed = ({ threads, loggedInUser, handleThreadDelete }) => {
     }
   };
 
-  const handleButtonClick = (event) => {
+  const handleButtonClick = (event, threadId) => {
     event.stopPropagation();
-    console.log("button clicked:");
+    navigate(`/thread/${threadId}`);
   };
 
   const isOwner = (thread) => {
@@ -95,15 +98,6 @@ const ThreadFeed = ({ threads, loggedInUser, handleThreadDelete }) => {
                       Delete
                     </button>
                   )}
-
-                  <button
-                    className={styles.deleteButton}
-                    onClick={(event) => {
-                      event.stopPropagation();
-                    }}
-                  >
-                    Edit
-                  </button>
                 </div>
               )}
             </div>
@@ -112,7 +106,9 @@ const ThreadFeed = ({ threads, loggedInUser, handleThreadDelete }) => {
             <h3 className={styles.threadTitle}>{thread.thread_title}</h3>
           </div>
           <div className={styles.buttonGroup}>
-            <div onClick={handleButtonClick}>
+            <div
+              onClick={(event) => handleButtonClick(event, thread.thread_id)}
+            >
               <button className={styles.button}>Comment</button>
             </div>
             <div onClick={handleButtonClick}>
