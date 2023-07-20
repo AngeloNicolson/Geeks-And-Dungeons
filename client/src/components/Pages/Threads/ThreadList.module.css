@@ -1,14 +1,16 @@
 .threadCard {
   display: grid;
-  grid-gap: 0.7rem;
+  grid-gap: 1.2rem;
 }
 
 .threadItem {
-  overflow: hidden;
+  /* overflow: hidden; */
   background-color: rgb(27, 27, 27);
   border: 1px solid rgb(69, 69, 69);
   border-radius: 0.2rem;
+  cursor: pointer;
 }
+
 .threadItem:hover {
   border: 1px solid rgb(122, 122, 122);
 }
@@ -30,18 +32,78 @@
 }
 
 .bar {
-  display: grid;
-  align-content: center;
-  bottom: 0;
-  margin-left: -1rem;
-  width: 102%;
-  height: 2rem;
-  color: #161616;
-  background-color: rgb(22, 22, 22);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* margin-top: 0.5rem; */
+  /* padding: 0.1rem; */
+  padding-left: 1rem;
+  /* background-color: rgb(56, 56, 56); */
 }
+
 .author {
   font-size: 0.7rem;
   color: #c0c0c0;
-  padding-left: 0.5rem;
-  /* padding-bottom: 0.5rem; */
+}
+
+.buttonGroup {
+  display: flex;
+  align-items: center;
+  margin-left: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.button {
+  color: #ffffff;
+  background-color: transparent;
+  border: none;
+  margin-right: 0.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  /* font-size: 1rem; */
+  display: inline-block;
+}
+
+.button:hover {
+  background-color: rgb(77, 77, 77);
+}
+
+.dropdownContainer {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdownButton {
+  position: relative;
+  align-self: center;
+  border-radius: 50%;
+  height: 2rem;
+  width: 2rem;
+  margin-top: 0.5rem;
+}
+
+.dropdownContent {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(77, 77, 77);
+  border: 1px solid #ddd;
+  border-radius: 0.2rem;
+  z-index: 1;
+}
+
+.deleteButton {
+  color: red;
+  background-color: transparent;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.deleteButton:hover {
+  background-color: rgb(226, 7, 7);
+  color: black;
 }

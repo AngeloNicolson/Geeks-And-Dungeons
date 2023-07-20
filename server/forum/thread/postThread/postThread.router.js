@@ -29,7 +29,7 @@ const createThreadSchema = Joi.object({
     "number.empty": "Please select a topic card",
     "any.required": "Topic card is required",
   }),
-  author: Joi.string().required(),
+  author: Joi.number().required(),
 });
 
 /*

@@ -1,0 +1,35 @@
+.annotation {
+  display: grid;
+  max-width: 18rem;
+  padding: 0.5rem;
+}
+.buttonContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+  align-items: center;
+  grid-gap: 0.1rem;
+  margin-top: 0.4rem;
+  margin-bottom: 0.4rem;
+}
+
+.socialNavigations {
+  font-size: 0.6rem;
+  padding: 6px 12px;
+  border-radius: 0.4rem;
+  background-color: orangered;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+.socialNavigations:hover {
+  background-color: rgb(255, 83, 21);
+}
+.closeButton {
+  font-size: 0.5rem;
+  size: 0.5rem;
+  padding: 0.1rem 0.2rem;
+  justify-self: end;
+  /* height: 0.7rem;
+  width: 0.7rem; */
+}

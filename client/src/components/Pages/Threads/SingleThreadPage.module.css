@@ -13,7 +13,7 @@
 }
 
 .threadContainer {
-  overflow: hidden;
+  /* overflow: hidden; */
   background-color: rgb(27, 27, 27);
   border-radius: 0.2rem;
   padding-bottom: 1.2rem;

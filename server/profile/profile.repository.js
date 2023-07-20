@@ -11,7 +11,8 @@ VALUES ($1, $2)
 ON CONFLICT (auth0_id) DO NOTHING
 RETURNING username, auth0_id
 `;
-const getUserProfileByUsernameSQL = "SELECT * FROM users WHERE auth0_id = $1";
+const getUserProfileByUsernameSQL =
+  "SELECT id, username, auth0_id FROM users WHERE auth0_id = $1";
 
 /* 
 -----------------------------------

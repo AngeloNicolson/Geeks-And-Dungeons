@@ -20,8 +20,8 @@ const Navigation = () => {
         <ul className={styles.siteNavigation}>
           <li>
             <Link
-              to="/"
-              className={`${styles.navigationItem} ${isActive("/")}`}
+              to="/threads"
+              className={`${styles.navigationItem} ${isActive("/threads")}`}
             >
               FORUMS
             </Link>
