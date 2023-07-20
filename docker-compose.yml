@@ -8,8 +8,8 @@ services:
       - "3000:3000"
     environment:
       - CHOKIDAR_USEPOLLING=true
-      - REACT_APP_API_URL=http://localhost:5000
-        # For running a ci pipeline in github when the project is ready or if others begin to work on project
+      - REACT_APP_API_URL=https://server-o3uc.onrender.com
+      # For running a ci pipeline in github when the project is ready or if others begin to work on project
       # - CI=true
     volumes:
       - ./client:/app
