@@ -34,9 +34,29 @@ const ThreadFeed = ({ threads, loggedInUser, handleThreadDelete }) => {
     }
   };
 
+  const copyToClipboard = async (text) => {
+    if (!navigator.clipboard) {
+      // Clipboard API not available
+      return;
+    }
+
+    try {
+      await navigator.clipboard.writeText(text);
+      alert("Link copied to clipboard!");
+    } catch (error) {
+      alert("Failed to copy to clipboard:", error);
+      alert("Failed to copy link to clipboard.");
+    }
+  };
+
   const handleButtonClick = (event, threadId) => {
     event.stopPropagation();
-    navigate(`/thread/${threadId}`);
+    if (event.target.textContent === "Comment") {
+      navigate(`/thread/${threadId}`);
+    } else if (event.target.textContent === "Share") {
+      const threadLink = `${window.location.origin}/thread/${threadId}`;
+      copyToClipboard(threadLink);
+    }
   };
 
   const isOwner = (thread) => {
@@ -64,7 +84,7 @@ const ThreadFeed = ({ threads, loggedInUser, handleThreadDelete }) => {
           className={styles.threadItem}
           key={thread.thread_id}
           onClick={() => {
-            window.location.href = `/thread/${thread.thread_id}`;
+            navigate(`/thread/${thread.thread_id}`);
           }}
         >
           {errorMessage && <ErrorMessage message={errorMessage} />}
@@ -111,7 +131,9 @@ const ThreadFeed = ({ threads, loggedInUser, handleThreadDelete }) => {
             >
               <button className={styles.button}>Comment</button>
             </div>
-            <div onClick={handleButtonClick}>
+            <div
+              onClick={(event) => handleButtonClick(event, thread.thread_id)}
+            >
               <button className={styles.button}>Share</button>
             </div>
           </div>
