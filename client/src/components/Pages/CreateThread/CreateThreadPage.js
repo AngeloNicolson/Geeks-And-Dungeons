@@ -58,7 +58,7 @@ function CreateThreadPage() {
           );
         }
       } else {
-        navigate("/");
+        navigate("/threads");
       }
     } catch (err) {
       console.error(err.message);
