@@ -229,7 +229,7 @@ const HomePage = () => {
                 project aims to keep all the code direct code written for Geeks
                 and dungeons as opensource and available to anyone, (This doesnt
                 extend to the libraries used as they have thier own indevidual
-                licencing).
+                licensing).
               </p>
             </Annotation>
           )}
