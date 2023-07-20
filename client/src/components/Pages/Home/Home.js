@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { Canvas } from "@react-three/fiber";
-import { Link } from "react-router-dom";
-import { PerspectiveCamera } from "@react-three/drei";
 
 // EFFECTS
 import {
@@ -21,14 +19,10 @@ import Camera from "./Camera/Camera";
 
 // STYLES
 import styles from "./Home.module.css";
-import GitHubIcon from "../../../Assets/Icons/GitHubIcon";
-import LinkedInIcon from "../../../Assets/Icons/LinkedinIcon";
 
 const HomePage = () => {
   const [activeAnnotation, setActiveAnnotation] = useState("default");
   const [showAnnotation, setShowAnnotation] = useState(false);
-  // const [cameraRotation, setCameraRotation] = useState([0.2, -0.5, 0]);
-  // const [cameraTarget, setCameraTarget] = useState([-40, 1, 60]);
 
   // Function to handle clicking an annotation
   const handleAnnotationClick = (annotationName) => {
@@ -39,8 +33,6 @@ const HomePage = () => {
   // Function to handle clicking the close button
   const handleAnnotationClose = () => {
     setActiveAnnotation("default");
-    // setCameraRotation([0.2, -0.5, 0]);
-    // setCameraTarget([-40, 1, 60]);
   };
 
   const handleAnimationComplete = () => {
@@ -67,15 +59,7 @@ const HomePage = () => {
             <Vignette eskil={false} offset={0.1} darkness={1} />
           </EffectComposer>
 
-          {/* Controls and Camera */}
-
-          {/* <PerspectiveCamera
-            makeDefault
-            fov={30}
-            position={cameraTarget}
-            rotation={cameraRotation}
-            onAnnotationClick={handleAnnotationClick}
-          /> */}
+          {/* Default Camera */}
           <Camera
             fov={32}
             target={[-35, 2, 50]} // Setting the target position for about-the-project annotation
