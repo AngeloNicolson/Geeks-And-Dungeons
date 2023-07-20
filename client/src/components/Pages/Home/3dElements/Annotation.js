@@ -23,7 +23,7 @@ function Annotation({ children, onClose, ...props }) {
         <div className={styles.buttonContainer}>
           <div
             onClick={() =>
-              (window.location.href = "https://github.com/AngeloNicolson")
+              window.open("https://github.com/AngeloNicolson", "_blank")
             }
             className={styles.socialNavigations}
           >
@@ -31,15 +31,17 @@ function Annotation({ children, onClose, ...props }) {
           </div>
           <div
             onClick={() =>
-              (window.location.href =
-                "https://www.linkedin.com/in/angelo-nicolson-5ab4b772/")
+              window.open(
+                "https://www.linkedin.com/in/angelo-nicolson-5ab4b772/",
+                "_blank"
+              )
             }
             className={styles.socialNavigations}
           >
             Linkedin
           </div>
           <div
-            onClick={() => (window.location.href = "/profile")}
+            onClick={() => window.open("/profile", "_blank")}
             className={styles.socialNavigations}
           >
             Visit GnD
