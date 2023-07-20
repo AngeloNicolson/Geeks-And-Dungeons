@@ -44,7 +44,7 @@ const ThreadFeed = ({ threads, loggedInUser, handleThreadDelete }) => {
       await navigator.clipboard.writeText(text);
       alert("Link copied to clipboard!");
     } catch (error) {
-      alert("Failed to copy to clipboard:", error);
+      setErrorMessage("Failed to copy to clipboard:");
       alert("Failed to copy link to clipboard.");
     }
   };
@@ -53,7 +53,7 @@ const ThreadFeed = ({ threads, loggedInUser, handleThreadDelete }) => {
     event.stopPropagation();
     if (event.target.textContent === "Comment") {
       navigate(`/thread/${threadId}`);
-    } else if (event.target.textContent === "Share") {
+    } else if (event.target.textContent === "Sare") {
       const threadLink = `${window.location.origin}/thread/${threadId}`;
       copyToClipboard(threadLink);
     }
