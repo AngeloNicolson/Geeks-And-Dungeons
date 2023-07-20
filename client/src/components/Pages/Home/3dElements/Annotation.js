@@ -41,7 +41,7 @@ function Annotation({ children, onClose, ...props }) {
             Linkedin
           </div>
           <div
-            onClick={() => window.open("/profile", "_blank")}
+            onClick={() => (window.location.href = "/profile")}
             className={styles.socialNavigations}
           >
             Visit GnD
