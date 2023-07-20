@@ -173,23 +173,27 @@ const HomePage = () => {
           )}
           <Camera
             fov={32}
-            target={[-6.4, 4.2, 10]} // Setting the target position for about-the-project annotation
-            rotation={[0, -2.5, 0]} // Setting the targe5 rotation for about-the-project annotation
+            target={[-6.5, 4.2, 9]} // Setting the target position for about-the-project annotation
+            rotation={[0, -2.7, 0]} // Setting the targe5 rotation for about-the-project annotation
             active={activeAnnotation === "about-the-project"}
             onAnimationComplete={handleAnimationComplete}
             onAnnotationClick={handleAnnotationClick}
           />
           {showAnnotation && activeAnnotation === "about-the-project" && (
             <Annotation
-              position={[0.7, 4.5, 25]}
-              rotation={[0, -2.5, 0]}
+              position={[1, 4.7, 26]}
+              rotation={[0, -2.7, 0]}
               onClose={handleAnnotationClose}
             >
               <p className={styles.annotationContents}>
+                DISCLAIMER: This 3D Hompage serves as a gateway and intorduction
+                to the real project, just while it is being built.
+                <br />
+                <br />
                 Geeks and Dungeons is a passion project that aims to unite geeks
                 worldwide to share thoughts and resources. The goal is to create
                 a digital forum that fosters genuine connections among geeks and
-                celebrates their unique interests and passions.
+                celebrates their unique interests, and passions.
                 <br />
                 <br />
                 The project incorporates security middleware built around the
@@ -205,8 +209,6 @@ const HomePage = () => {
                 meaningful interactions with an equally unique visual interface.
                 One day this website will enable users to express themselves
                 through their profile and personality deck (Upcoming feature).
-                This ambitious project strives to create a community where geeks
-                can thrive and express themselves freely.
                 <br />
                 <br />
                 Driven by a strong belief in open-source collaboration, this
