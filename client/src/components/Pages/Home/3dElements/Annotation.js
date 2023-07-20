@@ -1,6 +1,7 @@
 import React from "react";
 import { Html } from "@react-three/drei";
 import styles from "./Annotation.module.css";
+import { useNavigate } from "react-router-dom";
 
 /* 
 ----------------------------------------
@@ -8,6 +9,8 @@ import styles from "./Annotation.module.css";
 ----------------------------------------
 */
 function Annotation({ children, onClose, ...props }) {
+  const navigate = useNavigate();
+
   return (
     <Html
       {...props}
@@ -41,7 +44,9 @@ function Annotation({ children, onClose, ...props }) {
             Linkedin
           </div>
           <div
-            onClick={() => (window.location.href = "/threads")}
+            onClick={() => {
+              navigate("/threads");
+            }}
             className={styles.socialNavigations}
           >
             Visit GnD
