@@ -5,12 +5,10 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { AuthenticationGuard } from "./Auth/authentication-guard";
 
 // PAGES
-import HomePage from "./components/Pages/Home/Home";
 import CreateThreadPage from "./components/Pages/CreateThread/CreateThreadPage";
 import ThreadsPage from "./components/Pages/Threads/ThreadsPage";
 import Profile from "./components/Pages/Profile/Profile";
 import SingleThreadPage from "./components/Pages/Threads/SingleThreadPage";
-import { Suspense } from "react";
 
 const App = () => {
   const { isLoading } = useAuth0();
@@ -27,20 +25,11 @@ const App = () => {
       <Routes>
         <Route
           exact
-          path="/"
-          element={
-            <Suspense>
-              <HomePage />
-            </Suspense>
-          }
-        />
-        <Route
-          exact
           path="/createthread"
           element={<AuthenticationGuard component={CreateThreadPage} />}
         />
 
-        <Route exact path="/threads" element={<ThreadsPage />} />
+        <Route exact path="/" element={<ThreadsPage />} />
 
         <Route
           exact
