@@ -76,16 +76,16 @@ const HomePage = () => {
           {/* Annotations */}
           <Camera
             fov={32}
-            target={[-2, 13, 36]} // Setting the target position for about-me annotation
-            rotation={[0.11, -0.19, 0]} // Setting the target rotation for about-me annotation
+            target={[0.7, 14.25, 36]} // Setting the target position for about-me annotation
+            rotation={[0, 0, 0]} // Setting the target rotation for about-me annotation
             active={activeAnnotation === "about-me"}
             onAnimationComplete={handleAnimationComplete}
             onAnnotationClick={handleAnnotationClick}
           />
           {showAnnotation && activeAnnotation === "about-me" && (
             <Annotation
-              position={[5, 14.5, 22]}
-              rotation={[0.11, -0.19, 0]}
+              position={[4.2, 14.5, 22]}
+              rotation={[0, 0, 0]}
               onClose={handleAnnotationClose}
             >
               <p className={styles.annotationContents}>

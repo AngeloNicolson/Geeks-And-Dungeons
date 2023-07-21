@@ -3,6 +3,11 @@
   max-width: 18rem;
   padding: 0.5rem;
 }
+/* @media (max-height: 800px) {
+  .annotation {
+    height: 14rem;
+  }
+} */
 .buttonContainer {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
