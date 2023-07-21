@@ -2,6 +2,7 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+const path = require("path");
 const { auth } = require("express-oauth2-jwt-bearer");
 const errorHandler = require("./middleware/errorHandler");
 const joiErrorHandler = require("./middleware/joiErrorHandler");
@@ -41,5 +42,9 @@ app.use("/api/profile", profileRouter);
 // ERROR HANDLERS
 app.use(joiErrorHandler);
 app.use(errorHandler);
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "/client/src/index.html"));
+});
 
 module.exports = app;
