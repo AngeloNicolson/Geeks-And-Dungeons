@@ -25,20 +25,16 @@ const getSingleThreadSchema = Joi.object({
 ----------------------------------
 */
 
-router.get(
-  "/:id",
-  queryValidationMiddleware(getSingleThreadSchema),
-  async (request, response, next) => {
-    try {
-      const { id } = request.params;
-      const forumPost = await repository.getSingleThread(sanitizeInput(id));
-      return response.json(forumPost);
-    } catch (error) {
-      console.error(error.message);
-      next(error);
-    }
+router.get("/:id", getSingleThreadSchema, async (request, response, next) => {
+  try {
+    const { id } = request.params;
+    const forumPost = await repository.getSingleThread(sanitizeInput(id));
+    return response.json(forumPost);
+  } catch (error) {
+    console.error(error.message);
+    next(error);
   }
-);
+});
 
 router.get("/", async (request, response, next) => {
   try {
