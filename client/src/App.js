@@ -10,6 +10,7 @@ import CreateThreadPage from "./components/Pages/CreateThread/CreateThreadPage";
 import ThreadsPage from "./components/Pages/Threads/ThreadsPage";
 import Profile from "./components/Pages/Profile/Profile";
 import SingleThreadPage from "./components/Pages/Threads/SingleThreadPage";
+import { Suspense } from "react";
 
 const App = () => {
   const { isLoading } = useAuth0();
@@ -30,7 +31,15 @@ const App = () => {
           element={<AuthenticationGuard component={CreateThreadPage} />}
         />
 
-        <Route exact path="/" element={<HomePage />} />
+        <Route
+          exact
+          path="/"
+          element={
+            <Suspense>
+              <HomePage />
+            </Suspense>
+          }
+        />
 
         <Route
           exact

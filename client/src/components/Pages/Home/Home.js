@@ -125,50 +125,56 @@ const HomePage = () => {
           />
           {showAnnotation && activeAnnotation === "my-interests" && (
             <Annotation position={[-1.6, 7, 9]} onClose={handleAnnotationClose}>
-              <p className={styles.annotationContents}>
-                <h3>AI</h3>
-                One of my interests is artificial intelligence (AI). I am
-                captivated by its dynamic nature and boundless potential to
-                tackle real-world challenges. Specifically, I am deeply
-                fascinated by AI's capacity to enhance internet safety for
-                younger children, envisioning powerful content filtering
-                systems, parental control tools, and real-time monitoring
-                mechanisms to safeguard them from harmful online content
-                Providing parents with the control and tools they need to
-                protect their children is my driving force.
-                <br />
-                <h3>Image analysis</h3>
-                Another inspiring realm that fascinates me is image analysis,
-                where machine learning algorithms can revolutionize web
-                development and 3D model design processes. I dream of creating a
-                system that optimizes and creates 3D designs and assets for the
-                gaming industry, empowering artists to unleash their creativity
-                on the finer details.
-                <br />
-                {/* <h3>3D Printing</h3>
-                Through thousands of hours in 3D applications, I wanted to see
-                my designs come to life this led me design props from scratch,
-                ideas, beloved movies and games, fueling my problem solving
-                ability, enhancing my creativity and joy.
-                <br /> */}
-                <h3>Open source</h3>
-                For me, this journey is more than mere business or project
-                aspirations. I am driven by a strong belief in morally correct
-                practices and building a community of like-minded enthusiasts
-                and collaborators. Embracing open-source software and content is
-                a vital part of my vision, as I firmly believe that sharing
-                knowledge with a roots in an open-source mindset fuels
-                innovation and progress.
-                <br />
-                <h3>Vision</h3>I see technology as a powerful means to foster
-                human connections and enhance lives. By prioritizing community
-                and responsible AI usage, my ultimate goal is to revolutionize
-                internet safety and create an enjoyable and secure digital world
-                for all. My journey as a tech enthusiast is fueled by a deep
-                desire to make a difference, one idea and project at a time. I'm
-                eager to explore new frontiers, push boundaries, and above all,
-                learn
-              </p>
+              <div>
+                <h3 className={styles.annotationHeading}>AI</h3>
+                <p className={styles.annotationContents}>
+                  One of my interests is artificial intelligence (AI). I am
+                  captivated by its dynamic nature and boundless potential to
+                  tackle real-world challenges. Specifically, I am deeply
+                  fascinated by AI's capacity to enhance internet safety for
+                  younger children, envisioning powerful content filtering
+                  systems, parental control tools, and real-time monitoring
+                  mechanisms to safeguard them from harmful online content.
+                  Providing parents with the control and tools they need to
+                  protect their children is my driving force.
+                </p>
+              </div>
+              <div>
+                <h3 className={styles.annotationHeading}>Image analysis</h3>
+                <p className={styles.annotationContents}>
+                  Another inspiring realm that fascinates me is image analysis,
+                  where machine learning algorithms can revolutionize web
+                  development and 3D model design processes. I dream of creating
+                  a system that optimizes and creates 3D designs and assets for
+                  the gaming industry, empowering artists to unleash their
+                  creativity on the finer details.
+                </p>
+              </div>
+              <div>
+                <h3 className={styles.annotationHeading}>Open source</h3>
+                <p className={styles.annotationContents}>
+                  For me, this journey is more than mere business or project
+                  aspirations. I am driven by a strong belief in morally correct
+                  practices and building a community of like-minded enthusiasts
+                  and collaborators. Embracing open-source software and content
+                  is a vital part of my vision, as I firmly believe that sharing
+                  knowledge with a roots in an open-source mindset fuels
+                  innovation and progress.
+                </p>
+              </div>
+              <div>
+                <h3 className={styles.annotationHeading}>Vision</h3>
+                <p className={styles.annotationContents}>
+                  I see technology as a powerful means to foster human
+                  connections and enhance lives. By prioritizing community and
+                  responsible AI usage, my ultimate goal is to revolutionize
+                  internet safety and create an enjoyable and secure digital
+                  world for all. My journey as a tech enthusiast is fueled by a
+                  deep desire to make a difference, one idea and project at a
+                  time. I'm eager to explore new frontiers, push boundaries, and
+                  above all, learn.
+                </p>
+              </div>
             </Annotation>
           )}
           <Camera
