@@ -29,11 +29,7 @@ const App = () => {
           element={<AuthenticationGuard component={CreateThreadPage} />}
         />
 
-        <Route
-          exact
-          path="/"
-          element={<AuthenticationGuard component={ThreadsPage} />}
-        />
+        <Route exact path="/" element={<ThreadsPage />} />
 
         <Route
           exact
