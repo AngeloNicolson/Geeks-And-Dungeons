@@ -27,7 +27,7 @@ const getSingleThreadSchema = Joi.object({
 
 router.get(
   "/:id",
-  queryValidationMiddleware(getSingleThreadSchema),
+  // queryValidationMiddleware(getSingleThreadSchema),
   async (request, response, next) => {
     try {
       const { id } = request.params;
