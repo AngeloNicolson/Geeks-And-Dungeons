@@ -9,7 +9,12 @@ const ThreadSkeleton = () => {
     <div className={`${styles.threadItem} ${styles.skeletonThread}`}>
       <div className={styles.bar}>
         <p className={styles.author}>
-          Posted by: <span className={styles.date}>Loading...</span>
+          Posted by:{" "}
+          <span className={styles.date}>
+            Loading <span className={styles.dot}></span>
+            <span className={styles.dot}></span>
+            <span className={styles.dot}></span>
+          </span>
         </p>
         <div className={styles.dropdownContainer}>
           <button className={`${styles.button} ${styles.dropdownButton}`}>
@@ -18,7 +23,12 @@ const ThreadSkeleton = () => {
         </div>
       </div>
       <div className={styles.threadContent}>
-        <h3 className={styles.threadTitle}>Loading...</h3>
+        <h3 className={styles.threadTitle}>
+          Loading
+          <span className={styles.dot}></span>
+          <span className={styles.dot}></span>
+          <span className={styles.dot}></span>
+        </h3>
       </div>
       <div className={styles.buttonGroup}>
         <div>
