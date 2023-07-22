@@ -2,13 +2,13 @@ import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
 // PAGE ELEMENTS
-import ErrorMessage from "../../ErrorHandler/ErrorMessage";
-import { formatDate } from "../../../Utils/formatDate";
+import ErrorMessage from "../../../ErrorHandler/ErrorMessage";
+import { formatDate } from "../../../../Utils/formatDate";
 
 // STYLES
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisH } from "@fortawesome/free-solid-svg-icons";
-import styles from "./ThreadList.module.css";
+import styles from "./ThreadFeed.module.css";
 
 const ThreadFeed = ({ threads, loggedInUser, handleThreadDelete }) => {
   const [deleteDropdowns, setDeleteDropdowns] = useState(new Map());

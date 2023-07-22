@@ -4,8 +4,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 // PAGE ELEMENTS
 import ErrorMessage from "../../ErrorHandler/ErrorMessage.js";
 import Navigation from "../../Navigation/Navigation.js";
-import ThreadFeed from "./ThreadList.js";
-
+import ThreadFeed from "./ThreadFeed/ThreadFeed.js";
+import ThreadSkeleton from "./ThreadFeed/ThreadSkeleton.js";
 // STYLES
 import styles from "../PageLayout.module.css";
 // API
@@ -13,6 +13,7 @@ import api from "../../../Api";
 
 const ThreadPage = () => {
   const [threads, setThreads] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
   const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
 
@@ -26,6 +27,8 @@ const ThreadPage = () => {
       setThreads(threadData);
     } catch (error) {
       setErrorMessage(error.message);
+    } finally {
+      setLoading(false); // Set loading to false regardless of success or error
     }
   };
 
@@ -61,11 +64,19 @@ const ThreadPage = () => {
       {errorMessage && <ErrorMessage message={errorMessage} />}
       <div className={styles.body_inner}>
         <div className={styles.div_identification}>
-          <ThreadFeed
-            threads={threads}
-            loggedInUser={user}
-            handleThreadDelete={handleThreadDelete}
-          />
+          {loading ? (
+            // Render the ThreadSkeleton component while loading
+            Array.from({ length: 15 }).map((_, index) => (
+              <ThreadSkeleton key={index} />
+            ))
+          ) : (
+            // Render the ThreadFeed component when data is loaded
+            <ThreadFeed
+              threads={threads}
+              loggedInUser={user}
+              handleThreadDelete={handleThreadDelete}
+            />
+          )}
         </div>
       </div>
     </>

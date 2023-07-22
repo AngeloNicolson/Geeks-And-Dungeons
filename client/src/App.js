@@ -9,7 +9,7 @@ import HomePage from "./components/Pages/Home/Home";
 import CreateThreadPage from "./components/Pages/CreateThread/CreateThreadPage";
 import ThreadsPage from "./components/Pages/Threads/ThreadsPage";
 import Profile from "./components/Pages/Profile/Profile";
-import SingleThreadPage from "./components/Pages/Threads/SingleThreadPage";
+import SingleThreadPage from "./components/Pages/Threads/Thread/SingleThreadPage";
 
 const App = () => {
   const { isLoading } = useAuth0();

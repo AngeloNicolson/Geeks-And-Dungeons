@@ -1,15 +1,15 @@
 import { useParams } from "react-router-dom";
 import { React, useState, useEffect } from "react";
-import { formatDate } from "../../../Utils/formatDate";
+import { formatDate } from "../../../../Utils/formatDate";
 // PAGE ELEMENTS
-import ErrorMessage from "../../ErrorHandler/ErrorMessage";
-import Navigation from "../../Navigation/Navigation";
-import ReplyChain from "./Replies/ThreadReplies";
+import ErrorMessage from "../../../ErrorHandler/ErrorMessage";
+import Navigation from "../../../Navigation/Navigation";
+import ReplyChain from "../Replies/ThreadReplies";
 
 // STYLES
 import styles from "./SingleThreadPage.module.css";
 // API
-import api from "../../../Api";
+import api from "../../../../Api";
 
 const SingleThreadPage = () => {
   const { id } = useParams();
