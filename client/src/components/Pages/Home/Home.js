@@ -44,7 +44,16 @@ const HomePage = () => {
     <>
       <div style={{ height: "100vh" }}>
         <Suspense fallback={<LoadingScreen />}>
-          <Canvas shadows gl={{ alpha: false }} style={{ background: "black" }}>
+          <Canvas
+            shadows
+            gl={{ alpha: false }}
+            style={{ background: "black" }}
+            camera={{
+              fov: 32,
+              position: [-35, 2, 50],
+              rotation: [0.3, -0.75, 0.2],
+            }}
+          >
             <EffectComposer>
               <DepthOfField
                 focusDistance={0.04}
