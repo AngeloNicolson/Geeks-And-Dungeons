@@ -117,7 +117,7 @@ const HomePage = () => {
 
           <Camera
             fov={32}
-            target={[-2.5, 7.2, 29]} // Setting the target position for my-interests annotation
+            target={[-2.5, 7.2, 31]} // Setting the target position for my-interests annotation
             rotation={[0, 0, 0]} // Setting the target rotation for my-interests annotation
             active={activeAnnotation === "my-interests"}
             onAnimationComplete={handleAnimationComplete}
@@ -179,16 +179,16 @@ const HomePage = () => {
           )}
           <Camera
             fov={32}
-            target={[-6.5, 4.2, 9]} // Setting the target position for about-the-project annotation
-            rotation={[0, -2.7, 0]} // Setting the targe5 rotation for about-the-project annotation
+            target={[-22, 13.5, 10]} // Setting the target position for about-the-project annotation
+            rotation={[0, -1.7, 0]} // Setting the targe5 rotation for about-the-project annotation
             active={activeAnnotation === "about-the-project"}
             onAnimationComplete={handleAnimationComplete}
             onAnnotationClick={handleAnnotationClick}
           />
           {showAnnotation && activeAnnotation === "about-the-project" && (
             <Annotation
-              position={[1.5, 4.9, 27]}
-              rotation={[0, -2.7, 0]}
+              position={[-5, 13, 10.5]}
+              rotation={[0, -1.7, 0]}
               onClose={handleAnnotationClose}
             >
               <p className={styles.annotationContents}>

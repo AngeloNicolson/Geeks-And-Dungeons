@@ -1,6 +1,6 @@
 .annotation {
   display: grid;
-  max-width: 18rem;
+  max-width: 17rem;
   padding: 0.5rem;
 }
 /* @media (max-height: 800px) {
