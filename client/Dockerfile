@@ -1,9 +1,9 @@
 # Use the node 19 version image
 FROM node:19
 
-# Create a folder called App
-# Runs all code and commands from this directory 
+# Create a folder called App and set permissions
 WORKDIR /app
+RUN mkdir -p /app/node_modules/.cache && chmod -R 777 /app/node_modules/.cache
 
 # Copy package.json and package-lock.json first so that they are cached. This is done for performance reasons, as these files don't change frequently.
 COPY package*.json ./

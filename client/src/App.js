@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
 // MIDDLEWARE
 import { useAuth0 } from "@auth0/auth0-react";
@@ -20,6 +20,15 @@ const App = () => {
         <p>Loading...</p>
       </div>
     );
+  }
+  class Cart { // TODO: Implement the Cart class
+    constructor() {
+      this.items = [];
+    }
+
+    addItem(item) {
+      this.item.push(item);
+    }
   }
   return (
     <div>
